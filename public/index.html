@@ -40,7 +40,31 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <!-- Brain.js -->
   <script src="//unpkg.com/brain.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyACS4pCYFln8wXR9jAq9FQqY32y_iZdkQE",
+      authDomain: "dose-d1ec1.firebaseapp.com",
+      databaseURL: "https://dose-d1ec1.firebaseio.com",
+      projectId: "dose-d1ec1",
+      storageBucket: "dose-d1ec1.appspot.com",
+      messagingSenderId: "509059549199",
+      appId: "1:509059549199:web:898d894da66b830780bb7a",
+      measurementId: "G-CK6LQKRMZV"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
 </body>
 
 </html>
