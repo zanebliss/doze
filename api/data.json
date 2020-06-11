@@ -1,10 +1,14 @@
 {
-    "users": [
-        {
-            "name": "Zane",
-            "id": 1,
-            "log": [0,1,0,1],
-            "result": [1]
-        }
-    ]
+  "users": [
+    {
+      "username": "Zane",
+      "password": "wasd",
+      "id": 1
+    },
+    {
+      "username": "",
+      "password": "",
+      "id": 2
+    }
+  ]
 }

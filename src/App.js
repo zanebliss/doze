@@ -8,11 +8,14 @@ import { Doughnut } from 'react-chartjs-2'
 // BRAIN.JS test
 const net = new brain.NeuralNetwork({ hiddenLayers: [3] });
 let trainingData = [
-  { input: [0, 0, 1, 1], output: [1] }
+  { input: [0, 0, 1, 1], output: [0] },
+  { input: [0, 0, 1, 0], output: [0] },
+  { input: [1, 0, 1, 0], output: [0] },
+  { input: [0, 0, 1, 0], output: [0] }
 ]
 // trainingData.push({input: arr, output: result})
 net.train(trainingData)
-let hmm = (net.run([0, 0, 1, 1]))
+let hmm = (net.run([0,0,1,1]))
 let hmm2 = Math.floor(hmm[0] * 100)
 // BRAIN.JS test
 
