@@ -1,0 +1,14 @@
+.icon {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: gray
+}
+
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px #CFCFCF solid;
+    
+}
+
