@@ -7,6 +7,7 @@ import './Home.css'
 
 const Home = props => {
     const [activities, setActivities] = useState(false)
+    
 
     const loadActivities = () => {
         // APIManager.getAll().then()
