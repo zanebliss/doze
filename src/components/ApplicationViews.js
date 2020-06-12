@@ -4,12 +4,16 @@ import Home from './home/Home'
 import Settings from './settings/Settings'
 import Entries from './entries/Entries'
 import Trends from './trends/Trends'
+import Activities from './activities/Activities'
 
 const ApplicationViews = props => {
     return (
         <>
             <Route exact path='/home' render={props => {
-                return <Home />
+                return <Home {...props} />
+            }} />
+            <Route exact path='/activities' render={props => {
+                return <Activities {...props} />
             }} />
             <Route exact path='/trends' render={props => {
                 return <Trends />

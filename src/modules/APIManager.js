@@ -4,6 +4,9 @@ export default {
     getUser(username, password) {
       return fetch(`${remoteURL}/users?username=${username}&password=${password}`).then(e => e.json())
     },
+    getAll() {
+      return fetch(`${remoteURL}/users?_embed=entries`).then(e => e.json())
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",

@@ -4,6 +4,29 @@
       "username": "Zane",
       "password": "wasd",
       "id": 1
+    },
+    {
+      "username": "Zane",
+      "password": "wasd",
+      "id": 2
+    }
+  ],
+  "entries": [
+    {
+      "id": 1,
+      "userId": 1,
+      "hoursSlept": 8,
+      "date": "2012-04-23T18:25:43.511Z",
+      "notes": "I slept very well today.",
+      "factor1": 0,
+      "factor2": 0,
+      "factor3": 0,
+      "factor4": 0,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1
     }
   ]
 }
