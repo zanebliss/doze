@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Bar from './components/navbar/Navbar'
 import WelcomeViews from './components/welcome/WelcomeViews'
 
 const Doze = () => {
@@ -13,8 +14,8 @@ const Doze = () => {
       } else if (hasUser) {
         return (
           <React.Fragment>
-            {/* <NavBar hasUser={hasUser} setHasUser={setHasUser} />
-            <ApplicationViews /> */}
+            <Bar hasUser={hasUser} setHasUser={setHasUser} />
+            {/* <ApplicationViews /> */}
           </React.Fragment>
         );
       }
