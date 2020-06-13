@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Doughnut } from 'react-chartjs-2'
+import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
+import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
     const [data, setData] = useState({})
+    const net = new NeuralNetwork({ hiddenLayers: [3]})
+    let [a, setA] = useState(null)
 
+    let trainingData = []
 
     const options = {
         tooltips: {
@@ -12,7 +17,7 @@ const Ring = props => {
         }
     }
     const loadRing = () => {
-        if (!props.activities) {
+        if (props.loading) {
             setData({
                 datasets: [
                     {
@@ -22,12 +27,11 @@ const Ring = props => {
                 ],
             })
         }
-        else if (props.activities) {
+        else if (!props.loading) {
             setData({
                 datasets: [
                     {
-                        data: [100],
-                        //   data: [hmm2, 100 - hmm2],
+                        data: [Math.floor(a[0] * 100), 100 - Math.floor(a[0] * 100)],
                         backgroundColor: ['#56CCF2', 'transparent']
                     }
                 ],
@@ -36,12 +40,31 @@ const Ring = props => {
     }
 
     useEffect(() => {
-        loadRing()
+        APIManager.getAllUser(props.activeUser.id).then(data => {
+            for (let index = 0; index < data.entries.length; index++) {
+                trainingData.push({input: [], output: []})
+                trainingData[index].input.push(data.entries[index].factor1)
+                trainingData[index].input.push(data.entries[index].factor2)
+                trainingData[index].input.push(data.entries[index].factor3)
+                trainingData[index].input.push(data.entries[index].factor4)
+                trainingData[index].input.push(data.entries[index].factor5)
+                trainingData[index].input.push(data.entries[index].factor6)
+                trainingData[index].input.push(data.entries[index].factor7)
+                trainingData[index].input.push(data.entries[index].factor8)
+                trainingData[index].output.push(data.entries[index].result)
+            }
+            net.train(trainingData)
+            a = ((net.run(props.activities)))
+        }).then(() => {
+            props.setLoading(!props.loading)
+            loadRing()
+        })
     }, [])
 
     return (
         <>
             <Clock size='45' color='gray'/>
+            {/* {props.loading && <div>{Math.floor(a[0] * 100)}</div>} */}
             <Doughnut options={options} data={data} />
         </>
     )

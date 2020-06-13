@@ -4,11 +4,6 @@
       "username": "Zane",
       "password": "wasd",
       "id": 1
-    },
-    {
-      "username": "Zane",
-      "password": "wasd",
-      "id": 2
     }
   ],
   "entries": [
@@ -18,14 +13,30 @@
       "hoursSlept": 8,
       "date": "2012-04-23T18:25:43.511Z",
       "notes": "I slept very well today.",
-      "factor1": 0,
+      "factor1": 1,
       "factor2": 0,
-      "factor3": 0,
-      "factor4": 0,
+      "factor3": 1,
+      "factor4": 1,
       "factor5": 0,
-      "factor6": 0,
+      "factor6": 1,
       "factor7": 0,
       "factor8": 0,
+      "result": 1
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "hoursSlept": 8,
+      "date": "2012-04-23T18:25:43.511Z",
+      "notes": "I slept very well today.",
+      "factor1": 0,
+      "factor2": 1,
+      "factor3": 0,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 1,
+      "factor7": 0,
+      "factor8": 1,
       "result": 1
     }
   ]

@@ -6,8 +6,8 @@ import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import { Button, Form } from 'react-bootstrap'
 
 const Activities = props => {
+    const setLoading = props.setLoading
     const activities = props.activities
-    const setActivities = props.setActivities
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
     const [val3, setVal3] = useState(false)
@@ -103,7 +103,8 @@ const Activities = props => {
                             makeActivities(e, val6)
                             makeActivities(e, val7)
                             makeActivities(e, val8)
-                            console.log(activities)
+                            setLoading(false)
+                            props.history.push('/home')
                         }}>Next</Button>
                     </Form.Group>
                 </Form>

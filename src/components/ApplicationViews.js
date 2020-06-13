@@ -7,16 +7,19 @@ import Trends from './trends/Trends'
 import Activities from './activities/Activities'
 
 const ApplicationViews = props => {
+    const loading = props.loading
+    const setLoading = props.setLoading
     const activities = props.activities
     const setActivities = props.setActivities
+    const activeUser = props.activeUser
 
     return (
         <>
             <Route exact path='/home' render={props => {
-                return <Home {...props} />
+                return <Home {...props} activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} />
             }} />
             <Route exact path='/activities' render={props => {
-                return <Activities {...props} activities={activities} setActivities={setActivities} />
+                return <Activities {...props} activities={activities} setActivities={setActivities} loading={loading} setLoading={setLoading}/>
             }} />
             <Route exact path='/trends' render={props => {
                 return <Trends />
