@@ -6,8 +6,9 @@ import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
     const [data, setData] = useState({})
-    const net = new NeuralNetwork({ hiddenLayers: [3]})
-    let [a, setA] = useState(null)
+    const [score, setScore] = useState(false)
+    let [a, setA] = useState(0)
+    const net = new NeuralNetwork({ hiddenLayers: [3] })
 
     let trainingData = []
 
@@ -42,7 +43,7 @@ const Ring = props => {
     useEffect(() => {
         APIManager.getAllUser(props.activeUser.id).then(data => {
             for (let index = 0; index < data.entries.length; index++) {
-                trainingData.push({input: [], output: []})
+                trainingData.push({ input: [], output: [] })
                 trainingData[index].input.push(data.entries[index].factor1)
                 trainingData[index].input.push(data.entries[index].factor2)
                 trainingData[index].input.push(data.entries[index].factor3)
@@ -55,7 +56,9 @@ const Ring = props => {
             }
             net.train(trainingData)
             a = ((net.run(props.activities)))
+            setA(a)
         }).then(() => {
+            setScore(true)
             props.setLoading(!props.loading)
             loadRing()
         })
@@ -63,8 +66,8 @@ const Ring = props => {
 
     return (
         <>
-            <Clock size='45' color='gray'/>
-            {/* {props.loading && <div>{Math.floor(a[0] * 100)}</div>} */}
+            <Clock size='45' color='gray' />
+            <div hidden={!props.loading}>{Math.floor(a[0] * 100)}</div>
             <Doughnut options={options} data={data} />
         </>
     )
