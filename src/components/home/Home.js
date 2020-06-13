@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react'
 import Ring from '../ring/Ring'
 import APIManager from '../../modules/APIManager'
 import { Button } from 'react-bootstrap'
 import './Home.css'
 
 const Home = props => {
-    const [activities, setActivities] = useState(false)
+    const activities = props.activities
+    const setActivities = props.setActivities
     
 
     const loadActivities = () => {

@@ -7,13 +7,16 @@ import Trends from './trends/Trends'
 import Activities from './activities/Activities'
 
 const ApplicationViews = props => {
+    const activities = props.activities
+    const setActivities = props.setActivities
+
     return (
         <>
             <Route exact path='/home' render={props => {
                 return <Home {...props} />
             }} />
             <Route exact path='/activities' render={props => {
-                return <Activities {...props} />
+                return <Activities {...props} activities={activities} setActivities={setActivities} />
             }} />
             <Route exact path='/trends' render={props => {
                 return <Trends />
