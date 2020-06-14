@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 import Ring from '../ring/Ring'
-import APIManager from '../../modules/APIManager'
 import { Button } from 'react-bootstrap'
+import Save from './Save'
 import './Home.css'
 
 const Home = props => {
@@ -10,15 +10,8 @@ const Home = props => {
     const activeUser = props.activeUser
     const activities = props.activities
     const setActivities = props.setActivities
-    
-
-    const loadActivities = () => {
-        // APIManager.getAll().then()
-    }
-
-    useEffect(() => {
-        // loadActivities()
-    }, [])
+    const [saved, setSaved] = useState(false)
+    const [result, setResult] = useState(null)
 
 
     return (
@@ -26,7 +19,10 @@ const Home = props => {
             <div className='home-wrapper'>
                 <div>Enter activities</div>
                 <Ring activities={activities} setActivities={setActivities} activeUser={props.activeUser} loading={loading} setLoading={setLoading} />
-                <Button onClick={() => props.history.push('/activities')} >Activities</Button>
+                { !loading ? 
+                <Button onClick={() => props.history.push('/activities')} >Activities</Button> 
+                : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button> }
+                { loading && <Save setResult={setResult} result={result} activeUser={activeUser} activities={activities} saved={saved} setSaved={setSaved} /> }
             </div>
         </>
     )

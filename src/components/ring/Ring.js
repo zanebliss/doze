@@ -73,4 +73,4 @@ const Ring = props => {
     )
 }
 
-export default Ring
+export default Ring 
