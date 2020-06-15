@@ -11,7 +11,7 @@
     border-top: 1px #CFCFCF solid;
     margin: 0em;
     padding: 0em;
-    padding-top: 5px;
+    padding-top: 2px;
 
 }
 
@@ -23,4 +23,5 @@
     display: flex;
     align-items: center;
     text-decoration: none;
+    font-size: 10pt;
 }

@@ -5,7 +5,7 @@ import { House, ClipboardData, LayoutTextSidebarReverse, List } from 'react-boot
 import './Navbar.css'
 
 const Bar = () => {
-    const iconSize = '40'
+    const iconSize = '25pt'
 
     return (
         <>
