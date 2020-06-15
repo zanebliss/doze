@@ -36,6 +36,21 @@
       "date": "2020-06-15T00:43:12.705Z",
       "notes": "I felt very tired after exercising.",
       "id": 4
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 0,
+      "factor3": 0,
+      "factor4": 0,
+      "factor5": 1,
+      "factor6": 0,
+      "factor7": 1,
+      "factor8": 0,
+      "result": 1,
+      "date": "2020-06-15T01:06:08.621Z",
+      "notes": "",
+      "id": 5
     }
   ]
 }
