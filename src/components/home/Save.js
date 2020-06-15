@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
+import { AppIndicator } from 'react-bootstrap-icons';
+import APIManager from '../../modules/APIManager';
 
 const Save = props => {
   const [show, setShow] = useState(false);
@@ -8,10 +10,6 @@ const Save = props => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const handleChange = e => {
-    setSelected(e.target.value)
-  }
 
   const handleSubmit = e => {
     props.setSaved(!props.saved)
@@ -26,10 +24,11 @@ const Save = props => {
       factor7: props.activities[6],
       factor8: props.activities[7],
       result: props.result ? 1 : 0,
-      date: new Date()
+      date: new Date(),
+      notes: props.notes
     }
     handleClose()
-    console.log(obj)
+    APIManager.post('entries', obj)
   }
 
   useEffect(() => {
@@ -50,7 +49,7 @@ const Save = props => {
         centered
       >
         <Modal.Body>
-          How did you sleep?
+          Do you feel rested?
         <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.result} onChange={() => {
           props.setResult(!props.result)
         }}/>

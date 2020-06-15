@@ -8,6 +8,7 @@ import { Button, Form } from 'react-bootstrap'
 const Activities = props => {
     const setLoading = props.setLoading
     const activities = props.activities
+
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
     const [val3, setVal3] = useState(false)
@@ -29,7 +30,6 @@ const Activities = props => {
     }
 
     useEffect(() => {
-
     }, [])
 
     return (
@@ -92,8 +92,8 @@ const Activities = props => {
                                 </div>
                             </div>
                         </div>
-                        <Form.Label>Enter sleep notes</Form.Label>
-                        <Form.Control as='textarea' rows='3' />
+                        <Form.Label>Enter activitiy notes</Form.Label>
+                        <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
                         <Button onClick={e => {
                             makeActivities(e, val1)
                             makeActivities(e, val2)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route } from "react-router-dom";
 import Home from './home/Home'
 import Settings from './settings/Settings'
@@ -12,14 +12,15 @@ const ApplicationViews = props => {
     const activities = props.activities
     const setActivities = props.setActivities
     const activeUser = props.activeUser
+    const [notes, setNotes] = useState('')
 
     return (
         <>
             <Route exact path='/home' render={props => {
-                return <Home {...props} activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} />
+                return <Home {...props} activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} notes={notes} />
             }} />
             <Route exact path='/activities' render={props => {
-                return <Activities {...props} activities={activities} setActivities={setActivities} loading={loading} setLoading={setLoading}/>
+                return <Activities {...props} activities={activities} setActivities={setActivities} loading={loading} setLoading={setLoading} notes={notes} setNotes={setNotes}/>
             }} />
             <Route exact path='/trends' render={props => {
                 return <Trends />

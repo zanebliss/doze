@@ -17,12 +17,19 @@ const Home = props => {
     return (
         <>
             <div className='home-wrapper'>
+            { !loading ? 
                 <div>Enter activities</div>
+                :
+                <div>Predicted sleep score</div>
+
+            }
                 <Ring activities={activities} setActivities={setActivities} activeUser={props.activeUser} loading={loading} setLoading={setLoading} />
                 { !loading ? 
                 <Button onClick={() => props.history.push('/activities')} >Activities</Button> 
                 : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button> }
-                { loading && <Save setResult={setResult} result={result} activeUser={activeUser} activities={activities} saved={saved} setSaved={setSaved} /> }
+                { loading && <Save setResult={setResult} result={result} activeUser={activeUser} activities={activities} saved={saved} setSaved={setSaved} 
+                    notes={props.notes}
+                /> }
             </div>
         </>
     )
