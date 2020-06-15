@@ -1,0 +1,24 @@
+.study {
+    width: 100%;
+    height: auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.sliders-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.slider {
+    display: flex;
+    flex-flow: row;
+}
+
+.activities-wrapper {
+    max-height: 735px;
+    overflow: scroll;
+    
+}
+

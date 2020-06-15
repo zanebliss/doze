@@ -5,6 +5,9 @@ import ApplicationViews from './components/ApplicationViews'
 
 const Doze = () => {
     const [hasUser, setHasUser] = useState(sessionStorage.getItem('user'))
+    const [activeUser, setActiveUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+    const [loading, setLoading] = useState(true)
+    const [activities, setActivities] = useState([])
 
     if (!hasUser) {
         return (
@@ -16,7 +19,7 @@ const Doze = () => {
         return (
           <React.Fragment>
             <Bar hasUser={hasUser} setHasUser={setHasUser} />
-            <ApplicationViews />
+            <ApplicationViews activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} />
           </React.Fragment>
         );
       }

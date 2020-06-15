@@ -24,7 +24,7 @@ const Login = props => {
                         JSON.stringify(user)
                     );
                     props.setHasUser(true)
-                    props.history.push('/')
+                    props.history.push('/home')
                 }
             })
         }
@@ -40,7 +40,7 @@ const Login = props => {
             JSON.stringify(user)
             )
             props.setHasUser(true)
-            props.history.push('/')
+            props.history.push('/hom')
         })
     }
 

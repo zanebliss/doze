@@ -11,7 +11,6 @@ const Bar = () => {
         <>
             <div className='nav-wrapper'>
                 <Navbar fixed='bottom' className='nav'>
-
                     <NavLink exact to='/home' activeStyle={{ color: '#2D9CDB' }} className='icon' >
                         <House size={iconSize} />
                     </NavLink>
