@@ -6,7 +6,6 @@ import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
     const [data, setData] = useState({})
-    const [score, setScore] = useState(false)
     let [a, setA] = useState(0)
     const net = new NeuralNetwork({ hiddenLayers: [3] })
 
@@ -23,7 +22,7 @@ const Ring = props => {
                 datasets: [
                     {
                         data: [100],
-                        backgroundColor: ['gray']
+                        backgroundColor: ['lightgray']
                     }
                 ],
             })
@@ -59,7 +58,6 @@ const Ring = props => {
                 a = ((net.run(props.activities)))
                 setA(Math.floor(a[0] * 100))
             }).then(() => {
-                setScore(true)
                 loadRing()
             })
         } else if (props.loading) {

@@ -18,7 +18,7 @@ const Settings = props => {
                     <div className='header-text'>Settings</div>
                     <Card>
                         <Card.Body>
-                            <NavLink to='/home'>About</NavLink>
+                            <NavLink to='/about'>About</NavLink>
                         </Card.Body>
                     </Card>
                     <Card onClick={handleLogout}>
