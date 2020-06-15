@@ -5,6 +5,7 @@ import Settings from './settings/Settings'
 import Entries from './entries/Entries'
 import Trends from './trends/Trends'
 import Activities from './activities/Activities'
+import About from './about/About'
 
 const ApplicationViews = props => {
     const loading = props.loading
@@ -31,6 +32,9 @@ const ApplicationViews = props => {
             }} />
             <Route exact path='/settings' render={props => {
                 return <Settings {...props} setHasUser={setHasUser}/>
+            }} />
+            <Route exact path='/About' render={props => {
+                return <About />
             }} />
         </>
     )

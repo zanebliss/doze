@@ -5,9 +5,9 @@ import ApplicationViews from './components/ApplicationViews'
 
 const Doze = () => {
     const [hasUser, setHasUser] = useState(sessionStorage.getItem('user'))
-    const [activeUser, setActiveUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+    const [activeUser] = useState(JSON.parse(sessionStorage.getItem('user')))
     const [loading, setLoading] = useState(true)
-    const [activities, setActivities] = useState([])
+    const [activities] = useState([])
 
     if (!hasUser) {
         return (
