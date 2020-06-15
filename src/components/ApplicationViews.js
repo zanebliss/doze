@@ -13,6 +13,7 @@ const ApplicationViews = props => {
     const setActivities = props.setActivities
     const activeUser = props.activeUser
     const [notes, setNotes] = useState('')
+    const setHasUser = props.setHasUser
 
     return (
         <>
@@ -29,7 +30,7 @@ const ApplicationViews = props => {
                 return <Entries />
             }} />
             <Route exact path='/settings' render={props => {
-                return <Settings />
+                return <Settings {...props} setHasUser={setHasUser}/>
             }} />
         </>
     )

@@ -41,33 +41,36 @@ const Ring = props => {
     }
 
     useEffect(() => {
-        APIManager.getAllUser(props.activeUser.id).then(data => {
-            for (let index = 0; index < data.entries.length; index++) {
-                trainingData.push({ input: [], output: [] })
-                trainingData[index].input.push(data.entries[index].factor1)
-                trainingData[index].input.push(data.entries[index].factor2)
-                trainingData[index].input.push(data.entries[index].factor3)
-                trainingData[index].input.push(data.entries[index].factor4)
-                trainingData[index].input.push(data.entries[index].factor5)
-                trainingData[index].input.push(data.entries[index].factor6)
-                trainingData[index].input.push(data.entries[index].factor7)
-                trainingData[index].input.push(data.entries[index].factor8)
-                trainingData[index].output.push(data.entries[index].result)
-            }
-            net.train(trainingData)
-            a = ((net.run(props.activities)))
-            setA(a)
-        }).then(() => {
-            setScore(true)
-            // props.setLoading(!props.loading)
+        if (!props.loading) {
+            APIManager.getAllUser(props.activeUser.id).then(data => {
+                for (let index = 0; index < data.entries.length; index++) {
+                    trainingData.push({ input: [], output: [] })
+                    trainingData[index].input.push(data.entries[index].factor1)
+                    trainingData[index].input.push(data.entries[index].factor2)
+                    trainingData[index].input.push(data.entries[index].factor3)
+                    trainingData[index].input.push(data.entries[index].factor4)
+                    trainingData[index].input.push(data.entries[index].factor5)
+                    trainingData[index].input.push(data.entries[index].factor6)
+                    trainingData[index].input.push(data.entries[index].factor7)
+                    trainingData[index].input.push(data.entries[index].factor8)
+                    trainingData[index].output.push(data.entries[index].result)
+                }
+                net.train(trainingData)
+                a = ((net.run(props.activities)))
+                setA(Math.floor(a[0] * 100))
+            }).then(() => {
+                setScore(true)
+                loadRing()
+            })
+        } else if (props.loading) {
             loadRing()
-        })
+        }
     }, [])
 
     return (
         <>
             <Clock size='45' color='gray' />
-            <div hidden={props.loading}>{Math.floor(a[0] * 100)}</div>
+            <div hidden={props.loading}>{a}</div>
             <Doughnut options={options} data={data} />
         </>
     )

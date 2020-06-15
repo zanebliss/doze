@@ -5,3 +5,8 @@
 .header-text {
     color: white;
 }
+
+.settings-wrapper {
+    height: 25em;
+    background-color: lightgray;
+}
