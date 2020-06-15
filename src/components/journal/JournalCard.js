@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Entries = () => {
+const JournalCard = props => {
     return (
         <>
+            
         </>
     )
 }
 
-export default Entries
+export default JournalCard

@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Route } from "react-router-dom";
 import Home from './home/Home'
 import Settings from './settings/Settings'
-import Entries from './entries/Entries'
 import Trends from './trends/Trends'
 import Activities from './activities/Activities'
 import About from './about/About'
+import Journal from './journal/Journal'
 
 const ApplicationViews = props => {
     const loading = props.loading
@@ -15,6 +15,7 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const [notes, setNotes] = useState('')
     const setHasUser = props.setHasUser
+
 
     return (
         <>
@@ -27,13 +28,13 @@ const ApplicationViews = props => {
             <Route exact path='/trends' render={props => {
                 return <Trends />
             }} />
-            <Route exact path='/entries' render={props => {
-                return <Entries />
+            <Route exact path='/journal' render={props => {
+                return <Journal activeUser={activeUser} />
             }} />
             <Route exact path='/settings' render={props => {
                 return <Settings {...props} setHasUser={setHasUser}/>
             }} />
-            <Route exact path='/About' render={props => {
+            <Route exact path='/about' render={props => {
                 return <About />
             }} />
         </>
