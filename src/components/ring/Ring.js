@@ -59,7 +59,7 @@ const Ring = props => {
             setA(a)
         }).then(() => {
             setScore(true)
-            props.setLoading(!props.loading)
+            // props.setLoading(!props.loading)
             loadRing()
         })
     }, [])
@@ -67,7 +67,7 @@ const Ring = props => {
     return (
         <>
             <Clock size='45' color='gray' />
-            <div hidden={!props.loading}>{Math.floor(a[0] * 100)}</div>
+            <div hidden={props.loading}>{Math.floor(a[0] * 100)}</div>
             <Doughnut options={options} data={data} />
         </>
     )
