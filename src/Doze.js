@@ -19,7 +19,7 @@ const Doze = () => {
         return (
           <React.Fragment>
             <Bar hasUser={hasUser} setHasUser={setHasUser} />
-            <ApplicationViews activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} />
+            <ApplicationViews activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} setHasUser={setHasUser}/>
           </React.Fragment>
         );
       }

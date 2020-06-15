@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
-import { AppIndicator } from 'react-bootstrap-icons';
 import APIManager from '../../modules/APIManager';
 
 const Save = props => {
   const [show, setShow] = useState(false);
-  const [selected, setSelected] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -30,10 +28,6 @@ const Save = props => {
     handleClose()
     APIManager.post('entries', obj)
   }
-
-  useEffect(() => {
-    props.setResult(true)
-  }, [])
 
   return (
     <>

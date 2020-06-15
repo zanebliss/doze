@@ -1,0 +1,12 @@
+.header {
+    width: 100%;
+    background-color: #2D9CDB;
+}
+.header-text {
+    color: white;
+}
+
+.settings-wrapper {
+    height: 25em;
+    background-color: lightgray;
+}

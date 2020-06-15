@@ -11,7 +11,7 @@ const Home = props => {
     const activities = props.activities
     const setActivities = props.setActivities
     const [saved, setSaved] = useState(false)
-    const [result, setResult] = useState(null)
+    const [result, setResult] = useState(true)
 
 
     return (
