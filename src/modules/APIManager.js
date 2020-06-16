@@ -15,6 +15,9 @@ export default {
         method: "DELETE",
       }).then((result) => result.json());
     },
+    getSortedEntries(type) {
+      return fetch(`${remoteURL}/entries?_sort=date&_order=${type}`).then(e => e.json())
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",
