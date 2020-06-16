@@ -4,6 +4,7 @@ import Study from '../../media/Study.svg'
 import './Activities.css'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import { Button, Form } from 'react-bootstrap'
+import Slider from './Slider'
 
 const Activities = props => {
     const setLoading = props.setLoading
@@ -92,6 +93,8 @@ const Activities = props => {
                                 </div>
                             </div>
                         </div>
+                        <Form.Label>Enter range</Form.Label>
+                        <Slider />
                         <Form.Label>Enter activitiy notes</Form.Label>
                         <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
                         <Button onClick={e => {
