@@ -26,7 +26,7 @@ const Journal = props => {
             </div>
             <div className='journal-list'>
                 {entries.map(entry => (
-                    <JournalCard key={entry.id} date={entry.date} id={entry.id} activeUser={props.activeUser} />
+                    <JournalCard key={entry.id} date={entry.date} id={entry.id} activeUser={props.activeUser} notes={entry.notes} />
                 ))}
             </div>
         </div>

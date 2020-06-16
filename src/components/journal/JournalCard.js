@@ -10,6 +10,7 @@ const JournalCard = props => {
                 <Card.Header>{props.date}</Card.Header>
                 <Card.Body>
                     <JournalRing activeUser={props.activeUser} id={props.id} />
+                    <div>{props.notes}</div>
                 </Card.Body>
             </Card>
         </>
