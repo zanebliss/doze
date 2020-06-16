@@ -6,6 +6,7 @@ import Trends from './trends/Trends'
 import Activities from './activities/Activities'
 import About from './about/About'
 import Journal from './journal/Journal'
+import './ApplicationViews.css'
 
 const ApplicationViews = props => {
     const loading = props.loading
@@ -13,12 +14,13 @@ const ApplicationViews = props => {
     const activities = props.activities
     const setActivities = props.setActivities
     const activeUser = props.activeUser
-    const [notes, setNotes] = useState('')
     const setHasUser = props.setHasUser
+    const [notes, setNotes] = useState('')
 
 
     return (
-        <>
+        <div className='content-wrapper'>
+        
             <Route exact path='/home' render={props => {
                 return <Home {...props} activities={activities} activeUser={activeUser} loading={loading} setLoading={setLoading} notes={notes} />
             }} />
@@ -29,7 +31,7 @@ const ApplicationViews = props => {
                 return <Trends />
             }} />
             <Route exact path='/journal' render={props => {
-                return <Journal activeUser={activeUser} />
+                return <Journal {...props} activeUser={activeUser} loading={loading} setLoading={setLoading} />
             }} />
             <Route exact path='/settings' render={props => {
                 return <Settings {...props} setHasUser={setHasUser}/>
@@ -37,7 +39,7 @@ const ApplicationViews = props => {
             <Route exact path='/about' render={props => {
                 return <About />
             }} />
-        </>
+        </div>
     )
 }
 

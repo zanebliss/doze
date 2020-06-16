@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { FilterRight } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
 import './Journal.css'
+import JournalCard from './JournalCard'
 
 const Journal = props => {
-    // console.log(props);
-    
-    const [journals, setJournals] = useState([])
-
-    useEffect(() => {
-        APIManager.getAllUser(props.activeUser.id).then(user => {
-            console.log(user.entries);
-            
+    const [entries, setEntries] = useState([])
+        
+    const getJournals = () => {
+        return APIManager.getAllUser(props.activeUser.id).then(user => {
+            setEntries(user.entries)
         })
+    }
+    
+    useEffect(() => {
+        getJournals()
     }, [])
 
     return (
@@ -23,7 +25,9 @@ const Journal = props => {
                 <FilterRight />
             </div>
             <div className='journal-list'>
-                
+                {entries.map(entry => (
+                    <JournalCard key={entry.id} date={entry.date} id={entry.id} activeUser={props.activeUser} />
+                ))}
             </div>
         </div>
         </>
