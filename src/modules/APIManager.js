@@ -7,6 +7,9 @@ export default {
     getAllUser(id) {
       return fetch(`${remoteURL}/users/${id}/?_embed=entries`).then(e => e.json())
     },
+    getEntry(userId, id) {
+      return fetch(`${remoteURL}/entries?userId=${userId}&id=${id}`).then(e => e.json())
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",

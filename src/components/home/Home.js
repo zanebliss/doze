@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Ring from '../ring/Ring'
+import Ring from '../ring/HomeRing'
 import { Button } from 'react-bootstrap'
 import Save from './Save'
 import './Home.css'

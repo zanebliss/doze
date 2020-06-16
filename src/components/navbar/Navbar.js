@@ -19,7 +19,7 @@ const Bar = () => {
                         <ClipboardData size={iconSize} />
                         <div className='label'>Trends</div>
                     </NavLink>
-                    <NavLink exact to='/entries' activeStyle={{ color: '#2D9CDB' }} style={{ textDecoration: 'none'}} className='icon' >
+                    <NavLink exact to='/journal' activeStyle={{ color: '#2D9CDB' }} style={{ textDecoration: 'none'}} className='icon' >
                         <LayoutTextSidebarReverse size={iconSize} />
                         <div className='label'>Journal</div>
                     </NavLink>
