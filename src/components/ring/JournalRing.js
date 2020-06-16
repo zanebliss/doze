@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { NeuralNetwork } from 'brain.js'
 import APIManager from '../../modules/APIManager'
 import { Doughnut } from 'react-chartjs-2'
-import { XCircle } from 'react-bootstrap-icons'
 
 const JournalRing = props => {
     const [data, setData] = useState({})
@@ -61,7 +60,6 @@ const JournalRing = props => {
 
     return (
         <>
-            <XCircle />
             <div>{result}</div>
             <Doughnut options={options} data={data} />
         </>

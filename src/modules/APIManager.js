@@ -10,6 +10,14 @@ export default {
     getEntry(userId, id) {
       return fetch(`${remoteURL}/entries?userId=${userId}&id=${id}`).then(e => e.json())
     },
+    deleteEntry(userId, id) {
+      return fetch(`${remoteURL}/entries/${id}`, {
+        method: "DELETE",
+      }).then((result) => result.json());
+    },
+    getSortedEntries(type) {
+      return fetch(`${remoteURL}/entries?_sort=date&_order=${type}`).then(e => e.json())
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",
@@ -18,5 +26,5 @@ export default {
           },
           body: JSON.stringify(obj),
         }).then((data) => data.json()); 
-    }
+    },
  }
