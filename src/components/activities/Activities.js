@@ -7,7 +7,6 @@ import { Button, Form } from 'react-bootstrap'
 import RangeSlider from 'react-bootstrap-range-slider'
 
 const Activities = props => {
-    const setLoading = props.setLoading
     const activities = props.activities
 
     const [val1, setVal1] = useState(false)
@@ -111,7 +110,6 @@ const Activities = props => {
                             makeActivities(e, val6)
                             makeActivities(e, val7)
                             makeActivities(e, val8)
-                            setLoading(false)
                             props.history.push('/home')
                         }}>Next</Button>
                     </Form.Group>

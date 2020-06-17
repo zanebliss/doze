@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import Ring from '../ring/HomeRing'
+import HomeRing from '../ring/HomeRing'
 import { Button } from 'react-bootstrap'
 import Save from './Save'
 import './Home.css'
 
 const Home = props => {
-    const loading = props.loading
-    const setLoading = props.setLoading
     const [result, setResult] = useState(true)
     const [saved, setSaved] = useState(false)
 
@@ -17,27 +15,23 @@ const Home = props => {
     return (
         <>
             <div className='home-wrapper'>
-                {loading ?
+                {activities.length === 0 ?
                     <div>Enter activities</div>
                     :
                     <div>Likelihood of feeling well rested</div>
 
                 }
-                <Ring
-                    loading={loading}
-                    setLoading={setLoading}
-
+                <HomeRing
                     activeUser={props.activeUser}
                     activities={activities}
                 />
-                {loading ?
+                {activities.length === 0 ?
                     <Button onClick={() => props.history.push('/activities')} >Activities</Button>
                     : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button>}
-                {!loading && <Button onClick={() => {
-                    setLoading(!loading)
+                {activities.length !== 0 && <Button disabled={saved} onClick={() => {
                     props.setActivities([])
                 }}>Clear activities</Button>}
-                {!loading &&
+                {activities.length !== 0 &&
                     <Save
                         result={result}
                         setResult={setResult}

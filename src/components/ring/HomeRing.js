@@ -4,9 +4,9 @@ import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
 
-const Ring = props => {
+const HomeRing = props => {
     const [data, setData] = useState({})
-    let [a, setA] = useState(0)
+    let [result, setResult] = useState(0)
     const net = new NeuralNetwork({ hiddenLayers: [3] })
 
     let trainingData = []
@@ -17,7 +17,7 @@ const Ring = props => {
         }
     }
     const loadRing = () => {
-        if (props.loading) {
+        props.activities.length === 0 ? 
             setData({
                 datasets: [
                     {
@@ -26,21 +26,19 @@ const Ring = props => {
                     }
                 ],
             })
-        }
-        else if (!props.loading) {
+        :
             setData({
                 datasets: [
                     {
-                        data: [Math.floor(a[0] * 100), 100 - Math.floor(a[0] * 100)],
+                        data: [result, 100 - result],
                         backgroundColor: ['#56CCF2', 'transparent']
                     }
                 ],
             })
-        }
     }
 
     useEffect(() => {
-        if (!props.loading) {
+        props.activities.length !== 0 ?
             APIManager.getAllUser(props.activeUser.id).then(data => {
                 for (let index = 0; index < data.entries.length; index++) {
                     trainingData.push({ input: [], output: [] })
@@ -55,23 +53,23 @@ const Ring = props => {
                     trainingData[index].output.push(data.entries[index].result)
                 }
                 net.train(trainingData)
-                a = ((net.run(props.activities)))
-                setA(Math.floor(a[0] * 100))
+                result = ((net.run(props.activities)))
+                result = Math.floor(result[0] * 100)
+                setResult(result)
             }).then(() => {
                 loadRing()
             })
-        } else if (props.loading) {
+        :
             loadRing()
-        }
     }, [props.activities])
 
     return (
         <>
             <Clock size='45' color='gray' />
-            <div hidden={props.loading}>{a}%</div>
+            <div hidden={props.activities.length === 0}>{result}%</div>
             <Doughnut options={options} data={data} />
         </>
     )
 }
 
-export default Ring 
+export default HomeRing

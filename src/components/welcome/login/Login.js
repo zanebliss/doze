@@ -19,10 +19,10 @@ const Login = props => {
                 } 
                 else if (e.length > 0) {
                     user.id = e[0].id
-                    sessionStorage.setItem('user',
+                    localStorage.setItem('user',
                         JSON.stringify(user)
                     );
-                    props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
+                    props.setActiveUser(JSON.parse(localStorage.getItem('user')))
                     props.history.push('/home')
                 }
             })
@@ -35,10 +35,10 @@ const Login = props => {
             alert('Please enter all fields.')
         }
         APIManager.post('users', user).then(user => {
-            sessionStorage.setItem('user',
+            localStorage.setItem('user',
             JSON.stringify(user)
             )
-            props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
+            props.setActiveUser(JSON.parse(localStorage.getItem('user')))
             props.history.push('/home')
         })
     }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Route } from "react-router-dom";
 import Home from './home/Home'
 import Settings from './settings/Settings'
@@ -11,7 +11,6 @@ import './ApplicationViews.css'
 const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
-    const [loading, setLoading] = useState(true)
 
     const [activities, setActivities] = useState([])
     const [hoursSlept, setHoursSlept] = useState(0)
@@ -22,9 +21,6 @@ const ApplicationViews = props => {
         
             <Route exact path='/home' render={props => {
                 return <Home {...props} 
-                    loading={loading} 
-                    setLoading={setLoading} 
-
                     activities={activities} 
                     setActivities={setActivities}
                     activeUser={activeUser} 
@@ -34,8 +30,6 @@ const ApplicationViews = props => {
             }} />
             <Route exact path='/activities' render={props => {
                 return <Activities {...props} 
-                    setLoading={setLoading} 
-                    
                     activities={activities} 
                     notes={notes} 
                     setNotes={setNotes}
