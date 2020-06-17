@@ -44,7 +44,7 @@ const Journal = props => {
                                 <Dropdown.Item onClick={() => {sortJournals('hoursSlept','desc')}}>
                                     Most hours slept
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => {sortJournals('hoursSlept', 'desc')}}>
+                                <Dropdown.Item onClick={() => {sortJournals('hoursSlept', 'asc')}}>
                                     Least hours slept
                                 </Dropdown.Item>
                             </Dropdown.Menu>
