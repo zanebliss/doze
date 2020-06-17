@@ -63,12 +63,12 @@ const Ring = props => {
         } else if (props.loading) {
             loadRing()
         }
-    }, [])
+    }, [props.activities])
 
     return (
         <>
             <Clock size='45' color='gray' />
-            <div hidden={props.loading}>{a}</div>
+            <div hidden={props.loading}>{a}%</div>
             <Doughnut options={options} data={data} />
         </>
     )
