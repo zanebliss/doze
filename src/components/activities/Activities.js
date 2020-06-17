@@ -4,12 +4,11 @@ import Study from '../../media/Study.svg'
 import './Activities.css'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import { Button, Form } from 'react-bootstrap'
-import Slider from './Slider'
+import RangeSlider from 'react-bootstrap-range-slider'
 
 const Activities = props => {
     const setLoading = props.setLoading
     const activities = props.activities
-
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
     const [val3, setVal3] = useState(false)
@@ -31,6 +30,7 @@ const Activities = props => {
     }
 
     useEffect(() => {
+        
     }, [])
 
     return (
@@ -93,8 +93,16 @@ const Activities = props => {
                                 </div>
                             </div>
                         </div>
-                        <Form.Label>Enter range</Form.Label>
-                        <Slider />
+                        <Form.Label>Enter approximate hours slept</Form.Label>
+                        <RangeSlider
+                            min={0}
+                            max={12}
+                            value={props.hoursSlept}
+                            size='lg'
+                            step={0.5}
+                            onChange={e => { props.setHoursSlept(Number(e.target.value)) }}
+                        />
+                        <Form.Label>{props.hoursSlept}</Form.Label>
                         <Form.Label>Enter activitiy notes</Form.Label>
                         <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
                         <Button onClick={e => {
