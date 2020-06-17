@@ -21,6 +21,7 @@ const Journal = props => {
     }
 
     useEffect(() => {
+        
         getJournals()
     }, [])
 

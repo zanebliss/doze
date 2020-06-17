@@ -4,6 +4,8 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 
 const Save = props => {
+  console.log(props)
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,7 +25,8 @@ const Save = props => {
       factor8: props.activities[7],
       result: props.result ? 1 : 0,
       date: new Date(),
-      notes: props.notes
+      notes: props.notes,
+      hoursSlept: props.hoursSlept
     }
     handleClose()
     APIManager.post('entries', obj)
@@ -38,7 +41,7 @@ const Save = props => {
       <Modal
         show={show}
         onHide={handleClose}
-        backdrop="static"
+        backdrop='static'
         keyboard={false}
         centered
       >

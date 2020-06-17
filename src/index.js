@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from 'react-router-dom'
 import Doze from './Doze'
-// import App from './App'
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
