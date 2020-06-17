@@ -11,7 +11,7 @@ const Bar = () => {
         <>
             <div className='nav-wrapper'>
                 <Navbar fixed='bottom' className='nav'>
-                    <NavLink exact to='/home' activeStyle={{ color: '#2D9CDB' }} style={{ textDecoration: 'none'}} className='icon' >
+                    <NavLink exact to='/' activeStyle={{ color: '#2D9CDB' }} style={{ textDecoration: 'none'}} className='icon' >
                         <House size={iconSize} />
                         <div className='label'>Home</div>
                     </NavLink>

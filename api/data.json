@@ -41,18 +41,20 @@
     },
     {
       "userId": 1,
-      "factor1": 0,
+      "factor1": 1,
       "factor2": 1,
       "factor3": 1,
-      "factor4": 0,
+      "factor4": 1,
       "factor5": 0,
       "factor6": 0,
       "factor7": 0,
       "factor8": 0,
-      "result": 1,
-      "date": "2020-06-17T19:16:57.428Z",
-      "notes": "",
-      "hoursSlept": 0,
+      "result": 0,
+      "date": "2020-06-17T22:44:08.379Z",
+      "notes": "I slept well.",
+      "hoursSlept": 7.5,
+      "score": null,
+      "saved": false,
       "id": 6
     }
   ]

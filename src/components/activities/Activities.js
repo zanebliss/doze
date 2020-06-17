@@ -5,8 +5,12 @@ import './Activities.css'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import { Button, Form } from 'react-bootstrap'
 import RangeSlider from 'react-bootstrap-range-slider'
+import APIManager from '../../modules/APIManager'
 
 const Activities = props => {
+    const editing = props.editing
+    let latestEntry = props.latestEntry
+    const setLatestEntry = props.setLatestEntry
 
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
@@ -28,10 +32,34 @@ const Activities = props => {
         } else if (!val) { props.activities.push(0) }
     }
 
+    const handleSave = () => {
+        let obj = {
+            userId: props.activeUser.id,
+            factor1: props.activities[0],
+            factor2: props.activities[1],
+            factor3: props.activities[2],
+            factor4: props.activities[3],
+            factor5: props.activities[4],
+            factor6: props.activities[5],
+            factor7: props.activities[6],
+            factor8: props.activities[7],
+            result: props.result ? 1 : 0,
+            date: new Date(),
+            notes: props.notes,
+            hoursSlept: props.hoursSlept,
+            score: props.score,
+            saved: false
+          }
+        APIManager.post('entries', obj).then(item => {
+            latestEntry = item.id
+            setLatestEntry(latestEntry)
+        })
+    }
+
     return (
         <>
             <div className='activities-wrapper'>
-                <ArrowLeftCircle size='45' onClick={() => { props.history.push('/home') }}></ArrowLeftCircle>
+                <ArrowLeftCircle size='45' onClick={() => { props.history.push('/') }}></ArrowLeftCircle>
                 <div>What did you do today?</div>
                 <Form>
                     <Form.Group>
@@ -101,17 +129,21 @@ const Activities = props => {
                         <Form.Label>Enter activitiy notes</Form.Label>
                         <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
                         <Button onClick={e => {
-                            props.activities.length = 0
-                            makeActivities(e, val1)
-                            makeActivities(e, val2)
-                            makeActivities(e, val3)
-                            makeActivities(e, val4)
-                            makeActivities(e, val5)
-                            makeActivities(e, val6)
-                            makeActivities(e, val7)
-                            makeActivities(e, val8)
-                            localStorage.setItem('activities', JSON.stringify(props.activities))
-                            props.history.push('/home')
+                            if (props.notes === '') {
+                                alert('Please enter journal notes.')
+                            } else if (props.notes !== '') {
+                                props.activities.length = 0
+                                makeActivities(e, val1)
+                                makeActivities(e, val2)
+                                makeActivities(e, val3)
+                                makeActivities(e, val4)
+                                makeActivities(e, val5)
+                                makeActivities(e, val6)
+                                makeActivities(e, val7)
+                                makeActivities(e, val8)
+                                handleSave()
+                                props.history.push('/')
+                            }
                         }}>Next</Button>
                     </Form.Group>
                 </Form>

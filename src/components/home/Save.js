@@ -11,6 +11,7 @@ const Save = props => {
 
   const handleSubmit = e => {
     props.setSaved(!props.saved)
+    APIManager.getEntry()
     let obj = {
       userId: props.activeUser.id,
       factor1: props.activities[0],

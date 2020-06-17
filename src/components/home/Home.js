@@ -8,6 +8,8 @@ const Home = props => {
     const [result, setResult] = useState(true)
     const [saved, setSaved] = useState(false)
 
+    const score = props.setScore
+    const setScore = props.setScore
     const activeUser = props.activeUser
     const activities = props.activities
     const setActivities = props.setActivities
@@ -25,6 +27,8 @@ const Home = props => {
                 <HomeRing
                     activeUser={props.activeUser}
                     activities={activities}
+                    score={score}
+                    setScore={setScore}
                 />
                 {activities.length === 0 ?
                     <Button onClick={() => props.history.push('/activities')} >Activities</Button>
@@ -33,7 +37,6 @@ const Home = props => {
                     }} disabled={saved}>Edit Activities</Button>}
                 {activities.length !== 0 && <Button disabled={saved} onClick={() => {
                     setActivities([])
-                    localStorage.setItem('activities', JSON.stringify([]))
                 }}>Clear activities</Button>}
                 {activities.length !== 0 &&
                     <Save

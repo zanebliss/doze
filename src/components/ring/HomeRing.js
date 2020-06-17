@@ -6,8 +6,11 @@ import APIManager from '../../modules/APIManager'
 
 const HomeRing = props => {
     const [data, setData] = useState({})
-    let [result, setResult] = useState(0)
     const net = new NeuralNetwork({ hiddenLayers: [3] })
+    const [result, setResult] = useState(0)
+
+    let score = props.score
+    const setScore = props.setScore
 
     let trainingData = []
 
@@ -17,7 +20,7 @@ const HomeRing = props => {
         }
     }
     const loadRing = () => {
-        props.activities.length === 0 ? 
+        props.activities.length === 0 ?
             setData({
                 datasets: [
                     {
@@ -26,11 +29,11 @@ const HomeRing = props => {
                     }
                 ],
             })
-        :
+            :
             setData({
                 datasets: [
                     {
-                        data: [result, 100 - result],
+                        data: [score, 100 - score],
                         backgroundColor: ['#56CCF2', 'transparent']
                     }
                 ],
@@ -53,13 +56,14 @@ const HomeRing = props => {
                     trainingData[index].output.push(data.entries[index].result)
                 }
                 net.train(trainingData)
-                result = ((net.run(props.activities)))
-                result = Math.floor(result[0] * 100)
-                setResult(result)
+                score = ((net.run(props.activities)))
+                score = Math.floor(score[0] * 100)
+                setScore(score)
+                setResult(score)
             }).then(() => {
                 loadRing()
             })
-        :
+            :
             loadRing()
     }, [props.activities])
 

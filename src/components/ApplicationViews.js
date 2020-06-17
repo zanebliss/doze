@@ -12,15 +12,20 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
 
-    const [activities, setActivities] = useState(JSON.parse(localStorage.getItem('activities')))
+    const [activities, setActivities] = useState([])
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
+    const [score, setScore] = useState(null)
+    const [latestEntry, setLatestEntry] = useState(null)
+    const [editing, setEditing] = useState(false)
 
     return (
         <div className='content-wrapper'>
 
-            <Route exact path='/home' render={props => {
+            <Route exact path='/' render={props => {
                 return <Home {...props}
+                    score={score}
+                    setScore={setScore}
                     activities={activities}
                     setActivities={setActivities}
                     activeUser={activeUser}
@@ -30,6 +35,12 @@ const ApplicationViews = props => {
             }} />
             <Route exact path='/activities' render={props => {
                 return <Activities {...props}
+                    editing={editing}
+                    latestEntry={latestEntry}
+                    setLatestEntry={setLatestEntry}
+                    score={score}
+                    setScore={setScore}
+                    activeUser={activeUser}
                     activities={activities}
                     setActivities={setActivities}
                     notes={notes}

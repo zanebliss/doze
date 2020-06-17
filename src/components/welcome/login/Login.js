@@ -23,7 +23,7 @@ const Login = props => {
                         JSON.stringify(user)
                     );
                     props.setActiveUser(JSON.parse(localStorage.getItem('user')))
-                    props.history.push('/home')
+                    props.history.push('/')
                 }
             })
         }
@@ -39,7 +39,7 @@ const Login = props => {
             JSON.stringify(user)
             )
             props.setActiveUser(JSON.parse(localStorage.getItem('user')))
-            props.history.push('/home')
+            props.history.push('/')
         })
     }
 
