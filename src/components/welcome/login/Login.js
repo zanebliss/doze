@@ -13,7 +13,6 @@ const Login = props => {
             alert('Please enter all fields.')
         } else {
             e.preventDefault()
-            // console.log(user)
             APIManager.getUser(user.username, user.password).then(e => {
                 if (e.length === 0) {
                     alert('No user found.')
@@ -23,7 +22,7 @@ const Login = props => {
                     sessionStorage.setItem('user',
                         JSON.stringify(user)
                     );
-                    props.setHasUser(true)
+                    props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
                     props.history.push('/home')
                 }
             })
@@ -39,8 +38,8 @@ const Login = props => {
             sessionStorage.setItem('user',
             JSON.stringify(user)
             )
-            props.setHasUser(true)
-            props.history.push('/hom')
+            props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
+            props.history.push('/home')
         })
     }
 

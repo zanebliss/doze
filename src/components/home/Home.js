@@ -7,12 +7,12 @@ import './Home.css'
 const Home = props => {
     const loading = props.loading
     const setLoading = props.setLoading
+    const [result, setResult] = useState(true)
+    const [saved, setSaved] = useState(false)
+
     const activeUser = props.activeUser
     const activities = props.activities
-    const setActivities = props.setActivities
     const hoursSlept = props.hoursSlept
-    const [saved, setSaved] = useState(false)
-    const [result, setResult] = useState(true)
 
     
 
@@ -25,18 +25,25 @@ const Home = props => {
                 <div>Predicted sleep score</div>
 
             }
-                <Ring activities={activities} setActivities={setActivities} activeUser={props.activeUser} loading={loading} setLoading={setLoading} />
+                <Ring 
+                    loading={loading} 
+                    setLoading={setLoading} 
+
+                    activeUser={props.activeUser}
+                    activities={activities} 
+                    />
                 { loading ? 
                 <Button onClick={() => props.history.push('/activities')} >Activities</Button> 
                 : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button> }
                 { !loading && 
                     <Save 
-                        setResult={setResult} 
                         result={result} 
-                        activeUser={activeUser} 
-                        activities={activities} 
+                        setResult={setResult} 
                         saved={saved} 
                         setSaved={setSaved} 
+
+                        activeUser={activeUser} 
+                        activities={activities} 
                         notes={props.notes}
                         hoursSlept={hoursSlept}
                 /> }

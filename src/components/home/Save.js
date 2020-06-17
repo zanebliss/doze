@@ -4,8 +4,6 @@ import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 
 const Save = props => {
-  console.log(props)
-  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

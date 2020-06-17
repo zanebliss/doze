@@ -5,8 +5,6 @@ import Login from './login/Login'
 
 const WelcomeViews = props => {
   const setActiveUser = props.setActiveUser
-  const hasUser = props.hasUser
-  const setHasUser = props.setHasUser
   const [login, setLogin] = useState(null)
 
   return (
@@ -14,14 +12,14 @@ const WelcomeViews = props => {
       <Route
         exact path='/' render={props => {
           return <Splash {...props} 
-            setLogin={setLogin}/>
+            setLogin={setLogin}
+            />
         }}
       />
       <Route
         exact path='/login' render={props => {
           return <Login {...props} 
-            hasUser={hasUser} 
-            setHasUser={setHasUser} 
+            setActiveUser={setActiveUser}
             login={login} 
             />
         }}
