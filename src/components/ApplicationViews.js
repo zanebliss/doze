@@ -13,7 +13,7 @@ const ApplicationViews = props => {
     const setActiveUser = props.setActiveUser
     const [loading, setLoading] = useState(true)
 
-    const [activities] = useState([])
+    const [activities, setActivities] = useState([])
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
 
@@ -26,6 +26,7 @@ const ApplicationViews = props => {
                     setLoading={setLoading} 
 
                     activities={activities} 
+                    setActivities={setActivities}
                     activeUser={activeUser} 
                     hoursSlept={hoursSlept}
                     notes={notes} 
