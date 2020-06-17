@@ -13,15 +13,14 @@ const Journal = props => {
             setEntries(user.entries)
         })
     }
-    const sortJournals = type => {
-        APIManager.getSortedEntries(type).then(entries => {
+    const sortJournals = (key, order) => { 
+        APIManager.getSortedEntries(key, order).then(entries => {
             setEntries(entries)
         })
 
     }
 
     useEffect(() => {
-        
         getJournals()
     }, [])
 
@@ -36,11 +35,17 @@ const Journal = props => {
                                 <FilterRight size={30} />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => {sortJournals('asc')}}>
+                                <Dropdown.Item onClick={() => {sortJournals('date', 'asc')}}>
                                     Recent
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => {sortJournals('desc')}}>
+                                <Dropdown.Item onClick={() => {sortJournals('date', 'desc')}}>
                                     Oldest
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => {sortJournals('hoursSlept','desc')}}>
+                                    Most hours slept
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => {sortJournals('hoursSlept', 'desc')}}>
+                                    Least hours slept
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -48,7 +53,13 @@ const Journal = props => {
                 </div>
                 <div className='journal-list'>
                     {entries.map(entry => (
-                        <JournalCard key={entry.id} date={entry.date} id={entry.id} activeUser={props.activeUser} notes={entry.notes}
+                        <JournalCard 
+                            key={entry.id} 
+                            date={entry.date} 
+                            id={entry.id} 
+                            activeUser={props.activeUser} 
+                            notes={entry.notes}
+                            hoursSlept={entry.hoursSlept}
                             getJournals={getJournals}
                         />
                     ))}

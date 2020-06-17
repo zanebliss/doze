@@ -18,6 +18,7 @@ const JournalCard = props => {
                         handleDelete(props.id)
                     }} />     
                     <JournalRing activeUser={props.activeUser} id={props.id} />
+                    <div>Hours slept {props.hoursSlept}</div>
                     <div>{props.notes}</div>
                 </Card.Body>
             </Card>
