@@ -7,7 +7,7 @@ const Settings = props => {
 
     const handleLogout = () => {
         sessionStorage.clear()
-        props.setHasUser(false)
+        props.setActiveUser(null)
         props.history.push('/')
     }
 

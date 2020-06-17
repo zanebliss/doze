@@ -18,6 +18,7 @@
       "factor7": 0,
       "factor8": 0,
       "result": 1,
+      "hoursSlept": 6,
       "date": "2020-06-15T00:43:12.705Z",
       "notes": "I felt very tired after exercising.",
       "id": 4
@@ -33,6 +34,7 @@
       "factor7": 1,
       "factor8": 1,
       "result": 0,
+      "hoursSlept": 8,
       "date": "2020-06-16T20:26:44.816Z",
       "notes": "After cleaning Roxanne's bionic leg we all got drunk and played animal crossing.",
       "id": 5

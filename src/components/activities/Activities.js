@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { ArrowLeftCircle } from 'react-bootstrap-icons';
 import Study from '../../media/Study.svg'
 import './Activities.css'
@@ -9,6 +9,7 @@ import RangeSlider from 'react-bootstrap-range-slider'
 const Activities = props => {
     const setLoading = props.setLoading
     const activities = props.activities
+
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
     const [val3, setVal3] = useState(false)
@@ -28,10 +29,6 @@ const Activities = props => {
             activities.push(1)
         } else if (!val) { activities.push(0) }
     }
-
-    useEffect(() => {
-        
-    }, [])
 
     return (
         <>

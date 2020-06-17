@@ -9,13 +9,11 @@ import Journal from './journal/Journal'
 import './ApplicationViews.css'
 
 const ApplicationViews = props => {
-    
-    const loading = props.loading
-    const setLoading = props.setLoading
-    const activities = props.activities
-    const setActivities = props.setActivities
     const activeUser = props.activeUser
-    const setHasUser = props.setHasUser
+    const setActiveUser = props.setActiveUser
+    const [loading, setLoading] = useState(true)
+
+    const [activities] = useState([])
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
 
@@ -24,19 +22,20 @@ const ApplicationViews = props => {
         
             <Route exact path='/home' render={props => {
                 return <Home {...props} 
-                    activities={activities} 
-                    activeUser={activeUser} 
                     loading={loading} 
                     setLoading={setLoading} 
+
+                    activities={activities} 
+                    activeUser={activeUser} 
                     hoursSlept={hoursSlept}
-                    notes={notes} />
+                    notes={notes} 
+                    />
             }} />
             <Route exact path='/activities' render={props => {
                 return <Activities {...props} 
-                    activities={activities} 
-                    setActivities={setActivities} 
-                    loading={loading} 
                     setLoading={setLoading} 
+                    
+                    activities={activities} 
                     notes={notes} 
                     setNotes={setNotes}
                     hoursSlept={hoursSlept}
@@ -54,7 +53,7 @@ const ApplicationViews = props => {
             <Route exact path='/settings' render={props => {
                 return <Settings 
                     {...props} 
-                    setHasUser={setHasUser}/>
+                    setActiveUser={setActiveUser}/>
             }} />
             <Route exact path='/about' render={props => {
                 return <About />
