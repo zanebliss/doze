@@ -27,6 +27,8 @@ const Save = props => {
       hoursSlept: props.hoursSlept
     }
     handleClose()
+    props.setActivities([])
+    localStorage.setItem('activities', JSON.stringify([]))
     APIManager.post('entries', obj)
   }
 

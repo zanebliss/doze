@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import HomeRing from '../ring/HomeRing'
 import { Button } from 'react-bootstrap'
 import Save from './Save'
@@ -10,6 +10,7 @@ const Home = props => {
 
     const activeUser = props.activeUser
     const activities = props.activities
+    const setActivities = props.setActivities
     const hoursSlept = props.hoursSlept
 
     return (
@@ -27,9 +28,12 @@ const Home = props => {
                 />
                 {activities.length === 0 ?
                     <Button onClick={() => props.history.push('/activities')} >Activities</Button>
-                    : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button>}
+                    : <Button onClick={() => {
+                        props.history.push('/activities')
+                    }} disabled={saved}>Edit Activities</Button>}
                 {activities.length !== 0 && <Button disabled={saved} onClick={() => {
-                    props.setActivities([])
+                    setActivities([])
+                    localStorage.setItem('activities', JSON.stringify([]))
                 }}>Clear activities</Button>}
                 {activities.length !== 0 &&
                     <Save
@@ -40,6 +44,7 @@ const Home = props => {
 
                         activeUser={activeUser}
                         activities={activities}
+                        setActivities={setActivities}
                         notes={props.notes}
                         hoursSlept={hoursSlept}
                     />}

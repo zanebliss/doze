@@ -7,7 +7,6 @@ import { Button, Form } from 'react-bootstrap'
 import RangeSlider from 'react-bootstrap-range-slider'
 
 const Activities = props => {
-    const activities = props.activities
 
     const [val1, setVal1] = useState(false)
     const [val2, setVal2] = useState(false)
@@ -25,8 +24,8 @@ const Activities = props => {
     const makeActivities = (e, val) => {
         e.preventDefault()
         if (val) {
-            activities.push(1)
-        } else if (!val) { activities.push(0) }
+            props.activities.push(1)
+        } else if (!val) { props.activities.push(0) }
     }
 
     return (
@@ -102,6 +101,7 @@ const Activities = props => {
                         <Form.Label>Enter activitiy notes</Form.Label>
                         <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
                         <Button onClick={e => {
+                            props.activities.length = 0
                             makeActivities(e, val1)
                             makeActivities(e, val2)
                             makeActivities(e, val3)
@@ -110,6 +110,7 @@ const Activities = props => {
                             makeActivities(e, val6)
                             makeActivities(e, val7)
                             makeActivities(e, val8)
+                            localStorage.setItem('activities', JSON.stringify(props.activities))
                             props.history.push('/home')
                         }}>Next</Button>
                     </Form.Group>

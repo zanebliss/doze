@@ -12,26 +12,27 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
 
-    const [activities, setActivities] = useState([])
+    const [activities, setActivities] = useState(JSON.parse(localStorage.getItem('activities')))
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
 
     return (
         <div className='content-wrapper'>
-        
+
             <Route exact path='/home' render={props => {
-                return <Home {...props} 
-                    activities={activities} 
+                return <Home {...props}
+                    activities={activities}
                     setActivities={setActivities}
-                    activeUser={activeUser} 
+                    activeUser={activeUser}
                     hoursSlept={hoursSlept}
-                    notes={notes} 
-                    />
+                    notes={notes}
+                />
             }} />
             <Route exact path='/activities' render={props => {
-                return <Activities {...props} 
-                    activities={activities} 
-                    notes={notes} 
+                return <Activities {...props}
+                    activities={activities}
+                    setActivities={setActivities}
+                    notes={notes}
                     setNotes={setNotes}
                     hoursSlept={hoursSlept}
                     setHoursSlept={setHoursSlept}
@@ -41,14 +42,14 @@ const ApplicationViews = props => {
                 return <Trends />
             }} />
             <Route exact path='/journal' render={props => {
-                return <Journal {...props} 
-                    activeUser={activeUser} 
-                    />
+                return <Journal {...props}
+                    activeUser={activeUser}
+                />
             }} />
             <Route exact path='/settings' render={props => {
-                return <Settings 
-                    {...props} 
-                    setActiveUser={setActiveUser}/>
+                return <Settings
+                    {...props}
+                    setActiveUser={setActiveUser} />
             }} />
             <Route exact path='/about' render={props => {
                 return <About />
