@@ -5,7 +5,6 @@ import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
 
 const HomeRing = props => {
-    
     const net = new NeuralNetwork({ hiddenLayers: [3] })
     const [data, setData] = useState({})
     const [result, setResult] = useState(0)
@@ -68,6 +67,8 @@ const HomeRing = props => {
             })
             :
             loadRing()
+        console.log('HomeRing useEffect');
+        
     }, [latestEntry])
 
     return (

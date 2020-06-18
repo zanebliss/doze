@@ -37,17 +37,18 @@ const Save = props => {
       saved: true
     }
     obj.id = entry.id
-    APIManager.edit('entries', obj)
+    console.log(obj);
+    
+    // APIManager.edit('entries', obj)
     handleClose()
+    entry = {}
+    props.setEntry(entry)
     latestEntry = { saved: false }
     props.setLatestEntry(latestEntry)
     props.setActivities([])
-    console.log(saved);
-    
   }
 
   useEffect(() => {
-
   }, [])
 
 

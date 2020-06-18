@@ -22,6 +22,7 @@ const ApplicationViews = props => {
     const [saved, setSaved] = useState(false)
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         entry  = {
             userId: props.activeUser.id,
             factor1: 0,

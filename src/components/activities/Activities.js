@@ -41,7 +41,6 @@ const Activities = props => {
                 score: score,
                 saved: false
             }
-            console.log('saved')
             APIManager.post('entries', obj).then(obj => {
                 setEntry(obj)
             })

@@ -33,11 +33,9 @@ const Home = props => {
             activities.push(latestEntry.factor7)
             activities.push(latestEntry.factor8)
             setActivities(activities)
+            
         })
     }, [])
-
-    useEffect(() => {
-    }, [entry])
 
     return (
         <>
