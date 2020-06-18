@@ -1,51 +1,80 @@
 import React, { useState, useEffect } from 'react'
-import Ring from '../ring/HomeRing'
+import HomeRing from '../ring/HomeRing'
 import { Button } from 'react-bootstrap'
 import Save from './Save'
+import APIManager from '../../modules/APIManager'
 import './Home.css'
 
 const Home = props => {
-    const loading = props.loading
-    const setLoading = props.setLoading
     const [result, setResult] = useState(true)
-    const [saved, setSaved] = useState(false)
+    const [activities, setActivities] = useState([])
 
+    const saved = props.saved
+    const setSaved = props.setSaved
+    const entry = props.entry
+    const setEntry = props.setEntry
+    let latestEntry = props.latestEntry
+    const setLatestEntry = props.setLatestEntry
+    let score = props.setScore
+    const setScore = props.setScore
     const activeUser = props.activeUser
-    const activities = props.activities
     const hoursSlept = props.hoursSlept
+
+    useEffect(() => {
+        APIManager.getSortedEntries('id', 'desc').then(entries => {
+            latestEntry = entries[0]
+            setLatestEntry(latestEntry)
+            activities.push(latestEntry.factor1)
+            activities.push(latestEntry.factor2)
+            activities.push(latestEntry.factor3)
+            activities.push(latestEntry.factor4)
+            activities.push(latestEntry.factor5)
+            activities.push(latestEntry.factor6)
+            activities.push(latestEntry.factor7)
+            activities.push(latestEntry.factor8)
+            setActivities(activities)
+            
+        })
+    }, [])
 
     return (
         <>
             <div className='home-wrapper'>
-                {loading ?
-                    <div>Enter activities</div>
-                    :
+                {!latestEntry.saved ?
                     <div>Likelihood of feeling well rested</div>
+                    :
+                    <div></div>
 
                 }
-                <Ring
-                    loading={loading}
-                    setLoading={setLoading}
-
+                <HomeRing
+                    latestEntry = {props.latestEntry}
+                    setLatestEntry = {props.setLatestEntry}
                     activeUser={props.activeUser}
                     activities={activities}
+                    score={score}
+                    setScore={setScore}
                 />
-                {loading ?
-                    <Button onClick={() => props.history.push('/activities')} >Activities</Button>
-                    : <Button onClick={() => props.history.push('/activities')} disabled={saved}>Edit Activities</Button>}
-                {!loading && <Button onClick={() => {
-                    setLoading(!loading)
-                    props.setActivities([])
-                }}>Clear activities</Button>}
-                {!loading &&
+                {latestEntry.saved ?
+                    <Button onClick={() => props.history.push('/activities')} > New entry</Button>
+                    : <Button onClick={() => {
+                        props.history.push('/activities')
+                    }} >Edit Activities</Button>}
+                {!latestEntry.saved &&
                     <Save
+                        entry={entry}
+                        setEntry={setEntry}
+                        latestEntry={latestEntry}
+                        setLatestEntry={setLatestEntry}
+                        
                         result={result}
                         setResult={setResult}
+                        score={score}
                         saved={saved}
                         setSaved={setSaved}
-
+                        
                         activeUser={activeUser}
                         activities={activities}
+                        setActivities={setActivities}
                         notes={props.notes}
                         hoursSlept={hoursSlept}
                     />}

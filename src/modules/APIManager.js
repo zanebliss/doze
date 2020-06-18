@@ -27,4 +27,13 @@ export default {
           body: JSON.stringify(obj),
         }).then((data) => data.json()); 
     },
+    edit(resource, obj) {
+      return fetch(`${remoteURL}/${resource}/${obj.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(obj)
+      }).then(data => data.json());
+  },
  }

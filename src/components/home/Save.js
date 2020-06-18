@@ -1,41 +1,60 @@
-import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Button, Modal, FormLabel } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
+import RangeSlider from 'react-bootstrap-range-slider'
 
 const Save = props => {
+  const saved = props.saved
+  const setSaved = props.setSaved
+
+  const [hoursSlept, setHoursSlept] = useState(0)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  let entry = props.entry
+  let latestEntry = props.latestEntry
+
   const handleSubmit = e => {
-    props.setSaved(!props.saved)
+    setSaved(!saved)
     let obj = {
-      userId: props.activeUser.id,
-      factor1: props.activities[0],
-      factor2: props.activities[1],
-      factor3: props.activities[2],
-      factor4: props.activities[3],
-      factor5: props.activities[4],
-      factor6: props.activities[5],
-      factor7: props.activities[6],
-      factor8: props.activities[7],
+      userId: entry.userId,
+      factor1: entry.factor1,
+      factor2: entry.factor2,
+      factor3: entry.factor3,
+      factor4: entry.factor4,
+      factor5: entry.factor5,
+      factor6: entry.factor6,
+      factor7: entry.factor7,
+      factor8: entry.factor8,
       result: props.result ? 1 : 0,
       date: new Date(),
-      notes: props.notes,
-      hoursSlept: props.hoursSlept
+      notes: entry.notes,
+      hoursSlept: hoursSlept,
+      score: entry.score,
+      saved: true
     }
+    obj.id = entry.id
+    console.log(obj);
+    
+    // APIManager.edit('entries', obj)
     handleClose()
-    APIManager.post('entries', obj)
+    entry = {}
+    props.setEntry(entry)
+    latestEntry = { saved: false }
+    props.setLatestEntry(latestEntry)
+    props.setActivities([])
   }
+
+  useEffect(() => {
+  }, [])
+
 
   return (
     <>
-      { !props.saved ? 
-       <Button variant="primary" onClick={handleShow}>Save</Button> :
-       <Button variant="primary" onClick={handleShow} disabled={props.saved}>Saved</Button>
-      }
+        <Button variant="primary" onClick={handleShow}>Save</Button> 
       <Modal
         show={show}
         onHide={handleClose}
@@ -46,9 +65,19 @@ const Save = props => {
         <Modal.Body>
           Do you feel rested?
         <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.result} onChange={() => {
-          props.setResult(!props.result)
-        }}/>
+            props.setResult(!props.result)
+          }} />
         </Modal.Body>
+        <FormLabel>Hours slept</FormLabel>
+        <RangeSlider
+          min={0}
+          max={12}
+          value={hoursSlept}
+          size='lg'
+          step={0.5}
+          onChange={e => { setHoursSlept(Number(e.target.value)) }}
+        />
+        <FormLabel>{hoursSlept}</FormLabel>
         <Button variant="primary" onClick={e => {
           handleSubmit()
         }}>Save entry</Button>
