@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, FormLabel } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
 
 const Save = props => {
+  const [hoursSlept, setHoursSlept] = useState(0)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -53,14 +54,16 @@ const Save = props => {
             props.setResult(!props.result)
           }} />
         </Modal.Body>
+        <FormLabel>Hours slept</FormLabel>
         <RangeSlider
           min={0}
           max={12}
-          value={props.hoursSlept}
+          value={hoursSlept}
           size='lg'
           step={0.5}
-          onChange={e => { props.setHoursSlept(Number(e.target.value)) }}
+          onChange={e => { setHoursSlept(Number(e.target.value)) }}
         />
+        <FormLabel>{hoursSlept}</FormLabel>
         <Button variant="primary" onClick={e => {
           handleSubmit()
         }}>Save entry</Button>

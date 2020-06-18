@@ -3,12 +3,16 @@ import { Doughnut } from 'react-chartjs-2'
 import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
+import { Button } from 'react-bootstrap'
 
 const HomeRing = props => {
-    const [data, setData] = useState({})
+    
     const net = new NeuralNetwork({ hiddenLayers: [3] })
+    const [data, setData] = useState({})
     const [result, setResult] = useState(0)
 
+    const activities = props.activities
+    let latestEntry = props.latestEntry
     let score = props.score
     const setScore = props.setScore
 
@@ -20,7 +24,7 @@ const HomeRing = props => {
         }
     }
     const loadRing = () => {
-        props.activities.length === 0 ?
+        latestEntry.saved ?
             setData({
                 datasets: [
                     {
@@ -41,7 +45,7 @@ const HomeRing = props => {
     }
 
     useEffect(() => {
-        props.activities.length !== 0 ?
+        latestEntry.saved === false ?
             APIManager.getAllUser(props.activeUser.id).then(data => {
                 for (let index = 0; index < data.entries.length; index++) {
                     trainingData.push({ input: [], output: [] })
@@ -56,7 +60,7 @@ const HomeRing = props => {
                     trainingData[index].output.push(data.entries[index].result)
                 }
                 net.train(trainingData)
-                score = ((net.run(props.activities)))
+                score = ((net.run(activities)))
                 score = Math.floor(score[0] * 100)
                 setScore(score)
                 setResult(score)
@@ -65,7 +69,7 @@ const HomeRing = props => {
             })
             :
             loadRing()
-    }, [props.activities])
+    }, [latestEntry])
 
     return (
         <>

@@ -6,71 +6,72 @@ import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import { Button, Form } from 'react-bootstrap'
 import APIManager from '../../modules/APIManager'
 
-const Activities = props => {
-    const latestEntry = props.latestEntry
-    const setLatestEntry = props.setLatestEntry
+const Activities = props => { 
+    let entry = props.entry
+    let setEntry = props.setEntry
+    let latestEntry = props.latestEntry
+    let setLatestEntry = props.setLatestEntry
+    const score = props.score
 
-    const [val1, setVal1] = useState(latestEntry !== null ? Boolean(latestEntry.factor1) : false)
-    const [val2, setVal2] = useState(latestEntry !== null ? Boolean(latestEntry.factor2) : false)
-    const [val3, setVal3] = useState(latestEntry !== null ? Boolean(latestEntry.factor3) : false)
-    const [val4, setVal4] = useState(latestEntry !== null ? Boolean(latestEntry.factor4) : false)
-    const [val5, setVal5] = useState(latestEntry !== null ? Boolean(latestEntry.factor5) : false)
-    const [val6, setVal6] = useState(latestEntry !== null ? Boolean(latestEntry.factor6) : false)
-    const [val7, setVal7] = useState(latestEntry !== null ? Boolean(latestEntry.factor7) : false)
-    const [val8, setVal8] = useState(latestEntry !== null ? Boolean(latestEntry.factor8) : false)
-    const [entry, setEntry] = useState({
-        factor1: false,
-        factor2: false,
-        factor3: false,
-        factor4: false,
-        factor5: false,
-        factor6: false,
-        factor7: false,
-        factor8: false
-    })
-    
+    let [notes, setNotes] = useState('')
+
     const size = 'lg'
     const onlabel = ' '
     const offlabel = ' '
 
-    const makeActivities = (e, val) => {
-        e.preventDefault()
-        if (val) {
-            props.activities.push(1)
-        } else if (!val) { props.activities.push(0) }
-    }
-
     const handleSave = () => {
-        let obj = {
-            userId: props.activeUser.id,
-            factor1: props.activities[0],
-            factor2: props.activities[1],
-            factor3: props.activities[2],
-            factor4: props.activities[3],
-            factor5: props.activities[4],
-            factor6: props.activities[5],
-            factor7: props.activities[6],
-            factor8: props.activities[7],
-            result: props.result ? 1 : 0,
-            date: new Date(),
-            notes: props.notes,
-            hoursSlept: props.hoursSlept,
-            score: props.score,
-            saved: false
+        if (!latestEntry.saved) {
+            console.log('edited')
+            APIManager.edit('entries', entry)
+        } else if (latestEntry.saved) {
+            let obj = {
+                userId: props.activeUser.id,
+                factor1: entry.factor1,
+                factor2: entry.factor2,
+                factor3: entry.factor3,
+                factor4: entry.factor4,
+                factor5: entry.factor5,
+                factor6: entry.factor6,
+                factor7: entry.factor7,
+                factor8: entry.factor8,
+                result: entry.result,
+                date: new Date(),
+                notes: entry.notes,
+                hoursSlept: entry.hoursSlept,
+                score: score,
+                saved: false
+            }
+            console.log('saved')
+            APIManager.post('entries', obj)
         }
-        
-        // latestEntry !== null ?
-        //     APIManager.edit('entries', latestEntry).then(entry => console.log(entry))
-        //     :
-        //     APIManager.post('entries', obj).then(item => {
-        //         localStorage.setItem('latestEntry', JSON.stringify(item))
-        //     })
     }
+    
 
     useEffect(() => {
-        console.log(entry);
-        
-    }, [entry])
+        APIManager.getSortedEntries('id', 'desc').then(entries => {
+            latestEntry = entries[0]
+            setLatestEntry(latestEntry)
+        }).then(() => {
+            if (!latestEntry.saved) {
+                entry.factor1 = latestEntry.factor1
+                entry.factor2 = latestEntry.factor2
+                entry.factor3 = latestEntry.factor3
+                entry.factor4 = latestEntry.factor4
+                entry.factor5 = latestEntry.factor5
+                entry.factor6 = latestEntry.factor6
+                entry.factor7 = latestEntry.factor7
+                entry.factor8 = latestEntry.factor8
+                entry.result = latestEntry.result
+                entry.hoursSlept = latestEntry.hoursSlept
+                entry.score = score
+                entry.date = latestEntry.date
+                entry.notes = latestEntry.notes
+                entry.id = latestEntry.id
+            }
+            setEntry(entry)
+            setNotes(entry.notes)
+        })
+    }, [])
 
     return (
         <>
@@ -84,69 +85,65 @@ const Activities = props => {
                             <div>
                                 <div className='slider'>
                                     <div>Exercised</div>
-                                    <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size} checked={val1} onChange={() => {
-                                        entry.factor1 = !entry.factor1
+                                    <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size} checked={Boolean(entry.factor1)} onChange={() => {
+                                        entry.factor1 = +!entry.factor1
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Cool room</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val2} onChange={() => {
-                                        entry.factor2 = !entry.factor2
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor2)} onChange={() => {
+                                        entry.factor2 = +!entry.factor2
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Sleep mask</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val3} onChange={() => {
-                                        entry.factor3 = !entry.factor3
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor3)} onChange={() => {
+                                        entry.factor3 = +!entry.factor3
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Noise machine</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val4} onChange={() => {
-                                        entry.factor4 = !entry.factor4
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor4)} onChange={() => {
+                                        entry.factor4 = +!entry.factor4
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Stressed</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val5} onChange={() => {
-                                        entry.factor5 = !entry.factor5
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor5)} onChange={() => {
+                                        entry.factor5 = +!entry.factor5
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Blue light</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val6} onChange={() => {
-                                        entry.factor6 = !entry.factor6
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor6)} onChange={() => {
+                                        entry.factor6 = +!entry.factor6
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Food before bed</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val7} onChange={() => {
-                                        entry.factor7 = !entry.factor7
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor7)} onChange={() => {
+                                        entry.factor7 = +!entry.factor7
                                     }} />
                                 </div>
                                 <div className='slider'>
                                     <div>Alchohol</div>
-                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={val8} onChange={() => {
-                                        entry.factor8 = !entry.factor8
+                                    <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor8)} onChange={() => {
+                                        entry.factor8 = +!entry.factor8
                                     }} />
                                 </div>
                             </div>
                         </div>
-                        <Form.Label>Enter activitiy notes</Form.Label>
-                        <Form.Control required as='textarea' rows='3' onChange={e => props.setNotes(e.target.value)} />
+                        
+                        <Form.Label>Enter activitity notes</Form.Label>
+                        <Form.Control as='textarea' rows='3' value={notes} onChange={e => {
+                            setNotes(e.target.value)
+                        }} />
                         <Button onClick={e => {
-                            if (props.notes === '') {
+                            if (notes === '') {
                                 alert('Please enter journal notes.')
-                            } else if (props.notes !== '') {
-                                props.activities.length = 0
-                                makeActivities(e, val1)
-                                makeActivities(e, val2)
-                                makeActivities(e, val3)
-                                makeActivities(e, val4)
-                                makeActivities(e, val5)
-                                makeActivities(e, val6)
-                                makeActivities(e, val7)
-                                makeActivities(e, val8)
+                            } else if (notes !== '') {
+                                entry.notes = notes
+                                setEntry(entry)
                                 handleSave()
                                 props.history.push('/')
                             }
