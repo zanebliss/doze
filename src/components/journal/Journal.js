@@ -6,11 +6,12 @@ import './Journal.css'
 import JournalCard from './JournalCard'
 
 const Journal = props => {
-    const [entries, setEntries] = useState([])
+    let [entries, setEntries] = useState([])
 
     const getJournals = () => {
         return APIManager.getAllUser(props.activeUser.id).then(user => {
-            setEntries(user.entries)
+            entries = user.entries.filter(entry => entry.saved)
+            setEntries(entries)
         })
     }
     const sortJournals = (key, order) => { 
