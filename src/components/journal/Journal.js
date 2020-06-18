@@ -14,7 +14,7 @@ const Journal = props => {
         })
     }
     const sortJournals = (key, order) => { 
-        APIManager.getSortedEntries(key, order).then(entries => {
+        APIManager.getSavedEntries(key, order).then(entries => {
             setEntries(entries)
         })
 
@@ -52,7 +52,8 @@ const Journal = props => {
                     </div>
                 </div>
                 <div className='journal-list'>
-                    {entries.map(entry => (
+                    {
+                        entries.map(entry => (
                         <JournalCard 
                             key={entry.id} 
                             date={entry.date} 
