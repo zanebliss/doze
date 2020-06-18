@@ -69,6 +69,7 @@ const ApplicationViews = props => {
                     activeUser={activeUser}
                     hoursSlept={hoursSlept}
                     notes={notes}
+                    setNotes={setNotes}
                 />
             }} />
             <Route exact path='/activities' render={props => {

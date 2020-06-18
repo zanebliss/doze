@@ -133,11 +133,10 @@ const Activities = props => {
                                 </div>
                             </div>
                         </div>
-                        
-                        <Form.Label>Sleep notes</Form.Label>
+                        {/* <Form.Label>Sleep notes</Form.Label>
                         <Form.Control as='textarea' rows='3' value={notes} onChange={e => {
                             setNotes(e.target.value)
-                        }} />
+                        }} /> */}
                         <Button onClick={e => {
                                 entry.notes = notes
                                 setEntry(entry)

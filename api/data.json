@@ -53,12 +53,12 @@
       "factor6": 0,
       "factor7": 0,
       "factor8": 0,
-      "result": null,
-      "date": "2020-06-18T22:50:25.940Z",
-      "notes": "",
-      "hoursSlept": null,
+      "result": 0,
+      "date": "2020-06-18T22:59:07.865Z",
+      "notes": "I didn't sleep well tonight.",
+      "hoursSlept": 7,
       "score": 0,
-      "saved": false,
+      "saved": true,
       "id": 6
     }
   ]

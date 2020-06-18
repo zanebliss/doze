@@ -19,6 +19,8 @@ const Home = props => {
     const setScore = props.setScore
     const activeUser = props.activeUser
     const hoursSlept = props.hoursSlept
+    const notes = props.notes
+    const setNotes = props.setNotes
 
     useEffect(() => {
         APIManager.getSortedEntries('id', 'desc').then(entries => {
@@ -75,7 +77,8 @@ const Home = props => {
                         activeUser={activeUser}
                         activities={activities}
                         setActivities={setActivities}
-                        notes={props.notes}
+                        notes={notes}
+                        setNotes={setNotes}
                         hoursSlept={hoursSlept}
                     />}
             </div>
