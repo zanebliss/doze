@@ -21,7 +21,6 @@ const Activities = props => {
 
     const handleSave = () => {
         if (!latestEntry.saved) {
-            console.log('edited')
             APIManager.edit('entries', entry)
         } else if (latestEntry.saved) {
             let obj = {

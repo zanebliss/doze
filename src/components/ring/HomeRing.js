@@ -67,8 +67,6 @@ const HomeRing = props => {
             })
             :
             loadRing()
-        console.log('HomeRing useEffect');
-        
     }, [latestEntry])
 
     return (
