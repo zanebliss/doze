@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
+import RangeSlider from 'react-bootstrap-range-slider'
 
 const Save = props => {
   const [show, setShow] = useState(false);
@@ -35,9 +36,9 @@ const Save = props => {
 
   return (
     <>
-      { !props.saved ? 
-       <Button variant="primary" onClick={handleShow}>Save</Button> :
-       <Button variant="primary" onClick={handleShow} disabled={props.saved}>Saved</Button>
+      {!props.saved ?
+        <Button variant="primary" onClick={handleShow}>Save</Button> :
+        <Button variant="primary" onClick={handleShow} disabled={props.saved}>Saved</Button>
       }
       <Modal
         show={show}
@@ -49,9 +50,17 @@ const Save = props => {
         <Modal.Body>
           Do you feel rested?
         <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.result} onChange={() => {
-          props.setResult(!props.result)
-        }}/>
+            props.setResult(!props.result)
+          }} />
         </Modal.Body>
+        <RangeSlider
+          min={0}
+          max={12}
+          value={props.hoursSlept}
+          size='lg'
+          step={0.5}
+          onChange={e => { props.setHoursSlept(Number(e.target.value)) }}
+        />
         <Button variant="primary" onClick={e => {
           handleSubmit()
         }}>Save entry</Button>

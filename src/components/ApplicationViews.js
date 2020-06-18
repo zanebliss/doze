@@ -16,8 +16,7 @@ const ApplicationViews = props => {
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
     const [score, setScore] = useState(null)
-    const [latestEntry, setLatestEntry] = useState(null)
-    const [editing, setEditing] = useState(false)
+    const [latestEntry, setLatestEntry] = useState(JSON.parse(localStorage.getItem('latestEntry')))
 
     return (
         <div className='content-wrapper'>
@@ -35,7 +34,6 @@ const ApplicationViews = props => {
             }} />
             <Route exact path='/activities' render={props => {
                 return <Activities {...props}
-                    editing={editing}
                     latestEntry={latestEntry}
                     setLatestEntry={setLatestEntry}
                     score={score}
