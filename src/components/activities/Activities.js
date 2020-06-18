@@ -135,19 +135,15 @@ const Activities = props => {
                             </div>
                         </div>
                         
-                        <Form.Label>Enter activitity notes</Form.Label>
+                        <Form.Label>Sleep notes</Form.Label>
                         <Form.Control as='textarea' rows='3' value={notes} onChange={e => {
                             setNotes(e.target.value)
                         }} />
                         <Button onClick={e => {
-                            if (notes === '') {
-                                alert('Please enter journal notes.')
-                            } else if (notes !== '') {
                                 entry.notes = notes
                                 setEntry(entry)
                                 handleSave()
                                 props.history.push('/')
-                            }
                         }}>Next</Button>
                     </Form.Group>
                 </Form>
