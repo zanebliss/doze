@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2'
 import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
-import { Button } from 'react-bootstrap'
 
 const HomeRing = props => {
     
@@ -74,7 +73,7 @@ const HomeRing = props => {
     return (
         <>
             <Clock size='45' color='gray' />
-            <div hidden={props.activities.length === 0}>{result}%</div>
+            <div hidden={latestEntry.saved}>{result}%</div>
             <Doughnut options={options} data={data} />
         </>
     )

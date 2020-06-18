@@ -42,7 +42,9 @@ const Activities = props => {
                 saved: false
             }
             console.log('saved')
-            APIManager.post('entries', obj)
+            APIManager.post('entries', obj).then(obj => {
+                setEntry(obj)
+            })
         }
     }
     

@@ -7,12 +7,15 @@ import './Home.css'
 
 const Home = props => {
     const [result, setResult] = useState(true)
-    const [saved, setSaved] = useState(false)
     const [activities, setActivities] = useState([])
-    
+
+    const saved = props.saved
+    const setSaved = props.setSaved
+    const entry = props.entry
+    const setEntry = props.setEntry
     let latestEntry = props.latestEntry
     const setLatestEntry = props.setLatestEntry
-    const score = props.setScore
+    let score = props.setScore
     const setScore = props.setScore
     const activeUser = props.activeUser
     const hoursSlept = props.hoursSlept
@@ -32,6 +35,9 @@ const Home = props => {
             setActivities(activities)
         })
     }, [])
+
+    useEffect(() => {
+    }, [entry])
 
     return (
         <>
@@ -54,17 +60,20 @@ const Home = props => {
                     <Button onClick={() => props.history.push('/activities')} > New entry</Button>
                     : <Button onClick={() => {
                         props.history.push('/activities')
-                    }} disabled={saved}>Edit Activities</Button>}
-                {!latestEntry.saved && <Button disabled={saved} onClick={() => {
-                    setActivities([])
-                }}>Clear activities</Button>}
+                    }} >Edit Activities</Button>}
                 {!latestEntry.saved &&
                     <Save
+                        entry={entry}
+                        setEntry={setEntry}
+                        latestEntry={latestEntry}
+                        setLatestEntry={setLatestEntry}
+                        
                         result={result}
                         setResult={setResult}
+                        score={score}
                         saved={saved}
                         setSaved={setSaved}
-
+                        
                         activeUser={activeUser}
                         activities={activities}
                         setActivities={setActivities}

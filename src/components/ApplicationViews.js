@@ -13,43 +13,54 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
 
-    const [entry, setEntry] = useState({
-        userId: props.activeUser.id,
-        factor1: 0,
-        factor2: 0,
-        factor3: 0,
-        factor4: 0,
-        factor5: 0,
-        factor6: 0,
-        factor7: 0,
-        factor8: 0,
-        result: null, 
-        hoursSlept: null,
-        score: null,
-        date: null,
-        notes: '',
-        saved: false
-    })
+    let [entry, setEntry] = useState({})
     const [activities, setActivities] = useState([])
     const [hoursSlept, setHoursSlept] = useState(0)
     const [notes, setNotes] = useState('')
-    const [score, setScore] = useState(null)
+    const [score, setScore] = useState(0)
     let [latestEntry, setLatestEntry] = useState({})
+    const [saved, setSaved] = useState(false)
 
     useEffect(() => {
+        entry  = {
+            userId: props.activeUser.id,
+            factor1: 0,
+            factor2: 0,
+            factor3: 0,
+            factor4: 0,
+            factor5: 0,
+            factor6: 0,
+            factor7: 0,
+            factor8: 0,
+            result: null, 
+            hoursSlept: null,
+            score: 0,
+            date: null,
+            notes: '',
+            saved: false
+        }
+        setEntry(entry)
         APIManager.getSortedEntries('id', 'desc').then(entries => {
             latestEntry = entries[0]
             setLatestEntry(latestEntry)
+            
+        }).then(() => {
+            !latestEntry.saved ? entry = latestEntry : entry = entry
+            setEntry(entry)
         })
-    }, [])
+    }, [saved])
 
     return (
         <div className='content-wrapper'>
 
             <Route exact path='/' render={props => {
                 return <Home {...props}
+                    saved={saved}
+                    setSaved={setSaved}
                     latestEntry={latestEntry}
                     setLatestEntry={setLatestEntry}
+                    entry={entry}
+                    setEntry={setEntry}
                     score={score}
                     setScore={setScore}
                     activities={activities}
