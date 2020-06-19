@@ -1,13 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager'
 import '../activities/ActivitiesForm.css'
 
 const ActivitiesForm = props => {
-    let entry = props.entry 
-    const setEntry = props.setEntry
-
     const size = 'lg'
     const onlabel = 'Yes'
     const offlabel = 'No'
@@ -33,12 +30,18 @@ const ActivitiesForm = props => {
                 score: props.entry.score,
                 isSaved: props.entry.isSaved
             }
-            APIManager.post('entries', obj).then(obj => {
-                
-            })
+            APIManager.post('entries', obj)
             props.setIsNewUser(!props.isNewUser)
         }
     }
+
+    useEffect(() => {
+        if (!props.isNewUser) {
+            APIManager.getAllUser(props.entry.userId).then(user => {
+                props.setEntry(user.entries[0])
+            })
+        }
+    }, [])
 
     return (
         <>

@@ -75,7 +75,7 @@ const HomeRing = props => {
                     loadRing()
                 })
         })
-    }, [])
+    }, [props.entry])
 
     return (
         <>

@@ -36,6 +36,7 @@ const ApplicationViews = props => {
     ])
 
     useEffect(() => {
+        console.log('Appviews useEffect')
         APIManager.getAllUser(entry.userId).then(user => {
             if (user.entries.length > 0) { 
                 setEntry(user.entries[0]) 
