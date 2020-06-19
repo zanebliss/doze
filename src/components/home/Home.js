@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Save from './Save'
 import './Home.css'
 import RingWrapper from './RingWrapper'
@@ -7,7 +7,7 @@ import ActivitiesModal from './ActivitiesModal'
 
 const Home = props => {
     const [activities] = useState([])
-
+    
     return (
         <>
             {props.isNewUser && <NewUser />}
@@ -27,6 +27,7 @@ const Home = props => {
             />
             {!props.entry.saved &&
                 <Save
+                    isNewUser={props.isNewUser}
                     entry={props.entry}
                     setEntry={props.setEntry}
                 />}

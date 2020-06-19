@@ -30,7 +30,7 @@ const Journal = props => {
             <div className='journal-wrapper'>
                 <div className='journal-header'>
                     Sleep journal
-                    <div>
+                    <div hidden={props.isNewUser}>
                         <Dropdown>
                             <Dropdown.Toggle>
                                 <FilterRight size={30} />

@@ -20,11 +20,7 @@ const ActivitiesModal = props => {
 
     return (
         <>
-            {props.entry.isSaved ? 
-            <Button variant='primary' size='lg' onClick={handleShow} block >New Entry</Button>
-            :
-            <Button variant='primary' size='lg' onClick={handleShow} block >Edit entry</Button>
-            }
+            <Button variant='primary' size='lg' onClick={handleShow} block >Activities</Button>
             <Modal
                 show={show}
                 onHide={handleClose}

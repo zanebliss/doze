@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager'
 import '../activities/ActivitiesForm.css'
 
 const ActivitiesForm = props => {
+    let entry = props.entry 
+    const setEntry = props.setEntry
+
     const size = 'lg'
     const onlabel = 'Yes'
     const offlabel = 'No'
 
     const handleSave = () => {
         if (!props.isNewUser) {
-            console.log('has entries')
+            APIManager.edit('entries', props.entry)
         } else {
             let obj = {
                 userId: props.entry.userId,
@@ -28,9 +31,11 @@ const ActivitiesForm = props => {
                 notes: props.entry.notes,
                 hoursSlept: props.entry.hoursSlept,
                 score: props.entry.score,
-                saved: props.entry.isSaved
+                isSaved: props.entry.isSaved
             }
-            APIManager.post('entries', obj)
+            APIManager.post('entries', obj).then(obj => {
+                
+            })
             props.setIsNewUser(!props.isNewUser)
         }
     }

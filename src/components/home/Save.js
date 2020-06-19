@@ -13,7 +13,7 @@ const Save = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     let obj = {
       userId: props.entry.userId,
       factor1: props.entry.factor1,
@@ -24,24 +24,22 @@ const Save = props => {
       factor6: props.entry.factor6,
       factor7: props.entry.factor7,
       factor8: props.entry.factor8,
-      result: +result,
+      result: result ? 1 : 0,
       date: props.entry.date,
       notes: notes,
       hoursSlept: hoursSlept,
       score: props.entry.score,
-      saved: !props.entry.saved
+      isSaved: !props.entry.isSaved,
+      id: props.entry.id
     }
-    obj.id = props.entry.id
-    console.log(obj)
-    // APIManager.edit('entries', obj)
-    // handleClose()
-    // props.setNotes('')
-    // alert('Entry saved.')
+    APIManager.edit('entries', obj)
+    handleClose()
+    alert('Entry saved.')
   }
-
+  
   return (
     <>
-      <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>
+      {!props.isNewUser && <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
       <Modal
         show={show}
         onHide={handleClose}

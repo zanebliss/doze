@@ -3,7 +3,7 @@ import React from 'react'
 const NewUser = () => {
     return (
         <>
-            <h1>Please create a new entry.</h1>
+            <h1>Please enter activities.</h1>
         </>
     )
 }

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Route } from "react-router-dom";
-import moment from 'moment'
 import Home from './home/Home'
 import Settings from './settings/Settings'
 import Trends from './trends/Trends'
-import Activities from './activities/Activities'
 import About from './about/About'
 import Journal from './journal/Journal'
 import './ApplicationViews.css'
@@ -29,6 +27,7 @@ const ApplicationViews = props => {
         score: null,
         date: new Date(),
         notes: '',
+        isSaved: false
     })
     const [isNewUser, setIsNewUser] = useState(true)
     const [preferences] = useState([
@@ -44,6 +43,7 @@ const ApplicationViews = props => {
             }
         })
     }, [])
+    
 
     return (
         <div className='content-wrapper'>
@@ -55,21 +55,6 @@ const ApplicationViews = props => {
                     isNewUser={isNewUser}
                     setIsNewUser={setIsNewUser}
                     preferences={preferences}
-                    // setIsLoaded={setIsLoaded}
-                    // isLoaded={isLoaded}
-                    // saved={saved}
-                    // setSaved={setSaved}
-                    // latestEntry={latestEntry}
-                    // setLatestEntry={setLatestEntry}
-                    // setEntry={setEntry}
-                    // score={score}
-                    // setScore={setScore}
-                    // activities={activities}
-                    // setActivities={setActivities}
-                    // activeUser={activeUser}
-                    // hoursSlept={hoursSlept}
-                    // notes={notes}
-                    // setNotes={setNotes}
                 />
             }} />
             <Route exact path='/trends' render={props => {
@@ -77,6 +62,7 @@ const ApplicationViews = props => {
             }} />
             <Route exact path='/journal' render={props => {
                 return <Journal {...props}
+                    isNewUser={isNewUser}
                     activeUser={activeUser}
                 />
             }} />
