@@ -1,6 +1,26 @@
-.home-wrapper {
+.ring-container {
+  margin-top: 2em;
   display: flex;
   flex-flow: column;
   align-items: center;
 }
 
+.header-text h1 {
+  color: black;
+  font-size: 20pt;
+  font-weight: 400;
+}
+
+.charts {
+  width: 100%;
+  height: 5em;
+}
+
+.home-buttons {
+  width: 55%;
+}
+
+.home-buttons-wrapper {
+  display: flex;
+  justify-content: center;
+}

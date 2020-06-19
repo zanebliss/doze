@@ -19,6 +19,8 @@ const Home = props => {
     const setScore = props.setScore
     const activeUser = props.activeUser
     const hoursSlept = props.hoursSlept
+    const notes = props.notes
+    const setNotes = props.setNotes
 
     useEffect(() => {
         APIManager.getSortedEntries('id', 'desc').then(entries => {
@@ -33,51 +35,61 @@ const Home = props => {
             activities.push(latestEntry.factor7)
             activities.push(latestEntry.factor8)
             setActivities(activities)
-            
+
         })
     }, [])
 
     return (
         <>
             <div className='home-wrapper'>
-                {!latestEntry.saved ?
-                    <div>Likelihood of feeling well rested</div>
-                    :
-                    <div></div>
+                <div className='ring-container'>
+                    {!latestEntry.saved ?
+                        <div className='header-text'>
+                            <h1>Predicted sleep score</h1>
+                        </div>
+                        :
+                        <div className='header-text'>
+                            <h1>Enter today's activities</h1>
+                        </div>
 
-                }
-                <HomeRing
-                    latestEntry = {props.latestEntry}
-                    setLatestEntry = {props.setLatestEntry}
-                    activeUser={props.activeUser}
-                    activities={activities}
-                    score={score}
-                    setScore={setScore}
-                />
-                {latestEntry.saved ?
-                    <Button onClick={() => props.history.push('/activities')} > New entry</Button>
-                    : <Button onClick={() => {
-                        props.history.push('/activities')
-                    }} >Edit Activities</Button>}
-                {!latestEntry.saved &&
-                    <Save
-                        entry={entry}
-                        setEntry={setEntry}
-                        latestEntry={latestEntry}
-                        setLatestEntry={setLatestEntry}
-                        
-                        result={result}
-                        setResult={setResult}
-                        score={score}
-                        saved={saved}
-                        setSaved={setSaved}
-                        
-                        activeUser={activeUser}
+                    }
+                    <HomeRing
+                        latestEntry={props.latestEntry}
+                        setLatestEntry={props.setLatestEntry}
+                        activeUser={props.activeUser}
                         activities={activities}
-                        setActivities={setActivities}
-                        notes={props.notes}
-                        hoursSlept={hoursSlept}
-                    />}
+                        score={score}
+                        setScore={setScore}
+                    />
+                </div>
+                <div className='charts'></div>
+                <div className='home-buttons-wrapper'>
+                    <div className='home-buttons'>
+                        {latestEntry.saved ?
+                            <Button onClick={() => props.history.push('/activities')} > New entry</Button>
+                            : <Button onClick={() => { props.history.push('/activities') }} size='lg' block >Edit Activities</Button>}
+                        {!latestEntry.saved &&
+                            <Save
+                                entry={entry}
+                                setEntry={setEntry}
+                                latestEntry={latestEntry}
+                                setLatestEntry={setLatestEntry}
+
+                                result={result}
+                                setResult={setResult}
+                                score={score}
+                                saved={saved}
+                                setSaved={setSaved}
+
+                                activeUser={activeUser}
+                                activities={activities}
+                                setActivities={setActivities}
+                                notes={notes}
+                                setNotes={setNotes}
+                                hoursSlept={hoursSlept}
+                            />}
+                    </div>
+                </div>
             </div>
         </>
     )

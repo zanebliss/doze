@@ -1,0 +1,47 @@
+.clock {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 175px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.ring {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  left: 88px;
+  top: 125px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.backdrop {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  top: 148px;
+  border-radius: 100%;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.result {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  margin-left: 43%;
+  left: 0;
+  right: 0;
+  top: 240px;
+}
+
+.result p {
+    font-size: 28pt;
+    font-weight: 400;
+}

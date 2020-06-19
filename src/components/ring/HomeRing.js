@@ -3,6 +3,7 @@ import { Doughnut } from 'react-chartjs-2'
 import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
+import './Ring.css'
 
 const HomeRing = props => {
     const net = new NeuralNetwork({ hiddenLayers: [3] })
@@ -19,7 +20,9 @@ const HomeRing = props => {
     const options = {
         tooltips: {
             enabled: false
-        }
+        },
+        responsive: true,
+        cutoutPercentage: 55
     }
     const loadRing = () => {
         latestEntry.saved ?
@@ -36,7 +39,9 @@ const HomeRing = props => {
                 datasets: [
                     {
                         data: [score, 100 - score],
-                        backgroundColor: ['#56CCF2', 'transparent']
+                        backgroundColor: ['#56CCF2', '#E0E0E0'],
+                        borderColor: 'lightgray'
+
                     }
                 ],
             })
@@ -71,9 +76,10 @@ const HomeRing = props => {
 
     return (
         <>
-            <Clock size='45' color='gray' />
-            <div hidden={latestEntry.saved}>{result}%</div>
-            <Doughnut options={options} data={data} />
+            <div className='backdrop' />
+            <Clock size='60' color='gray' className='clock' />
+            <div hidden={latestEntry.saved} className='result'><p>{result}%</p></div>
+            <Doughnut options={options} data={data} className='ring' width={'170px'} />
         </>
     )
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, FormLabel } from 'react-bootstrap'
+import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
@@ -7,6 +7,8 @@ import RangeSlider from 'react-bootstrap-range-slider'
 const Save = props => {
   const saved = props.saved
   const setSaved = props.setSaved
+  const notes = props.notes
+  const setNotes = props.setNotes
 
   const [hoursSlept, setHoursSlept] = useState(0)
   const [show, setShow] = useState(false);
@@ -31,15 +33,13 @@ const Save = props => {
       factor8: entry.factor8,
       result: props.result ? 1 : 0,
       date: new Date(),
-      notes: entry.notes,
+      notes: notes,
       hoursSlept: hoursSlept,
       score: entry.score,
       saved: true
     }
     obj.id = entry.id
-    console.log(obj);
-    
-    // APIManager.edit('entries', obj)
+    APIManager.edit('entries', obj)
     handleClose()
     entry = {}
     props.setEntry(entry)
@@ -54,7 +54,7 @@ const Save = props => {
 
   return (
     <>
-        <Button variant="primary" onClick={handleShow}>Save</Button> 
+      <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -68,6 +68,10 @@ const Save = props => {
             props.setResult(!props.result)
           }} />
         </Modal.Body>
+        <Form.Label>Sleep notes</Form.Label>
+        <Form.Control as='textarea' rows='3' value={notes} onChange={e => {
+          setNotes(e.target.value)
+        }} />
         <FormLabel>Hours slept</FormLabel>
         <RangeSlider
           min={0}
