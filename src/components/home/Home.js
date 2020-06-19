@@ -35,27 +35,33 @@ const Home = props => {
             activities.push(latestEntry.factor7)
             activities.push(latestEntry.factor8)
             setActivities(activities)
-            
+
         })
     }, [])
 
     return (
         <>
             <div className='home-wrapper'>
-                {!latestEntry.saved ?
-                    <div>Likelihood of feeling well rested</div>
-                    :
-                    <div></div>
+                <div className='ring-container'>
+                    {!latestEntry.saved ?
+                        <div className='header-text'>
+                            <h1>Predicted sleep score</h1>
+                        </div>
+                        :
+                        <div className='header-text'>
+                            <h1>Enter today's activities</h1>
+                        </div>
 
-                }
-                <HomeRing
-                    latestEntry = {props.latestEntry}
-                    setLatestEntry = {props.setLatestEntry}
-                    activeUser={props.activeUser}
-                    activities={activities}
-                    score={score}
-                    setScore={setScore}
-                />
+                    }
+                    <HomeRing
+                        latestEntry={props.latestEntry}
+                        setLatestEntry={props.setLatestEntry}
+                        activeUser={props.activeUser}
+                        activities={activities}
+                        score={score}
+                        setScore={setScore}
+                    />
+                </div>
                 {latestEntry.saved ?
                     <Button onClick={() => props.history.push('/activities')} > New entry</Button>
                     : <Button onClick={() => {
@@ -67,13 +73,13 @@ const Home = props => {
                         setEntry={setEntry}
                         latestEntry={latestEntry}
                         setLatestEntry={setLatestEntry}
-                        
+
                         result={result}
                         setResult={setResult}
                         score={score}
                         saved={saved}
                         setSaved={setSaved}
-                        
+
                         activeUser={activeUser}
                         activities={activities}
                         setActivities={setActivities}
