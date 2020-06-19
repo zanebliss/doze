@@ -7,6 +7,7 @@ import RangeSlider from 'react-bootstrap-range-slider'
 const Save = props => {
   const [hoursSlept, setHoursSlept] = useState(0)
   const [notes, setNotes] = useState('')
+  let [result, setResult] = useState(false)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -23,7 +24,7 @@ const Save = props => {
       factor6: props.entry.factor6,
       factor7: props.entry.factor7,
       factor8: props.entry.factor8,
-      result: props.result ? 1 : 0,
+      result: +result,
       date: props.entry.date,
       notes: notes,
       hoursSlept: hoursSlept,
@@ -31,10 +32,11 @@ const Save = props => {
       saved: !props.entry.saved
     }
     obj.id = props.entry.id
-    APIManager.edit('entries', obj)
-    handleClose()
-    props.setNotes('')
-    alert('Entry saved.')
+    console.log(obj)
+    // APIManager.edit('entries', obj)
+    // handleClose()
+    // props.setNotes('')
+    // alert('Entry saved.')
   }
 
   return (
@@ -49,8 +51,8 @@ const Save = props => {
       >
         <Modal.Body>
           Do you feel rested?
-        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.entry.result} onChange={() => {
-            props.entry.result = +!props.entry.result
+        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={result} onChange={() => {
+            setResult(!result)
           }} />
         </Modal.Body>
         <Form.Label>Sleep notes</Form.Label>
