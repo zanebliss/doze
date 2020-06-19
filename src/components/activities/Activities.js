@@ -7,6 +7,7 @@ import { Button, Form } from 'react-bootstrap'
 import APIManager from '../../modules/APIManager'
 
 const Activities = props => { 
+    
     let entry = props.entry
     let setEntry = props.setEntry
     let latestEntry = props.latestEntry
@@ -119,7 +120,7 @@ const Activities = props => {
                                         entry.factor6 = +!entry.factor6
                                     }} />
                                 </div>
-                                <div className='slider'>
+                                    <div className='slider'>
                                     <div>Food before bed</div>
                                     <BoostrapSwitchButton size={size} onlabel={onlabel} offlabel={offlabel} checked={Boolean(entry.factor7)} onChange={() => {
                                         entry.factor7 = +!entry.factor7

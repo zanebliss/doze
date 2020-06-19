@@ -4,6 +4,11 @@
       "username": "Zane",
       "password": "wasd",
       "id": 1
+    },
+    {
+      "username": "Mac",
+      "password": "asdf",
+      "id": 2
     }
   ],
   "entries": [
@@ -63,21 +68,75 @@
     },
     {
       "userId": 1,
-      "factor1": 0,
+      "factor1": 1,
       "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1,
+      "date": "2020-06-19T13:26:17.153Z",
+      "notes": "It took me a little bit of time to fall asleep because I drank decaf coffee yesterday morning.",
+      "hoursSlept": 7.5,
+      "score": 49,
+      "saved": true,
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 1,
+      "result": 0,
+      "date": "2020-06-19T13:28:04.911Z",
+      "notes": "After drinking last night, I really didn't sleep well.",
+      "hoursSlept": 6.5,
+      "score": 0,
+      "saved": true,
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 1,
+      "factor7": 0,
+      "factor8": 0,
+      "result": null,
+      "date": "2020-06-19T14:10:42.798Z",
+      "notes": "",
+      "hoursSlept": null,
+      "score": null,
+      "saved": false,
+      "id": 10
+    },
+    {
+      "userId": 2,
+      "factor1": 1,
+      "factor2": 0,
       "factor3": 0,
       "factor4": 1,
       "factor5": 1,
       "factor6": 0,
       "factor7": 0,
-      "factor8": 0,
-      "result": null,
-      "date": "2020-06-19T00:56:42.672Z",
+      "factor8": 1,
+      "result": 0,
+      "date": "2020-06-19T18:33:14.929Z",
       "notes": "",
-      "hoursSlept": null,
-      "score": 6,
+      "hoursSlept": 0,
+      "score": null,
       "saved": false,
-      "id": 7
+      "id": 11
     }
   ]
 }

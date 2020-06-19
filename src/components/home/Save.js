@@ -5,52 +5,37 @@ import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
 
 const Save = props => {
-  const saved = props.saved
-  const setSaved = props.setSaved
-  const notes = props.notes
-  const setNotes = props.setNotes
-
   const [hoursSlept, setHoursSlept] = useState(0)
-  const [show, setShow] = useState(false);
+  const [notes, setNotes] = useState('')
 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let entry = props.entry
-  let latestEntry = props.latestEntry
-
   const handleSubmit = e => {
-    setSaved(!saved)
     let obj = {
-      userId: entry.userId,
-      factor1: entry.factor1,
-      factor2: entry.factor2,
-      factor3: entry.factor3,
-      factor4: entry.factor4,
-      factor5: entry.factor5,
-      factor6: entry.factor6,
-      factor7: entry.factor7,
-      factor8: entry.factor8,
+      userId: props.entry.userId,
+      factor1: props.entry.factor1,
+      factor2: props.entry.factor2,
+      factor3: props.entry.factor3,
+      factor4: props.entry.factor4,
+      factor5: props.entry.factor5,
+      factor6: props.entry.factor6,
+      factor7: props.entry.factor7,
+      factor8: props.entry.factor8,
       result: props.result ? 1 : 0,
-      date: new Date(),
+      date: props.entry.date,
       notes: notes,
       hoursSlept: hoursSlept,
-      score: entry.score,
-      saved: true
+      score: props.entry.score,
+      saved: !props.entry.saved
     }
-    obj.id = entry.id
+    obj.id = props.entry.id
     APIManager.edit('entries', obj)
     handleClose()
-    entry = {}
-    props.setEntry(entry)
-    latestEntry = { saved: false }
-    props.setLatestEntry(latestEntry)
-    props.setActivities([])
+    props.setNotes('')
+    alert('Entry saved.')
   }
-
-  useEffect(() => {
-  }, [])
-
 
   return (
     <>
@@ -64,8 +49,8 @@ const Save = props => {
       >
         <Modal.Body>
           Do you feel rested?
-        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.result} onChange={() => {
-            props.setResult(!props.result)
+        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.entry.result} onChange={() => {
+            props.entry.result = +!props.entry.result
           }} />
         </Modal.Body>
         <Form.Label>Sleep notes</Form.Label>
