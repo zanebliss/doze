@@ -77,9 +77,9 @@ const HomeRing = props => {
     return (
         <>
             <div className='backdrop' />
-            <Clock size='68' color='gray' className='clock' />
+            <Clock size='60' color='gray' className='clock' />
             <div hidden={latestEntry.saved} className='result'><p>{result}%</p></div>
-            <Doughnut options={options} data={data} className='ring' width={'155px'} />
+            <Doughnut options={options} data={data} className='ring' width={'170px'} />
         </>
     )
 }

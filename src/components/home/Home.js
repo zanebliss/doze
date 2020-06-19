@@ -62,31 +62,34 @@ const Home = props => {
                         setScore={setScore}
                     />
                 </div>
-                {latestEntry.saved ?
-                    <Button onClick={() => props.history.push('/activities')} > New entry</Button>
-                    : <Button onClick={() => {
-                        props.history.push('/activities')
-                    }} >Edit Activities</Button>}
-                {!latestEntry.saved &&
-                    <Save
-                        entry={entry}
-                        setEntry={setEntry}
-                        latestEntry={latestEntry}
-                        setLatestEntry={setLatestEntry}
+                <div className='charts'></div>
+                <div className='home-buttons-wrapper'>
+                    <div className='home-buttons'>
+                        {latestEntry.saved ?
+                            <Button onClick={() => props.history.push('/activities')} > New entry</Button>
+                            : <Button onClick={() => { props.history.push('/activities') }} size='lg' block >Edit Activities</Button>}
+                        {!latestEntry.saved &&
+                            <Save
+                                entry={entry}
+                                setEntry={setEntry}
+                                latestEntry={latestEntry}
+                                setLatestEntry={setLatestEntry}
 
-                        result={result}
-                        setResult={setResult}
-                        score={score}
-                        saved={saved}
-                        setSaved={setSaved}
+                                result={result}
+                                setResult={setResult}
+                                score={score}
+                                saved={saved}
+                                setSaved={setSaved}
 
-                        activeUser={activeUser}
-                        activities={activities}
-                        setActivities={setActivities}
-                        notes={notes}
-                        setNotes={setNotes}
-                        hoursSlept={hoursSlept}
-                    />}
+                                activeUser={activeUser}
+                                activities={activities}
+                                setActivities={setActivities}
+                                notes={notes}
+                                setNotes={setNotes}
+                                hoursSlept={hoursSlept}
+                            />}
+                    </div>
+                </div>
             </div>
         </>
     )

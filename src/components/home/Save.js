@@ -54,7 +54,7 @@ const Save = props => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>Save</Button>
+      <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}

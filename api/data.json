@@ -63,9 +63,9 @@
     },
     {
       "userId": 1,
-      "factor1": 1,
+      "factor1": 0,
       "factor2": 1,
-      "factor3": 1,
+      "factor3": 0,
       "factor4": 1,
       "factor5": 1,
       "factor6": 0,
@@ -75,7 +75,7 @@
       "date": "2020-06-19T00:56:42.672Z",
       "notes": "",
       "hoursSlept": null,
-      "score": 4,
+      "score": 6,
       "saved": false,
       "id": 7
     }
