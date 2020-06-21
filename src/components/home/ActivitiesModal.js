@@ -9,16 +9,6 @@ const ActivitiesModal = props => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    let latestEntry = props.latestEntry
-
-    useEffect(() => {
-        console.log('Modal useEffect fired')
-        APIManager.getAllUser(props.entry.userId).then(user => {
-            latestEntry = user.entries[0]
-            props.setLatestEntry(latestEntry)
-        })
-    }, [])
-
     return (
         <>
             <Button variant='primary' size='lg' onClick={handleShow} block >Activities</Button>
@@ -38,9 +28,9 @@ const ActivitiesModal = props => {
                         preferences={props.preferences}
                         entry={props.entry}
                         setEntry={props.setEntry}
-                        handleClose={handleClose} 
+                        handleClose={handleClose}
                         latestEntry={props.latestEntry}
-                        />
+                    />
                 </Modal.Body>
             </Modal>
         </>

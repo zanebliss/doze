@@ -34,10 +34,8 @@ const Home = props => {
         return obj
     }
     let [entry, setEntry] = useState(resetEntry())
-    const [latestEntry, setLatestEntry] = useState({})
     
     useEffect(() => {
-        console.log('Home useEffect fired')
         APIManager.getAllUser(entry.userId).then(user => {
             if (user.entries.length > 0) {
                 setIsNewUser(!isNewUser)
@@ -45,34 +43,31 @@ const Home = props => {
                 setEntry(entry)
             }
         })
-    }, [latestEntry])
+    }, [])
 
     return (
         <>
             {isNewUser && <NewUser />}
-            {!isNewUser && <RingWrapper
+            {/* {!isNewUser && <RingWrapper
                 entry={entry}
                 setEntry={setEntry}
                 activities={activities}
                 latestEntry={latestEntry}
-            />}
+            />} */}
             <ActivitiesModal
-                resetEntry={resetEntry}
                 activities={activities}
                 preferences={preferences}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
                 entry={entry}
                 setEntry={setEntry}
-                latestEntry={latestEntry}
-                setLatestEntry={setLatestEntry}
             />
-            <Save
+            {/* <Save
                 isNewUser={isNewUser}
                 entry={entry}
                 setEntry={setEntry}
                 resetEntry={resetEntry}
-            />
+            /> */}
         </>
     )
 }
