@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager'
@@ -11,12 +11,16 @@ const ActivitiesForm = props => {
 
     const handleSave = () => {
         if (props.isNewUser) {
-            APIManager.post('entries', props.entry).then(obj => props.setEntry(obj))
-            props.setIsNewUser(!props.isNewUser)
+            props.setIsNewUser(false)
+            APIManager.post('entries', props.entry)
         } else {
-            // APIManager.edit('entries', props.entry)
+            APIManager.edit('entries', props.latestEntry)
         }
     }
+
+    useEffect(() => {
+        console.log('Form useEffect')
+    }, [])
 
     return (
         <>
@@ -25,43 +29,43 @@ const ActivitiesForm = props => {
                     <div className='sliders'>
                         <Form.Label>{props.preferences[0]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor1))}
-                            onChange={() => { props.entry.factor1 = +!props.entry.factor1 }}
+                            checked={(Boolean(props.latestEntry.factor1))}
+                            onChange={() => { props.latestEntry.factor1 = +!props.latestEntry.factor1 }}
                         />
                         <Form.Label>{props.preferences[1]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor2))}
-                            onChange={() => { props.entry.factor2 = +!props.entry.factor2}}
+                            checked={(Boolean(props.latestEntry.factor2))}
+                            onChange={() => { props.latestEntry.factor2 = +!props.latestEntry.factor2}}
                         />
                         <Form.Label>{props.preferences[2]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor3))}
-                            onChange={() => { props.entry.factor3 = +!props.entry.factor3 }}
+                            checked={(Boolean(props.latestEntry.factor3))}
+                            onChange={() => { props.latestEntry.factor3 = +!props.latestEntry.factor3 }}
                         />
                         <Form.Label>{props.preferences[3]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor4))}
-                            onChange={() => { props.entry.factor4 = +!props.entry.factor4 }}
+                            checked={(Boolean(props.latestEntry.factor4))}
+                            onChange={() => { props.latestEntry.factor4 = +!props.latestEntry.factor4 }}
                         />
                         <Form.Label>{props.preferences[4]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor5))}
-                            onChange={() => { props.entry.factor5 = +!props.entry.factor5 }}
+                            checked={(Boolean(props.latestEntry.factor5))}
+                            onChange={() => { props.latestEntry.factor5 = +!props.latestEntry.factor5 }}
                         />
                         <Form.Label>{props.preferences[5]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor6))}
-                            onChange={() => { props.entry.factor6 = +!props.entry.factor6 }}
+                            checked={(Boolean(props.latestEntry.factor6))}
+                            onChange={() => { props.latestEntry.factor6 = +!props.latestEntry.factor6 }}
                         />
                         <Form.Label>{props.preferences[6]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor7))}
-                            onChange={() => { props.entry.factor7 = +!props.entry.factor7 }}
+                            checked={(Boolean(props.latestEntry.factor7))}
+                            onChange={() => { props.latestEntry.factor7 = +!props.latestEntry.factor7 }}
                         />
                         <Form.Label>{props.preferences[7]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
-                            checked={(Boolean(props.entry.factor8))}
-                            onChange={() => { props.entry.factor8 = +!props.entry.factor8 }}
+                            checked={(Boolean(props.latestEntry.factor8))}
+                            onChange={() => { props.latestEntry.factor8 = +!props.latestEntry.factor8 }}
                         />
                         <Button onClick={() => {
                             handleSave()

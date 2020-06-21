@@ -1,12 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ActivitiesForm from '../activities/ActivitiesForm'
+import APIManager from '../../modules/APIManager';
 
 const ActivitiesModal = props => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    let latestEntry = props.latestEntry
+
+    useEffect(() => {
+        console.log('Modal useEffect fired')
+        APIManager.getAllUser(props.entry.userId).then(user => {
+            latestEntry = user.entries[0]
+            props.setLatestEntry(latestEntry)
+        })
+    }, [])
 
     return (
         <>
@@ -28,6 +39,7 @@ const ActivitiesModal = props => {
                         entry={props.entry}
                         setEntry={props.setEntry}
                         handleClose={handleClose} 
+                        latestEntry={props.latestEntry}
                         />
                 </Modal.Body>
             </Modal>

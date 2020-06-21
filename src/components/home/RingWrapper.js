@@ -6,7 +6,7 @@ const Ring = props => {
     return (
         <>
             <div className='ring-container'>
-                {props.entry.isSaved ?
+                {!props.entry.isSaved ?
                     <div className='header-text'>
                         <h1>Predicted sleep score</h1>
                     </div>
@@ -16,7 +16,7 @@ const Ring = props => {
                     </div>
 
                 }
-                <HomeRing entry={props.entry} setEntry={props.setEntry} activities={props.activities} />
+                <HomeRing entry={props.entry} setEntry={props.setEntry} activities={props.activities} latestEntry={props.latestEntry}/>
             </div>
         </>
     )

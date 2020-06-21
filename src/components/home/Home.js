@@ -33,22 +33,18 @@ const Home = props => {
         }
         return obj
     }
-    const [entry, setEntry] = useState(resetEntry())
-    const [latestEntry, setLatestEntry] = useState(resetEntry())
+    let [entry, setEntry] = useState(resetEntry())
+    const [latestEntry, setLatestEntry] = useState({})
     
     useEffect(() => {
+        console.log('Home useEffect fired')
         APIManager.getAllUser(entry.userId).then(user => {
             if (user.entries.length > 0) {
                 setIsNewUser(!isNewUser)
-                setEntry(user.entries[0])
+                entry = user.entries[0]
+                setEntry(entry)
             }
         })
-    }, [])
-
-    useEffect(() => {
-        setEntry(latestEntry)
-        console.log(latestEntry);
-        
     }, [latestEntry])
 
     return (
@@ -58,22 +54,25 @@ const Home = props => {
                 entry={entry}
                 setEntry={setEntry}
                 activities={activities}
+                latestEntry={latestEntry}
             />}
             <ActivitiesModal
+                resetEntry={resetEntry}
                 activities={activities}
                 preferences={preferences}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
                 entry={entry}
                 setEntry={setEntry}
+                latestEntry={latestEntry}
                 setLatestEntry={setLatestEntry}
             />
-            {/* <Save
+            <Save
                 isNewUser={isNewUser}
                 entry={entry}
                 setEntry={setEntry}
                 resetEntry={resetEntry}
-            /> */}
+            />
         </>
     )
 }

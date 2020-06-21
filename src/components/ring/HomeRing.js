@@ -18,7 +18,7 @@ const HomeRing = props => {
         cutoutPercentage: 55
     }
     const loadRing = () => {
-        props.entry.isSaved ?
+        !props.entry.isSaved ?
             setData({
                 datasets: [
                     {
@@ -70,17 +70,16 @@ const HomeRing = props => {
                     }
                     net.train(trainingData)
                     props.entry.score = Math.floor((net.run(props.activities)[0] * 100))
-                    props.setEntry(props.entry)
                     loadRing()
                 })
         })
-    }, [])
+        }, [])
 
     return (
         <>
             <div className='backdrop' />
             <Clock size='60' color='gray' className='clock' />
-            <div hidden={!props.entry.isSaved} className='result'><p>{props.entry.score}%</p></div>
+            <div hidden={props.entry.isSaved} className='result'><p>{props.entry.score}%</p></div>
             <Doughnut options={options} data={data} className='ring' width={170} />
         </>
     )
