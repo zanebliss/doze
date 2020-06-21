@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager'
@@ -10,38 +10,13 @@ const ActivitiesForm = props => {
     const offlabel = 'No'
 
     const handleSave = () => {
-        if (!props.isNewUser) {
-            APIManager.edit('entries', props.entry)
-        } else {
-            let obj = {
-                userId: props.entry.userId,
-                factor1: props.entry.factor1,
-                factor2: props.entry.factor2,
-                factor3: props.entry.factor3,
-                factor4: props.entry.factor4,
-                factor5: props.entry.factor5,
-                factor6: props.entry.factor6,
-                factor7: props.entry.factor7,
-                factor8: props.entry.factor8,
-                result: props.entry.result,
-                date: props.entry.date,
-                notes: props.entry.notes,
-                hoursSlept: props.entry.hoursSlept,
-                score: props.entry.score,
-                isSaved: props.entry.isSaved
-            }
-            APIManager.post('entries', obj)
+        if (props.isNewUser) {
+            APIManager.post('entries', props.entry).then(obj => props.setEntry(obj))
             props.setIsNewUser(!props.isNewUser)
+        } else {
+            // APIManager.edit('entries', props.entry)
         }
     }
-
-    useEffect(() => {
-        if (!props.isNewUser) {
-            APIManager.getAllUser(props.entry.userId).then(user => {
-                props.setEntry(user.entries[0])
-            })
-        }
-    }, [])
 
     return (
         <>

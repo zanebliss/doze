@@ -6,7 +6,7 @@ const Ring = props => {
     return (
         <>
             <div className='ring-container'>
-                {!props.entry.isSaved ?
+                {props.entry.isSaved ?
                     <div className='header-text'>
                         <h1>Predicted sleep score</h1>
                     </div>

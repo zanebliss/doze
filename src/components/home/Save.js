@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
@@ -13,33 +13,23 @@ const Save = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  let entry = {}
+
   const handleSubmit = () => {
-    let obj = {
-      userId: props.entry.userId,
-      factor1: props.entry.factor1,
-      factor2: props.entry.factor2,
-      factor3: props.entry.factor3,
-      factor4: props.entry.factor4,
-      factor5: props.entry.factor5,
-      factor6: props.entry.factor6,
-      factor7: props.entry.factor7,
-      factor8: props.entry.factor8,
-      result: result ? 1 : 0,
-      date: props.entry.date,
-      notes: notes,
-      hoursSlept: hoursSlept,
-      score: props.entry.score,
-      isSaved: !props.entry.isSaved,
-      id: props.entry.id
-    }
-    APIManager.edit('entries', obj)
-    handleClose()
-    alert('Entry saved.')
+    APIManager.getAllUser(props.entry.userId).then(user => {
+      entry = user.entries[0]
+      entry.isSaved = true
+    }).then(() => {
+      APIManager.edit('entries', entry)
+      handleClose()
+      props.resetEntry()
+      alert('Entry saved.')
+    })
   }
   
   return (
     <>
-      {!props.isNewUser && <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
+      {!props.entry.isSaved && <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
       <Modal
         show={show}
         onHide={handleClose}
