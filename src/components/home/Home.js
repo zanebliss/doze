@@ -38,12 +38,14 @@ const Home = props => {
     useEffect(() => {
         APIManager.getAllUser(entry.userId).then(user => {
             if (user.entries.length > 0) {
-                setIsNewUser(!isNewUser)
-                entry = user.entries[0]
-                setEntry(entry)
+                setIsNewUser(false)
+                if (!user.entries[0].isSaved) {
+                    entry = user.entries[0]
+                    setEntry(entry)
+                }
             }
         })
-    }, [])
+    }, [entry.isSaved])
 
     return (
         <>
@@ -62,12 +64,13 @@ const Home = props => {
                 entry={entry}
                 setEntry={setEntry}
             />
-            {/* <Save
+            <Save
                 isNewUser={isNewUser}
+                setIsNewUser={setIsNewUser}
                 entry={entry}
                 setEntry={setEntry}
                 resetEntry={resetEntry}
-            /> */}
+            />
         </>
     )
 }

@@ -13,23 +13,32 @@ const Save = props => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let entry = {}
-
+  const resetSave = () => {
+    setNotes('')
+    setResult(false)
+    setHoursSlept(0)
+  }
+  
   const handleSubmit = () => {
+    let entry = {}
     APIManager.getAllUser(props.entry.userId).then(user => {
-      entry = user.entries[0]
+      entry = user.entries[user.entries.length-1]
       entry.isSaved = true
-    }).then(() => {
+      entry.result = +result
+      entry.hoursSlept = hoursSlept
+      entry.notes = notes
       APIManager.edit('entries', entry)
+    }).then(() => {
       handleClose()
-      props.resetEntry()
+      props.setEntry(props.resetEntry())
+      resetSave()
       alert('Entry saved.')
     })
   }
   
   return (
     <>
-      {!props.entry.isSaved && <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
+      {!props.entry.isSaved && <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
       <Modal
         show={show}
         onHide={handleClose}

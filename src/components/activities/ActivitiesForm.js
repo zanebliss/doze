@@ -11,23 +11,21 @@ const ActivitiesForm = props => {
     const offlabel = 'No'
 
     const handleFirstEntry = () => {
-        APIManager.post('entries', entry)
+        APIManager.post('entries', entry).then(entry => {
+            props.setEntry(entry)
+        })
         props.setIsNewUser(!props.isNewUser)
     }
 
     const handleSave = () => {
-        if (entry.isSaved) {
+        console.log(entry);
+        
+        if (!entry.isSaved) {
             APIManager.post('entries', entry)
-        } else if (!entry.isSaved) {
+        } else if (entry.isSaved) {
             APIManager.edit('entries', entry)
         }
     }
-
-    useEffect(() => {
-        APIManager.getAllUser(entry.userId).then(user => {
-            entry = user.entries[0]
-        })
-    }, [])
 
     return (
         <>
@@ -80,6 +78,7 @@ const ActivitiesForm = props => {
                                 props.setIsNewUser(!props.isNewUser)
                                 props.handleClose()
                             } else {
+                                console.log('Not new user')
                                 handleSave()
                                 props.handleClose()
                             }
