@@ -18,12 +18,12 @@ const Ring = props => {
                 setLoadRing(true)
             }
         })
-    }, [props.entry])
+    }, [])
 
     return (
         <>
             <div className='ring-container'>
-                {!loadRing ?
+                {!props.loadRing ?
                     <div className='header-text'>
                         <h1>Enter today's activities</h1>
                     </div>
@@ -34,6 +34,7 @@ const Ring = props => {
 
                 }
                 <HomeRing
+                    counter={props.counter}
                     score={props.score}
                     setScore={props.setScore}
                     loadRing={loadRing}

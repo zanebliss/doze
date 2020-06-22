@@ -21,7 +21,9 @@ const ActivitiesForm = props => {
             if (user.entries[user.entries.length - 1].isSaved) {
                 createNewEntry()
             } else {
-                APIManager.edit('entries', entry)
+                APIManager.edit('entries', entry).then(() => {
+                    props.updateLatestEntry()
+                })
             }
         })
     }
@@ -82,6 +84,7 @@ const ActivitiesForm = props => {
                             onChange={() => { entry.factor8 = +!entry.factor8 }}
                         />
                         <Button onClick={() => {
+                            props.updateCounter()
                             if (props.isNewUser) {
                                 createNewEntry()
                                 props.handleClose()

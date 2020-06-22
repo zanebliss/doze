@@ -4,7 +4,7 @@ import WelcomeViews from './components/welcome/WelcomeViews'
 import ApplicationViews from './components/ApplicationViews'
 
 const Doze = () => {
-    const [activeUser, setActiveUser] = useState(JSON.parse(localStorage.getItem('user')))
+    const [activeUser, setActiveUser] = useState(JSON.parse(sessionStorage.getItem('user')))
 
     if (!activeUser) {
         return (

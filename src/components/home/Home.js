@@ -14,34 +14,18 @@ const Home = props => {
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
     ])
-    const resetEntry = () => {
-        const obj = {
-            userId: props.activeUser.id,
-            factor1: 0,
-            factor2: 0,
-            factor3: 0,
-            factor4: 0,
-            factor5: 0,
-            factor6: 0,
-            factor7: 0,
-            factor8: 0,
-            result: false,
-            hoursSlept: 0,
-            score: null,
-            date: new Date(),
-            notes: '',
-            isSaved: false,
-        }
-        return obj
-    }
-    let [entry, setEntry] = useState(resetEntry())
     let [score, setScore] = useState(null)
+    const [counter, setCounter] = useState(0)
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
-            setEntry(user.entries[user.entries.length - 1])
+            props.setEntry(user.entries[user.entries.length - 1])
             setIsNewUser(!isNewUser)
         })
+    }
+
+    const updateCounter = () => {
+        setCounter(prev => prev + 1 - 1)
     }
 
     useEffect(() => {
@@ -58,28 +42,30 @@ const Home = props => {
         <>
             {isNewUser && <NewUser />}
             {!isNewUser && <RingWrapper
+                counter={counter}
                 isNewUser={isNewUser}
                 score={score}
                 setScore={setScore}
-                entry={entry}
-                setEntry={setEntry}
+                entry={props.entry}
+                setEntry={props.setEntry}
             />}
             <ActivitiesModal
+                updateCounter={updateCounter}
                 updateLatestEntry={updateLatestEntry}
                 preferences={preferences}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
-                entry={entry}
-                setEntry={setEntry}
+                entry={props.entry}
+                setEntry={props.setEntry}
             />
-            <Button onClick={() => clearActivities(entry.userId)}>Clear</Button>
+            {/* <Button onClick={() => clearActivities(entry.userId)}>Clear</Button> */}
             <Save
                 score={score}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
-                entry={entry}
-                setEntry={setEntry}
-                resetEntry={resetEntry}
+                entry={props.entry}
+                setEntry={props.setEntry}
+                resetEntry={props.resetEntry}
             />
         </>
     )
