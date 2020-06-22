@@ -29,6 +29,42 @@
       "notes": "I slept great.",
       "isSaved": true,
       "id": 14
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1,
+      "hoursSlept": 8.5,
+      "score": 49,
+      "date": "2020-06-22T19:30:45.606Z",
+      "notes": "I slept well.",
+      "isSaved": true,
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1,
+      "hoursSlept": 7,
+      "score": 66,
+      "date": "2020-06-22T19:43:20.585Z",
+      "notes": "",
+      "isSaved": true,
+      "id": 16
     }
   ]
 }

@@ -8,7 +8,7 @@ const Save = props => {
   const [hoursSlept, setHoursSlept] = useState(0)
   const [notes, setNotes] = useState('')
   let [result, setResult] = useState(false)
-  const [isSaved, setIsSaved] = useState(true)
+  const [isNewEntry, setIsNewEntry] = useState(true)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -39,9 +39,21 @@ const Save = props => {
     })
   }
 
+  useEffect(() => {
+    if (!props.isNewUser) {
+      APIManager.getAllUser(props.entry.userId).then(user => {
+        if (user.entries[user.entries.length - 1].isSaved) {
+          setIsNewEntry(true)          
+        } else {
+          setIsNewEntry(false)
+        }
+      })
+    }
+  }, [props.entry])
+
   return (
     <>
-      <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
+      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}
