@@ -7,6 +7,7 @@ import APIManager from '../../modules/APIManager'
 const HomeRing = props => {
     const net = new NeuralNetwork({ hiddenLayers: [3] })
     const [data, setData] = useState({})
+    let score = props.score
 
     let trainingData = []
 
@@ -18,11 +19,11 @@ const HomeRing = props => {
         cutoutPercentage: 55
     }
     const loadRing = () => {
-        !props.entry.isSaved ?
+        props.loadRing ?
             setData({
                 datasets: [
                     {
-                        data: [props.entry.score, 100 - props.entry.score],
+                        data: [score, 100 - score],
                         backgroundColor: ['#56CCF2', '#E0E0E0'],
                         borderColor: 'lightgray'
 
@@ -69,17 +70,18 @@ const HomeRing = props => {
                         trainingData[i].output.push(user.entries[i].result)
                     }
                     net.train(trainingData)
-                    props.entry.score = Math.floor((net.run(props.activities)[0] * 100))
+                    score = Math.floor((net.run(props.activities)[0] * 100))
+                    props.setScore(score)
                     loadRing()
                 })
         })
-        }, [])
+        }, [props.loadRing])
 
     return (
         <>
             <div className='backdrop' />
             <Clock size='60' color='gray' className='clock' />
-            <div hidden={props.entry.isSaved} className='result'><p>{props.entry.score}%</p></div>
+            <div hidden={props.loadRing} className='result'><p>{score}%</p></div>
             <Doughnut options={options} data={data} className='ring' width={170} />
         </>
     )

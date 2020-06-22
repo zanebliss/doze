@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
@@ -22,11 +22,12 @@ const Save = props => {
   const handleSubmit = () => {
     let entry = {}
     APIManager.getAllUser(props.entry.userId).then(user => {
-      entry = user.entries[user.entries.length-1]
+      entry = user.entries[user.entries.length - 1]
       entry.isSaved = true
       entry.result = +result
       entry.hoursSlept = hoursSlept
       entry.notes = notes
+      entry.score = props.score
       APIManager.edit('entries', entry)
     }).then(() => {
       handleClose()
@@ -35,10 +36,10 @@ const Save = props => {
       alert('Entry saved.')
     })
   }
-  
+
   return (
     <>
-      {!props.entry.isSaved && <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>}
+      <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -66,7 +67,7 @@ const Save = props => {
           onChange={e => { setHoursSlept(Number(e.target.value)) }}
         />
         <FormLabel>{hoursSlept}</FormLabel>
-        <Button variant="primary" onClick={e => {
+        <Button variant="primary" onClick={() => {
           handleSubmit()
         }}>Save entry</Button>
         <Button variant="secondary" onClick={handleClose}>Cancel</Button>

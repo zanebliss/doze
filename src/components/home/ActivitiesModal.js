@@ -23,13 +23,13 @@ const ActivitiesModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <ActivitiesForm
+                        updateLatestEntry={props.updateLatestEntry}
                         isNewUser={props.isNewUser}
                         setIsNewUser={props.setIsNewUser}
                         preferences={props.preferences}
                         entry={props.entry}
                         setEntry={props.setEntry}
                         handleClose={handleClose}
-                        latestEntry={props.latestEntry}
                     />
                 </Modal.Body>
             </Modal>

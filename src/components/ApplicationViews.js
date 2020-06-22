@@ -28,6 +28,7 @@ const ApplicationViews = props => {
             <Route exact path='/journal' render={props => {
                 return <Journal {...props}
                     isNewUser={isNewUser}
+                    setIsNewUser={setIsNewUser}
                     activeUser={activeUser}
                 />
             }} />
