@@ -3,7 +3,7 @@ import HomeRing from '../ring/HomeRing'
 import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
-    const [activities] = useState([])
+    
     const [loadRing, setLoadRing] = useState(null)
     const [headerText, setHeaderText] = useState('Enter activities.') 
 
@@ -19,7 +19,7 @@ const Ring = props => {
                 setLoadRing(true)
             }
         })
-    }, [props.entry])
+    }, [props])
 
     useEffect(() => {
         if (!loadRing) {
@@ -43,7 +43,6 @@ const Ring = props => {
                     setLoadRing={setLoadRing}
                     entry={props.entry}
                     setEntry={props.setEntry}
-                    activities={activities}
                 />
             </div>
         </>

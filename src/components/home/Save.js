@@ -19,7 +19,7 @@ const Save = props => {
     setResult(false)
     setHoursSlept(0)
     props.resetEntry()
-  }
+}
   
   const handleSubmit = () => {
     let entry = {}
@@ -49,7 +49,7 @@ const Save = props => {
         }
       })
     }
-  }, [props.entry])
+  }, [props.entry, props.isNewUser])
 
   return (
     <>

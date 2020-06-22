@@ -9,11 +9,21 @@
       "username": "Mac",
       "password": "asdf",
       "id": 2
+    },
+    {
+      "username": "Macy",
+      "password": "wasd",
+      "id": 3
+    },
+    {
+      "username": "Debbie",
+      "password": "wasd",
+      "id": 4
     }
   ],
   "entries": [
     {
-      "userId": 1,
+      "userId": 3,
       "factor1": 1,
       "factor2": 1,
       "factor3": 1,
@@ -25,10 +35,10 @@
       "result": 1,
       "hoursSlept": 7.5,
       "score": 7,
-      "date": "2020-06-22T18:45:12.860Z",
-      "notes": "I slept great.",
+      "date": "2020-06-22T19:46:18.874Z",
+      "notes": "I slept well.",
       "isSaved": true,
-      "id": 14
+      "id": 16
     },
     {
       "userId": 1,
@@ -42,11 +52,11 @@
       "factor8": 0,
       "result": 1,
       "hoursSlept": 8.5,
-      "score": 49,
-      "date": "2020-06-22T19:30:45.606Z",
-      "notes": "I slept well.",
+      "score": 7,
+      "date": "2020-06-22T21:54:48.668Z",
+      "notes": "I slept great.",
       "isSaved": true,
-      "id": 15
+      "id": 17
     },
     {
       "userId": 1,
@@ -58,13 +68,13 @@
       "factor6": 0,
       "factor7": 0,
       "factor8": 0,
-      "result": 1,
-      "hoursSlept": 7,
-      "score": 66,
-      "date": "2020-06-22T19:43:20.585Z",
+      "result": false,
+      "hoursSlept": 0,
+      "score": null,
+      "date": "2020-06-22T21:58:09.550Z",
       "notes": "",
-      "isSaved": true,
-      "id": 16
+      "isSaved": false,
+      "id": 18
     }
   ]
 }

@@ -6,6 +6,7 @@ import APIManager from '../../modules/APIManager'
 import './Ring.css'
 
 const HomeRing = props => {
+    // const [activities, setActivities] = useState([])
     const net = new NeuralNetwork({ hiddenLayers: [3] })
     const [data, setData] = useState({})
     let score = props.score
@@ -44,42 +45,40 @@ const HomeRing = props => {
     }
 
     useEffect(() => {
-        APIManager.getAllUser(props.entry.userId).then(user => {
-            let latestEntry = user.entries[user.entries.length - 1]
-            props.activities.push(latestEntry.factor1)
-            props.activities.push(latestEntry.factor2)
-            props.activities.push(latestEntry.factor3)
-            props.activities.push(latestEntry.factor4)
-            props.activities.push(latestEntry.factor5)
-            props.activities.push(latestEntry.factor6)
-            props.activities.push(latestEntry.factor7)
-            props.activities.push(latestEntry.factor8)
-        }).then(() => {
-            if (props.entry.isSaved) {
+        if (props.entry.isSaved) {
+            loadRing()
+        } else {
+            APIManager.getAllUser(props.entry.userId).then(user => {
+                let latestEntry = user.entries[user.entries.length - 1]
+                let arr = []
+                arr.push(latestEntry.factor1)
+                arr.push(latestEntry.factor2)
+                arr.push(latestEntry.factor3)
+                arr.push(latestEntry.factor4)
+                arr.push(latestEntry.factor5)
+                arr.push(latestEntry.factor6)
+                arr.push(latestEntry.factor7)
+                arr.push(latestEntry.factor8)
+                for (let i = 0; i < user.entries.length; i++) {
+                    trainingData.push({ input: [], output: [] })
+                    trainingData[i].input.push(user.entries[i].factor1)
+                    trainingData[i].input.push(user.entries[i].factor2)
+                    trainingData[i].input.push(user.entries[i].factor3)
+                    trainingData[i].input.push(user.entries[i].factor4)
+                    trainingData[i].input.push(user.entries[i].factor5)
+                    trainingData[i].input.push(user.entries[i].factor6)
+                    trainingData[i].input.push(user.entries[i].factor7)
+                    trainingData[i].input.push(user.entries[i].factor8)
+                    trainingData[i].output.push(user.entries[i].result)
+                }
+                net.train(trainingData)
+                const newScore = Math.floor((net.run(arr)[0] * 100))
+                props.setScore(newScore)
                 loadRing()
-            }
-            else {
-                APIManager.getAllUser(props.entry.userId).then(user => {
-                    for (let i = 0; i < user.entries.length; i++) {
-                        trainingData.push({ input: [], output: [] })
-                        trainingData[i].input.push(user.entries[i].factor1)
-                        trainingData[i].input.push(user.entries[i].factor2)
-                        trainingData[i].input.push(user.entries[i].factor3)
-                        trainingData[i].input.push(user.entries[i].factor4)
-                        trainingData[i].input.push(user.entries[i].factor5)
-                        trainingData[i].input.push(user.entries[i].factor6)
-                        trainingData[i].input.push(user.entries[i].factor7)
-                        trainingData[i].input.push(user.entries[i].factor8)
-                        trainingData[i].output.push(user.entries[i].result)
-                    }
-                    net.train(trainingData)
-                    score = Math.floor((net.run(props.activities)[0] * 100))
-                    props.setScore(score)
-                    loadRing()
-                })
-            }
-        })
-    }, [props.entry, props.loadRing])
+            })
+        }
+
+    }, [props.loadRing])
 
     return (
         <>
