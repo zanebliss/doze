@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
+import { Button } from 'react-bootstrap'
 import Save from './Save'
-import './Home.css'
 import RingWrapper from './RingWrapper'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
+import { clearActivities } from '../../modules/helper'
+import './Home.css'
 
 const Home = props => {
-    const [activities] = useState([])
     const [isNewUser, setIsNewUser] = useState(true)
     const [preferences] = useState([
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
@@ -62,17 +63,16 @@ const Home = props => {
                 setScore={setScore}
                 entry={entry}
                 setEntry={setEntry}
-                activities={activities}
             />}
             <ActivitiesModal
                 updateLatestEntry={updateLatestEntry}
-                activities={activities}
                 preferences={preferences}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
                 entry={entry}
                 setEntry={setEntry}
             />
+            <Button onClick={() => clearActivities(entry.userId)}>Clear</Button>
             <Save
                 score={score}
                 isNewUser={isNewUser}

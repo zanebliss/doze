@@ -10,7 +10,7 @@ export default {
     getEntry(userId, id) {
       return fetch(`${remoteURL}/entries?userId=${userId}&id=${id}`).then(e => e.json())
     },
-    deleteEntry(userId, id) {
+    deleteEntry(id) {
       return fetch(`${remoteURL}/entries/${id}`, {
         method: "DELETE",
       }).then((result) => result.json());

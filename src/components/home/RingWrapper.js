@@ -3,6 +3,7 @@ import HomeRing from '../ring/HomeRing'
 import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
+    const [activities] = useState([])
     const [loadRing, setLoadRing] = useState(null)
 
     useEffect(() => {
@@ -39,7 +40,7 @@ const Ring = props => {
                     setLoadRing={setLoadRing}
                     entry={props.entry}
                     setEntry={props.setEntry}
-                    activities={props.activities}
+                    activities={activities}
                     latestEntry={props.latestEntry} />
             </div>
         </>
