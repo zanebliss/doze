@@ -5,56 +5,41 @@ import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
 
 const Save = props => {
-  const saved = props.saved
-  const setSaved = props.setSaved
-  const notes = props.notes
-  const setNotes = props.setNotes
-
   const [hoursSlept, setHoursSlept] = useState(0)
-  const [show, setShow] = useState(false);
+  const [notes, setNotes] = useState('')
+  let [result, setResult] = useState(false)
 
+  const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let entry = props.entry
-  let latestEntry = props.latestEntry
-
-  const handleSubmit = e => {
-    setSaved(!saved)
-    let obj = {
-      userId: entry.userId,
-      factor1: entry.factor1,
-      factor2: entry.factor2,
-      factor3: entry.factor3,
-      factor4: entry.factor4,
-      factor5: entry.factor5,
-      factor6: entry.factor6,
-      factor7: entry.factor7,
-      factor8: entry.factor8,
-      result: props.result ? 1 : 0,
-      date: new Date(),
-      notes: notes,
-      hoursSlept: hoursSlept,
-      score: entry.score,
-      saved: true
-    }
-    obj.id = entry.id
-    APIManager.edit('entries', obj)
-    handleClose()
-    entry = {}
-    props.setEntry(entry)
-    latestEntry = { saved: false }
-    props.setLatestEntry(latestEntry)
-    props.setActivities([])
+  const resetSave = () => {
+    setNotes('')
+    setResult(false)
+    setHoursSlept(0)
   }
-
-  useEffect(() => {
-  }, [])
-
+  
+  const handleSubmit = () => {
+    let entry = {}
+    APIManager.getAllUser(props.entry.userId).then(user => {
+      entry = user.entries[user.entries.length - 1]
+      entry.isSaved = true
+      entry.result = +result
+      entry.hoursSlept = hoursSlept
+      entry.notes = notes
+      entry.score = props.score
+      APIManager.edit('entries', entry)
+    }).then(() => {
+      handleClose()
+      props.setEntry(props.resetEntry())
+      resetSave()
+      alert('Entry saved.')
+    })
+  }
 
   return (
     <>
-      <Button variant='primary' size='lg' onClick={handleShow} block >Save</Button>
+      <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -64,8 +49,8 @@ const Save = props => {
       >
         <Modal.Body>
           Do you feel rested?
-        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={props.result} onChange={() => {
-            props.setResult(!props.result)
+        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={result} onChange={() => {
+            setResult(!result)
           }} />
         </Modal.Body>
         <Form.Label>Sleep notes</Form.Label>
@@ -82,7 +67,7 @@ const Save = props => {
           onChange={e => { setHoursSlept(Number(e.target.value)) }}
         />
         <FormLabel>{hoursSlept}</FormLabel>
-        <Button variant="primary" onClick={e => {
+        <Button variant="primary" onClick={() => {
           handleSubmit()
         }}>Save entry</Button>
         <Button variant="secondary" onClick={handleClose}>Cancel</Button>

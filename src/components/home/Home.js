@@ -1,96 +1,86 @@
 import React, { useState, useEffect } from 'react'
-import HomeRing from '../ring/HomeRing'
-import { Button } from 'react-bootstrap'
 import Save from './Save'
-import APIManager from '../../modules/APIManager'
 import './Home.css'
+import RingWrapper from './RingWrapper'
+import NewUser from './NewUser'
+import ActivitiesModal from './ActivitiesModal'
+import APIManager from '../../modules/APIManager'
 
 const Home = props => {
-    const [result, setResult] = useState(true)
-    const [activities, setActivities] = useState([])
+    const [activities] = useState([])
+    const [isNewUser, setIsNewUser] = useState(true)
+    const [preferences] = useState([
+        'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
+        'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
+    ])
+    const resetEntry = () => {
+        const obj = {
+            userId: props.activeUser.id,
+            factor1: 0,
+            factor2: 0,
+            factor3: 0,
+            factor4: 0,
+            factor5: 0,
+            factor6: 0,
+            factor7: 0,
+            factor8: 0,
+            result: false,
+            hoursSlept: 0,
+            score: null,
+            date: new Date(),
+            notes: '',
+            isSaved: false,
+        }
+        return obj
+    }
+    let [entry, setEntry] = useState(resetEntry())
+    let [score, setScore] = useState(null)
 
-    const saved = props.saved
-    const setSaved = props.setSaved
-    const entry = props.entry
-    const setEntry = props.setEntry
-    let latestEntry = props.latestEntry
-    const setLatestEntry = props.setLatestEntry
-    let score = props.setScore
-    const setScore = props.setScore
-    const activeUser = props.activeUser
-    const hoursSlept = props.hoursSlept
-    const notes = props.notes
-    const setNotes = props.setNotes
+    const updateLatestEntry = () => {
+        APIManager.getAllUser(props.activeUser.id).then(user => {
+            setEntry(user.entries[user.entries.length - 1])
+            setIsNewUser(!isNewUser)
+        })
+    }
 
     useEffect(() => {
-        APIManager.getSortedEntries('id', 'desc').then(entries => {
-            latestEntry = entries[0]
-            setLatestEntry(latestEntry)
-            activities.push(latestEntry.factor1)
-            activities.push(latestEntry.factor2)
-            activities.push(latestEntry.factor3)
-            activities.push(latestEntry.factor4)
-            activities.push(latestEntry.factor5)
-            activities.push(latestEntry.factor6)
-            activities.push(latestEntry.factor7)
-            activities.push(latestEntry.factor8)
-            setActivities(activities)
-
+        APIManager.getAllUser(props.activeUser.id).then(user => {
+            if (user.entries.length === 0) {
+                setIsNewUser(true)
+            } else {
+                setIsNewUser(false)
+            }
         })
-    }, [])
+    })
 
     return (
         <>
-            <div className='home-wrapper'>
-                <div className='ring-container'>
-                    {!latestEntry.saved ?
-                        <div className='header-text'>
-                            <h1>Predicted sleep score</h1>
-                        </div>
-                        :
-                        <div className='header-text'>
-                            <h1>Enter today's activities</h1>
-                        </div>
-
-                    }
-                    <HomeRing
-                        latestEntry={props.latestEntry}
-                        setLatestEntry={props.setLatestEntry}
-                        activeUser={props.activeUser}
-                        activities={activities}
-                        score={score}
-                        setScore={setScore}
-                    />
-                </div>
-                <div className='charts'></div>
-                <div className='home-buttons-wrapper'>
-                    <div className='home-buttons'>
-                        {latestEntry.saved ?
-                            <Button onClick={() => props.history.push('/activities')} > New entry</Button>
-                            : <Button onClick={() => { props.history.push('/activities') }} size='lg' block >Edit Activities</Button>}
-                        {!latestEntry.saved &&
-                            <Save
-                                entry={entry}
-                                setEntry={setEntry}
-                                latestEntry={latestEntry}
-                                setLatestEntry={setLatestEntry}
-
-                                result={result}
-                                setResult={setResult}
-                                score={score}
-                                saved={saved}
-                                setSaved={setSaved}
-
-                                activeUser={activeUser}
-                                activities={activities}
-                                setActivities={setActivities}
-                                notes={notes}
-                                setNotes={setNotes}
-                                hoursSlept={hoursSlept}
-                            />}
-                    </div>
-                </div>
-            </div>
+            {isNewUser && <NewUser />}
+            {!isNewUser && <RingWrapper
+                isNewUser={isNewUser}
+                score={score}
+                setScore={setScore}
+                entry={entry}
+                setEntry={setEntry}
+                activities={activities}
+            />}
+            <ActivitiesModal
+                updateLatestEntry={updateLatestEntry}
+                activities={activities}
+                preferences={preferences}
+                isNewUser={isNewUser}
+                setIsNewUser={setIsNewUser}
+                entry={entry}
+                setEntry={setEntry}
+            />
+            <Save
+                score={score}
+                isNewUser={isNewUser}
+                setIsNewUser={setIsNewUser}
+                entry={entry}
+                setEntry={setEntry}
+                resetEntry={resetEntry}
+            />
         </>
     )
 }
