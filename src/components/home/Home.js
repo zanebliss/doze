@@ -15,7 +15,6 @@ const Home = props => {
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
     ])
     let [score, setScore] = useState(null)
-    const [counter, setCounter] = useState(0)
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -24,9 +23,6 @@ const Home = props => {
         })
     }
 
-    const updateCounter = () => {
-        setCounter(prev => prev + 1 - 1)
-    }
 
     useEffect(() => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -42,7 +38,6 @@ const Home = props => {
         <>
             {isNewUser && <NewUser />}
             {!isNewUser && <RingWrapper
-                counter={counter}
                 isNewUser={isNewUser}
                 score={score}
                 setScore={setScore}
@@ -50,7 +45,6 @@ const Home = props => {
                 setEntry={props.setEntry}
             />}
             <ActivitiesModal
-                updateCounter={updateCounter}
                 updateLatestEntry={updateLatestEntry}
                 preferences={preferences}
                 isNewUser={isNewUser}

@@ -84,7 +84,6 @@ const ActivitiesForm = props => {
                             onChange={() => { entry.factor8 = +!entry.factor8 }}
                         />
                         <Button onClick={() => {
-                            props.updateCounter()
                             if (props.isNewUser) {
                                 createNewEntry()
                                 props.handleClose()

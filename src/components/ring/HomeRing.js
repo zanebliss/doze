@@ -6,7 +6,6 @@ import APIManager from '../../modules/APIManager'
 import './Ring.css'
 
 const HomeRing = props => {
-    // const [activities, setActivities] = useState([])
     const net = new NeuralNetwork({ hiddenLayers: [3] })
     const [data, setData] = useState({})
     let score = props.score
@@ -16,7 +15,7 @@ const HomeRing = props => {
     const options = {
         tooltips: {
             enabled: false
-        },
+    },
         responsive: true,
         cutoutPercentage: 55
     }

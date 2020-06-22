@@ -16,6 +16,7 @@ const ActivitiesModal = props => {
                 onHide={handleClose}
                 backdrop='static'
                 centered
+                animation={false}
             >
                 <Modal.Header closeButton>
                     <Modal.Title>What did you do today?</Modal.Title>
