@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
@@ -8,6 +8,7 @@ const Save = props => {
   const [hoursSlept, setHoursSlept] = useState(0)
   const [notes, setNotes] = useState('')
   let [result, setResult] = useState(false)
+  const [isSaved, setIsSaved] = useState(true)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,6 +18,7 @@ const Save = props => {
     setNotes('')
     setResult(false)
     setHoursSlept(0)
+    props.resetEntry()
   }
   
   const handleSubmit = () => {
@@ -30,8 +32,8 @@ const Save = props => {
       entry.score = props.score
       APIManager.edit('entries', entry)
     }).then(() => {
+      props.resetEntry()
       handleClose()
-      props.setEntry(props.resetEntry())
       resetSave()
       alert('Entry saved.')
     })

@@ -23,30 +23,12 @@
       "factor7": 0,
       "factor8": 0,
       "result": 1,
-      "hoursSlept": 0,
-      "score": 8,
-      "date": "2020-06-22T16:57:54.041Z",
-      "notes": "",
+      "hoursSlept": 7.5,
+      "score": 7,
+      "date": "2020-06-22T18:45:12.860Z",
+      "notes": "I slept great.",
       "isSaved": true,
-      "id": 4
-    },
-    {
-      "userId": 1,
-      "factor1": 0,
-      "factor2": 0,
-      "factor3": 0,
-      "factor4": 0,
-      "factor5": 0,
-      "factor6": 0,
-      "factor7": 0,
-      "factor8": 0,
-      "result": false,
-      "hoursSlept": 0,
-      "score": null,
-      "date": "2020-06-22T17:22:32.677Z",
-      "notes": "",
-      "isSaved": false,
-      "id": 5
+      "id": 14
     }
   ]
 }

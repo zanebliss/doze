@@ -5,6 +5,7 @@ import APIManager from '../../modules/APIManager'
 const Ring = props => {
     const [activities] = useState([])
     const [loadRing, setLoadRing] = useState(null)
+    const [headerText, setHeaderText] = useState('Enter activities.') 
 
     useEffect(() => {
         APIManager.getAllUser(props.entry.userId).then(user => {
@@ -18,21 +19,22 @@ const Ring = props => {
                 setLoadRing(true)
             }
         })
-    }, [])
+    }, [props.entry])
+
+    useEffect(() => {
+        if (!loadRing) {
+            setHeaderText('Enter activities.')
+        } else {
+            setHeaderText('Chance of feeling well rested.')
+        }
+    }, [loadRing])
 
     return (
         <>
             <div className='ring-container'>
-                {!props.loadRing ?
-                    <div className='header-text'>
-                        <h1>Enter today's activities</h1>
-                    </div>
-                    :
-                    <div className='header-text'>
-                        <h1>Predicted sleep score</h1>
-                    </div>
-
-                }
+                <div className='header-text'>
+                    <h1>{headerText}</h1>
+                </div>
                 <HomeRing
                     counter={props.counter}
                     score={props.score}
@@ -42,7 +44,7 @@ const Ring = props => {
                     entry={props.entry}
                     setEntry={props.setEntry}
                     activities={activities}
-                    latestEntry={props.latestEntry} />
+                />
             </div>
         </>
     )

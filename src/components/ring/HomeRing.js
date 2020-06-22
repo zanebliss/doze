@@ -20,7 +20,7 @@ const HomeRing = props => {
         cutoutPercentage: 55
     }
     const loadRing = () => {
-        props.loadRing ?
+        if (!props.entry.isSaved && props.loadRing) {
             setData({
                 datasets: [
                     {
@@ -31,7 +31,7 @@ const HomeRing = props => {
                     }
                 ],
             })
-            :
+        } else {
             setData({
                 datasets: [
                     {
@@ -40,6 +40,7 @@ const HomeRing = props => {
                     }
                 ],
             })
+        }
     }
 
     useEffect(() => {
@@ -54,9 +55,10 @@ const HomeRing = props => {
             props.activities.push(latestEntry.factor7)
             props.activities.push(latestEntry.factor8)
         }).then(() => {
-            props.entry.isSaved ?
+            if (props.entry.isSaved) {
                 loadRing()
-                :
+            }
+            else {
                 APIManager.getAllUser(props.entry.userId).then(user => {
                     for (let i = 0; i < user.entries.length; i++) {
                         trainingData.push({ input: [], output: [] })
@@ -75,8 +77,9 @@ const HomeRing = props => {
                     props.setScore(score)
                     loadRing()
                 })
+            }
         })
-    }, [props.loadRing, props.entry])
+    }, [props.entry, props.loadRing])
 
     return (
         <>
