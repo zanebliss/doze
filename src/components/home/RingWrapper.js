@@ -7,7 +7,11 @@ const Ring = props => {
 
     useEffect(() => {
         APIManager.getAllUser(props.entry.userId).then(user => {
-            if (!user.entries[0].isSaved) {
+            if (user.entries.length === 1) {
+                setLoadRing(false)
+            } else if (user.entries[user.entries.length - 1].isSaved) {
+                setLoadRing(false)
+            } else if (props.isNewUser) {
                 setLoadRing(false)
             } else {
                 setLoadRing(true)
@@ -18,7 +22,7 @@ const Ring = props => {
     return (
         <>
             <div className='ring-container'>
-                {loadRing ?
+                {!loadRing ?
                     <div className='header-text'>
                         <h1>Enter today's activities</h1>
                     </div>
@@ -28,15 +32,15 @@ const Ring = props => {
                     </div>
 
                 }
-                <HomeRing 
+                <HomeRing
                     score={props.score}
                     setScore={props.setScore}
                     loadRing={loadRing}
                     setLoadRing={setLoadRing}
-                    entry={props.entry} 
-                    setEntry={props.setEntry} 
-                    activities={props.activities} 
-                    latestEntry={props.latestEntry}/>
+                    entry={props.entry}
+                    setEntry={props.setEntry}
+                    activities={props.activities}
+                    latestEntry={props.latestEntry} />
             </div>
         </>
     )

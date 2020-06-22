@@ -8,7 +8,7 @@ import APIManager from '../../modules/APIManager'
 
 const Home = props => {
     const [activities] = useState([])
-    const [isNewUser, setIsNewUser] = useState()
+    const [isNewUser, setIsNewUser] = useState(true)
     const [preferences] = useState([
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
@@ -56,13 +56,14 @@ const Home = props => {
     return (
         <>
             {isNewUser && <NewUser />}
-            {/* {!isNewUser && <RingWrapper
+            {!isNewUser && <RingWrapper
+                isNewUser={isNewUser}
                 score={score}
                 setScore={setScore}
                 entry={entry}
                 setEntry={setEntry}
                 activities={activities}
-            />} */}
+            />}
             <ActivitiesModal
                 updateLatestEntry={updateLatestEntry}
                 activities={activities}
