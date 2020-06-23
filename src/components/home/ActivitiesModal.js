@@ -24,7 +24,6 @@ const ActivitiesModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <ActivitiesForm
-                        updateCounter={props.updateCounter}
                         reloadRing={props.reloadRing}
                         setLoadRing={props.setLoadRing}
                         updateLatestEntry={props.updateLatestEntry}

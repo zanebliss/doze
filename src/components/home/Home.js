@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from 'react-bootstrap'
 import Save from './Save'
 import RingWrapper from './RingWrapper'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import SaveSuccess from '../home/SaveSuccess'
-import { clearActivities } from '../../modules/helper'
 import './Home.css'
 
 const Home = props => {
@@ -17,7 +15,6 @@ const Home = props => {
     ])
     let [score, setScore] = useState(null)
     const [show, setShow] = useState(false);
-    const [isSaved, setIsSaved] = useState(true)
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -25,15 +22,6 @@ const Home = props => {
             setIsNewUser(!isNewUser)
         })
     }
-
-    const checkSaved = () => {
-        APIManager.getAllUser(props.activeUser.id).then(user => {
-            if (user.entries[user.entries.length - 1].isSaved) {
-                return true
-            } else { return false }
-        })
-    }
-
 
     useEffect(() => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -43,7 +31,7 @@ const Home = props => {
                 setIsNewUser(false)
             }
         })
-    })
+    }, [props.entry])
 
     return (
         <>
@@ -67,10 +55,6 @@ const Home = props => {
                 entry={props.entry}
                 setEntry={props.setEntry}
             />
-            <Button size='md' block onClick={() => {
-                clearActivities(props.activeUser.id)
-                props.resetEntry()
-                }}>Clear activities</Button>
             <Save
                 setShow={setShow}
                 score={score}

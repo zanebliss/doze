@@ -40,12 +40,12 @@
       "factor6": 0,
       "factor7": 0,
       "factor8": 0,
-      "result": false,
-      "hoursSlept": 0,
-      "score": null,
-      "date": "2020-06-23T14:50:42.323Z",
-      "notes": "",
-      "isSaved": false,
+      "result": 1,
+      "hoursSlept": 8.5,
+      "score": 7,
+      "date": "2020-06-23T16:07:58.176Z",
+      "notes": "I slept well.",
+      "isSaved": true,
       "id": 20
     }
   ]
