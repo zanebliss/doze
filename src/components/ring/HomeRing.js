@@ -14,11 +14,15 @@ const HomeRing = props => {
 
     const options = {
         tooltips: {
-            enabled: false
-    },
+            enabled: true
+        },
         responsive: true,
-        cutoutPercentage: 55
+        cutoutPercentage: 55,
+        legend: {
+            display: false
+        }
     }
+
     const loadRing = () => {
         if (!props.entry.isSaved && props.loadRing) {
             setData({
@@ -30,6 +34,7 @@ const HomeRing = props => {
 
                     }
                 ],
+                labels: ['Sleep score', ' ']
             })
         } else {
             setData({

@@ -5,6 +5,7 @@ import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import SaveSuccess from '../home/SaveSuccess'
+import HomeChart from '../charts/HomeChart'
 import './Home.css'
 
 const Home = props => {
@@ -35,10 +36,10 @@ const Home = props => {
 
     return (
         <>
-          <SaveSuccess 
-              show={show}
-              setShow={setShow}
-          />
+            <SaveSuccess
+                show={show}
+                setShow={setShow}
+            />
             {isNewUser && <NewUser isNewUser={isNewUser} />}
             {!isNewUser && <RingWrapper
                 isNewUser={isNewUser}
@@ -47,6 +48,13 @@ const Home = props => {
                 entry={props.entry}
                 setEntry={props.setEntry}
             />}
+            {!isNewUser && <div>
+                <div>Hours slept</div>
+                <HomeChart 
+                    activeUser={props.activeUser} 
+                    isNewUser={isNewUser}
+                    />
+            </div>}
             <ActivitiesModal
                 updateLatestEntry={updateLatestEntry}
                 preferences={preferences}
