@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap'
 import ActivitiesForm from '../activities/ActivitiesForm'
-import APIManager from '../../modules/APIManager';
 
 const ActivitiesModal = props => {
     const [show, setShow] = useState(false);
@@ -11,18 +10,22 @@ const ActivitiesModal = props => {
 
     return (
         <>
-            <Button variant='primary' size='lg' onClick={handleShow} block >Activities</Button>
+            
+            <Button variant='primary' size='md' onClick={handleShow} block className='main-button' style={{zIndex:1}}>Activities</Button>
             <Modal
                 show={show}
                 onHide={handleClose}
                 backdrop='static'
                 centered
+                animation={false}
             >
                 <Modal.Header closeButton>
                     <Modal.Title>What did you do today?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ActivitiesForm
+                        reloadRing={props.reloadRing}
+                        setLoadRing={props.setLoadRing}
                         updateLatestEntry={props.updateLatestEntry}
                         isNewUser={props.isNewUser}
                         setIsNewUser={props.setIsNewUser}

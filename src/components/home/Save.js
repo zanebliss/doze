@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
+import { Button, Modal, FormLabel, Form, Badge } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
@@ -8,6 +8,7 @@ const Save = props => {
   const [hoursSlept, setHoursSlept] = useState(0)
   const [notes, setNotes] = useState('')
   let [result, setResult] = useState(false)
+  const [isNewEntry, setIsNewEntry] = useState(true)
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,12 +18,13 @@ const Save = props => {
     setNotes('')
     setResult(false)
     setHoursSlept(0)
-  }
+    props.resetEntry()
+}
   
-  const handleSubmit = () => {
-    let entry = {}
-    APIManager.getAllUser(props.entry.userId).then(user => {
-      entry = user.entries[user.entries.length - 1]
+const handleSubmit = () => {
+  let entry = {}
+  APIManager.getAllUser(props.entry.userId).then(user => {
+    entry = user.entries[user.entries.length - 1]
       entry.isSaved = true
       entry.result = +result
       entry.hoursSlept = hoursSlept
@@ -30,16 +32,28 @@ const Save = props => {
       entry.score = props.score
       APIManager.edit('entries', entry)
     }).then(() => {
+      props.resetEntry()
       handleClose()
-      props.setEntry(props.resetEntry())
       resetSave()
-      alert('Entry saved.')
+      handleClose()
     })
   }
 
+  useEffect(() => {
+    if (!props.isNewUser) {
+      APIManager.getAllUser(props.entry.userId).then(user => {
+        if (user.entries[user.entries.length - 1].isSaved) {
+          setIsNewEntry(true)          
+        } else {
+          setIsNewEntry(false)
+        }
+      })
+    }
+  }, [props.entry, props.isNewUser])
+
   return (
     <>
-      <Button hidden={props.isNewUser} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
+      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='md' onClick={handleShow} block>Save entry</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -68,6 +82,7 @@ const Save = props => {
         />
         <FormLabel>{hoursSlept}</FormLabel>
         <Button variant="primary" onClick={() => {
+          props.setShow(true)
           handleSubmit()
         }}>Save entry</Button>
         <Button variant="secondary" onClick={handleClose}>Cancel</Button>

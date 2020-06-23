@@ -25,9 +25,10 @@ const Journal = props => {
             if (user.entries.length > 0) {
                 props.setIsNewUser(false)
             }
+            const allEntries = user.entries.filter(entry => entry.isSaved)
+            setEntries(allEntries)
         })
-        getJournals()
-    }, [])
+    }, [props])
 
     return (
         <>

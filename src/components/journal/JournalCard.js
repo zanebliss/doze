@@ -6,7 +6,7 @@ import APIManager from '../../modules/APIManager'
 
 const JournalCard = props => {
     const handleDelete = () => {
-        APIManager.deleteEntry(props.activeUser.id, props.id).then(props.getJournals)
+        APIManager.deleteEntry(props.id).then(props.getJournals)
     }
     
     return (

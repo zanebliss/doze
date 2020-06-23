@@ -19,10 +19,10 @@ const Login = props => {
                 } 
                 else if (e.length > 0) {
                     user.id = e[0].id
-                    localStorage.setItem('user',
+                    sessionStorage.setItem('user',
                         JSON.stringify(user)
                     );
-                    props.setActiveUser(JSON.parse(localStorage.getItem('user')))
+                    props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
                     props.history.push('/')
                 }
             })
@@ -35,10 +35,10 @@ const Login = props => {
             alert('Please enter all fields.')
         }
         APIManager.post('users', user).then(user => {
-            localStorage.setItem('user',
+            sessionStorage.setItem('user',
             JSON.stringify(user)
             )
-            props.setActiveUser(JSON.parse(localStorage.getItem('user')))
+            props.setActiveUser(JSON.parse(sessionStorage.getItem('user')))
             props.history.push('/')
         })
     }
@@ -52,11 +52,13 @@ const Login = props => {
                     <Form>
                         <Form.Group>
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type='username' placeholder='Enter username' id='username' onChange={e => handleFieldChange(e, user, setUser)}></Form.Control>
+                            <Form.Control type='username' placeholder='Enter username' id='username' onChange={
+                                e => handleFieldChange(e, user, setUser)}></Form.Control>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' placeholder='Enter password' id='password' onChange={e => handleFieldChange(e, user, setUser)}></Form.Control>
+                            <Form.Control type='password' placeholder='Enter password' id='password' onChange={
+                                e => handleFieldChange(e, user, setUser)}></Form.Control>
                         </Form.Group>
                         
                         {props.login && <Button size='lg' onClick={handleLogin}>Login</Button>}
