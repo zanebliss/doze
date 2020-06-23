@@ -101,6 +101,42 @@
       "notes": "Stop it, Zane!",
       "isSaved": true,
       "id": 23
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1,
+      "hoursSlept": 8.5,
+      "score": 49,
+      "date": "2020-06-23T19:37:12.354Z",
+      "notes": "asdf",
+      "isSaved": true,
+      "id": 24
+    },
+    {
+      "userId": 1,
+      "factor1": 0,
+      "factor2": 0,
+      "factor3": 0,
+      "factor4": 0,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": false,
+      "hoursSlept": 0,
+      "score": null,
+      "date": "2020-06-23T19:46:07.205Z",
+      "notes": "",
+      "isSaved": false,
+      "id": 25
     }
   ]
 }

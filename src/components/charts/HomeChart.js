@@ -40,10 +40,10 @@ const HomeChart = props => {
                         hoursSlept[1],
                         hoursSlept[0],
                     ],
-                    backgroundColor: '#6FCF97',
+                    backgroundColor: '#56CCF2',
                     borderWidth: 1,
-                    pointBackgroundColor: '#56CCF2',
-                    borderColor: 'black'
+                    pointBackgroundColor: 'white',
+                    borderColor: 'gray'
                 },
                 
             ],
