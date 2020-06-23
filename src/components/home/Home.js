@@ -14,15 +14,71 @@ const Home = props => {
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
     ])
-    let [score, setScore] = useState(null)
+    const [score, setScore] = useState(null)
     const [show, setShow] = useState(false);
+    const [hoursSlept, setHoursSlept] = useState([])
+    let [entry, setEntry] = useState({
+        userId: props.activeUser.id,
+        factor1: 0,
+        factor2: 0,
+        factor3: 0,
+        factor4: 0,
+        factor5: 0,
+        factor6: 0,
+        factor7: 0,
+        factor8: 0,
+        result: false,
+        hoursSlept: 0,
+        score: null,
+        date: new Date(),
+        notes: '',
+        isSaved: false,
+    })
+    const resetEntry = () => {
+        const obj = {
+            userId: props.activeUser.id,
+            factor1: 0,
+            factor2: 0,
+            factor3: 0,
+            factor4: 0,
+            factor5: 0,
+            factor6: 0,
+            factor7: 0,
+            factor8: 0,
+            result: false,
+            hoursSlept: 0,
+            score: null,
+            date: new Date(),
+            notes: '',
+            isSaved: false,
+        }
+        setEntry(obj)
+    }
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
-            props.setEntry(user.entries[user.entries.length - 1])
+            setEntry(user.entries[user.entries.length - 1])
             setIsNewUser(!isNewUser)
         })
     }
+
+    const setHours = () => {
+    APIManager.getSavedEntries(props.activeUser.id, 'hoursSlept', 'asc').then(entries => {
+            if (entries.length > 0) {
+                let arr = []
+                entries.forEach(entry => {
+                    if (entry.isSaved) {
+                        arr.push(entry.hoursSlept)
+                    }
+                });
+                setHoursSlept(arr)
+            }
+        })
+    }
+
+    useEffect(() => {
+        setHours()
+    }, [])
 
     useEffect(() => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -32,7 +88,9 @@ const Home = props => {
                 setIsNewUser(false)
             }
         })
-    }, [props.entry])
+    }, [entry])
+
+
 
     return (
         <>
@@ -45,32 +103,33 @@ const Home = props => {
                 isNewUser={isNewUser}
                 score={score}
                 setScore={setScore}
-                entry={props.entry}
-                setEntry={props.setEntry}
+                entry={entry}
+                setEntry={setEntry}
             />}
             {!isNewUser && <div>
                 <div>Hours slept</div>
-                <HomeChart 
-                    activeUser={props.activeUser} 
+                <HomeChart
+                    hoursSlept={hoursSlept}
+                    activeUser={props.activeUser}
                     isNewUser={isNewUser}
-                    />
+                />
             </div>}
             <ActivitiesModal
                 updateLatestEntry={updateLatestEntry}
                 preferences={preferences}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
-                entry={props.entry}
-                setEntry={props.setEntry}
+                entry={entry}
+                setEntry={setEntry}
             />
             <Save
                 setShow={setShow}
                 score={score}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}
-                entry={props.entry}
-                setEntry={props.setEntry}
-                resetEntry={props.resetEntry}
+                entry={entry}
+                setEntry={setEntry}
+                resetEntry={resetEntry}
             />
         </>
     )

@@ -14,8 +14,8 @@ const Journal = props => {
             setEntries(entries)
         })
     }
-    const sortJournals = (key, order) => {
-        APIManager.getSavedEntries(key, order).then(entries => {
+    const sortJournals = (userId, key, order) => {
+        APIManager.getSortedEntries(userId, key, order).then(entries => {
             setEntries(entries)
         })
     }
@@ -41,16 +41,16 @@ const Journal = props => {
                                 <FilterRight size={30} />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => { sortJournals('date', 'asc') }}>
+                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'date', 'asc') }}>
                                     Recent
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => { sortJournals('date', 'desc') }}>
+                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'date', 'desc') }}>
                                     Oldest
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => { sortJournals('hoursSlept', 'desc') }}>
+                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'hoursSlept', 'desc') }}>
                                     Most hours slept
                                 </Dropdown.Item>
-                                <Dropdown.Item onClick={() => { sortJournals('hoursSlept', 'asc') }}>
+                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'hoursSlept', 'asc') }}>
                                     Least hours slept
                                 </Dropdown.Item>
                             </Dropdown.Menu>
@@ -68,6 +68,7 @@ const Journal = props => {
                                 notes={entry.notes}
                                 hoursSlept={entry.hoursSlept}
                                 getJournals={getJournals}
+                                score={entry.score}
                             />
                         ))}
                 </div>

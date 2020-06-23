@@ -15,11 +15,14 @@ export default {
         method: "DELETE",
       }).then((result) => result.json());
     },
-    getSortedEntries(key, order) {
-      return fetch(`${remoteURL}/entries?_sort=${key}&_order=${order}`).then(e => e.json())
+    getSortedEntries(userId, key, order) {
+      return fetch(`${remoteURL}/entries/?userId=${userId}&_sort=${key}&_order=${order}&isSaved=true`).then(e => e.json())
     },
-    getSavedEntries(key, order) {
-      return fetch(`${remoteURL}/entries?_sort=${key}&_order=${order}&saved=true`).then(e => e.json())
+    getSavedEntries(userId) {
+      return fetch(`${remoteURL}/entries/?userId=${userId}&_sort=id&_order=desc&isSaved=true`).then(e => e.json())
+    },
+    getHoursSlept(userId) {
+      return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true`).then(e => e.json())
     },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
