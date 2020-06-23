@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
+import { Button, Modal, FormLabel, Form, Badge } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
@@ -53,7 +53,7 @@ const handleSubmit = () => {
 
   return (
     <>
-      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='md' onClick={handleShow} block >Save</Button>
+      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='md' onClick={handleShow} block>Save entry</Button>
       <Modal
         show={show}
         onHide={handleClose}

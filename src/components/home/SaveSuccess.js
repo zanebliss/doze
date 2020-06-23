@@ -4,8 +4,8 @@ import { Alert } from 'react-bootstrap'
 const SaveSuccess = props => {
     if (props.show) {
         return (
-            <Alert variant="primary" style={{ position: 'absolute' }} onClose={() => props.setShow(false)} dismissible>
-                <p>Successfully saved</p>
+            <Alert variant='success' style={{ position: 'absolute' }} onClose={() => props.setShow(false)} dismissible>
+                <p>Entry successfully saved</p>
             </Alert>
         );
     }

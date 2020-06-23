@@ -10,18 +10,27 @@ import { clearActivities } from '../../modules/helper'
 import './Home.css'
 
 const Home = props => {
-    const [isNewUser, setIsNewUser] = useState(false)
+    const [isNewUser, setIsNewUser] = useState(true)
     const [preferences] = useState([
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
     ])
     let [score, setScore] = useState(null)
     const [show, setShow] = useState(false);
+    const [isSaved, setIsSaved] = useState(true)
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
             props.setEntry(user.entries[user.entries.length - 1])
             setIsNewUser(!isNewUser)
+        })
+    }
+
+    const checkSaved = () => {
+        APIManager.getAllUser(props.activeUser.id).then(user => {
+            if (user.entries[user.entries.length - 1].isSaved) {
+                return true
+            } else { return false }
         })
     }
 
@@ -58,7 +67,10 @@ const Home = props => {
                 entry={props.entry}
                 setEntry={props.setEntry}
             />
-            <Button size='md' block onClick={() => clearActivities(props.entry.userId)}>Clear activities</Button>
+            <Button size='md' block onClick={() => {
+                clearActivities(props.activeUser.id)
+                props.resetEntry()
+                }}>Clear activities</Button>
             <Save
                 setShow={setShow}
                 score={score}
