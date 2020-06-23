@@ -7,18 +7,8 @@
     },
     {
       "username": "Mac",
-      "password": "asdf",
+      "password": "wasd",
       "id": 2
-    },
-    {
-      "username": "Macy",
-      "password": "wasd",
-      "id": 3
-    },
-    {
-      "username": "Debbie",
-      "password": "wasd",
-      "id": 4
     }
   ],
   "entries": [
@@ -75,6 +65,24 @@
       "notes": "",
       "isSaved": true,
       "id": 18
+    },
+    {
+      "userId": 2,
+      "factor1": 0,
+      "factor2": 1,
+      "factor3": 0,
+      "factor4": 0,
+      "factor5": 1,
+      "factor6": 1,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 0,
+      "hoursSlept": 7,
+      "score": 7,
+      "date": "2020-06-23T02:46:10.026Z",
+      "notes": "I didn't sleep well.",
+      "isSaved": true,
+      "id": 19
     }
   ]
 }

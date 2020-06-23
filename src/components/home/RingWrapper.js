@@ -3,15 +3,13 @@ import HomeRing from '../ring/HomeRing'
 import APIManager from '../../modules/APIManager'
 
 const Ring = props => {
-    
+
     const [loadRing, setLoadRing] = useState(null)
-    const [headerText, setHeaderText] = useState('Enter activities.') 
+    const [headerText, setHeaderText] = useState('Enter activities.')
 
     useEffect(() => {
         APIManager.getAllUser(props.entry.userId).then(user => {
-            if (user.entries.length === 1) {
-                setLoadRing(false)
-            } else if (user.entries[user.entries.length - 1].isSaved) {
+            if (user.entries[user.entries.length - 1].isSaved) {
                 setLoadRing(false)
             } else if (props.isNewUser) {
                 setLoadRing(false)
@@ -25,7 +23,7 @@ const Ring = props => {
         if (!loadRing) {
             setHeaderText('Enter activities.')
         } else {
-            setHeaderText('Chance of feeling well rested.')
+            setHeaderText('Chance of feeling well rested')
         }
     }, [loadRing])
 

@@ -21,10 +21,10 @@ const Save = props => {
     props.resetEntry()
 }
   
-  const handleSubmit = () => {
-    let entry = {}
-    APIManager.getAllUser(props.entry.userId).then(user => {
-      entry = user.entries[user.entries.length - 1]
+const handleSubmit = () => {
+  let entry = {}
+  APIManager.getAllUser(props.entry.userId).then(user => {
+    entry = user.entries[user.entries.length - 1]
       entry.isSaved = true
       entry.result = +result
       entry.hoursSlept = hoursSlept
@@ -35,7 +35,7 @@ const Save = props => {
       props.resetEntry()
       handleClose()
       resetSave()
-      alert('Entry saved.')
+      handleClose()
     })
   }
 
@@ -53,7 +53,7 @@ const Save = props => {
 
   return (
     <>
-      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='lg' onClick={handleShow} block >Save</Button>
+      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='md' onClick={handleShow} block >Save</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -82,6 +82,7 @@ const Save = props => {
         />
         <FormLabel>{hoursSlept}</FormLabel>
         <Button variant="primary" onClick={() => {
+          props.setShow(true)
           handleSubmit()
         }}>Save entry</Button>
         <Button variant="secondary" onClick={handleClose}>Cancel</Button>

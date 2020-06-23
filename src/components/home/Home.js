@@ -5,16 +5,18 @@ import RingWrapper from './RingWrapper'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
+import SaveSuccess from '../home/SaveSuccess'
 import { clearActivities } from '../../modules/helper'
 import './Home.css'
 
 const Home = props => {
-    const [isNewUser, setIsNewUser] = useState(true)
+    const [isNewUser, setIsNewUser] = useState(false)
     const [preferences] = useState([
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
         'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
     ])
     let [score, setScore] = useState(null)
+    const [show, setShow] = useState(false);
 
     const updateLatestEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -36,7 +38,11 @@ const Home = props => {
 
     return (
         <>
-            {isNewUser && <NewUser />}
+          <SaveSuccess 
+              show={show}
+              setShow={setShow}
+          />
+            {isNewUser && <NewUser isNewUser={isNewUser} />}
             {!isNewUser && <RingWrapper
                 isNewUser={isNewUser}
                 score={score}
@@ -52,8 +58,9 @@ const Home = props => {
                 entry={props.entry}
                 setEntry={props.setEntry}
             />
-            {/* <Button onClick={() => clearActivities(entry.userId)}>Clear</Button> */}
+            <Button size='md' block onClick={() => clearActivities(props.entry.userId)}>Clear activities</Button>
             <Save
+                setShow={setShow}
                 score={score}
                 isNewUser={isNewUser}
                 setIsNewUser={setIsNewUser}

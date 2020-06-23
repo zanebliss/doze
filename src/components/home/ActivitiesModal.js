@@ -10,7 +10,8 @@ const ActivitiesModal = props => {
 
     return (
         <>
-            <Button variant='primary' size='lg' onClick={handleShow} block className='main-button' style={{zIndex:1}}>Activities</Button>
+            
+            <Button variant='primary' size='md' onClick={handleShow} block className='main-button' style={{zIndex:1}}>Activities</Button>
             <Modal
                 show={show}
                 onHide={handleClose}
