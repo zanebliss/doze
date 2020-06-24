@@ -10,15 +10,24 @@ const HomeChart = props => {
         legend: {
             display: false
         },
+        tooltips: {
+            titleFontSize: 18,
+            titleAlign: 'center',
+            bodyFontSize: 18,
+        },
         scales: {
             yAxes: [{
                 gridLines: {
                     display: false,
                 },
                 ticks: {
-                    beginAtZero: true,
+                    // beginAtZero: true,
                     fontSize: 16,
                     fontColor: 'black',
+                    stepSize: 1,
+                    min: 2,
+                    max: 10,
+                    display: false
                 }
             }],
             xAxes: [{
@@ -42,11 +51,11 @@ const HomeChart = props => {
                     props.hoursSlept[0],
                 ],
                 backgroundColor: ['rgba(41, 201, 255, 0.5)'],
-                borderWidth: 1,
+                borderWidth: 1.5,
                 pointBackgroundColor: 'white',
                 borderColor: 'gray',
                 label: 'Hours slept',
-                pointRadius: 6
+                pointRadius: 12
             },
 
         ],
@@ -61,7 +70,7 @@ const HomeChart = props => {
 
     return (
         <>
-            <div style={{ height: '280px', padding: '5px', paddingBottom: '0px', paddingTop: '0px'}}>
+            <div style={{ height: '280px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}}>
                 <Line options={options} data={data} />
             </div>
         </>
