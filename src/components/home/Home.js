@@ -4,7 +4,7 @@ import Ring from './Ring'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
-import SaveSuccess from '../home/SaveSuccess'
+import Logo from './Logo'
 import { Clock } from 'react-bootstrap-icons'
 import './Home.css'
 
@@ -88,16 +88,21 @@ const Home = props => {
     return (
         <>
             <div className='home-wrapper'>
+                <div className='logo'>
+                    <Logo />
+                    <h1>Doze</h1>
+                </div>
                 {isNewUser && <NewUser isNewUser={isNewUser} />}
                 <div className='ring-wrapper'>
                     <div hidden={!loadRing}>
+                    <Clock size='65' color='gray' className='clock' />
                         {isNewEntry ?
                             <div className='status-text'><h1>Enter activities.</h1></div>
                             :
                             <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
                         }
-                        <Clock size='45' color='gray' className='clock' />
                     </div>
+                    <div className='backdrop' />
                     {loadRing && <Ring
                         isNewEntry={isNewEntry}
                         isNewUser={isNewUser}
@@ -106,6 +111,7 @@ const Home = props => {
                         activeUser={props.activeUser}
                         entry={entry}
                     />}
+                    <div className='backdrop-ring' />
                 </div>
                 <div className='button-wrapper'>
                     <div className='buttons'>

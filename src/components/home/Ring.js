@@ -9,7 +9,7 @@ const Ring = props => {
 
     const options = {
         tooltips: {
-            enabled: true
+            enabled: false
         },
         responsive: true,
         cutoutPercentage: 55,
@@ -87,8 +87,8 @@ const Ring = props => {
 
     return (
         <>
-            <div hidden={props.isNewEntry} className='result'><p>{props.score}%</p></div>
-            <Doughnut options={options} data={data} width={215} />
+            <div hidden={props.isNewEntry} className='result'><h1>{props.score}%</h1></div>
+            <Doughnut options={options} data={data} width={170} />
         </>
     )
 }

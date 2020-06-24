@@ -65,6 +65,24 @@
       "notes": "I didn't sleep well.",
       "isSaved": true,
       "id": 21
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": false,
+      "hoursSlept": 0,
+      "score": null,
+      "date": "2020-06-24T21:44:12.618Z",
+      "notes": "",
+      "isSaved": false,
+      "id": 22
     }
   ]
 }
