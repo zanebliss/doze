@@ -1,7 +1,7 @@
 import React from 'react'
 import './Settings.css'
 import { Card } from 'react-bootstrap'
-import { NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Settings = props => {
 
@@ -14,8 +14,8 @@ const Settings = props => {
     return (
         <>
             <div className='settings-wrapper'>
+                <div className='header-wrapper'><h1>Settings</h1></div>
                 <div className='header'>
-                    <div className='header-text'>Settings</div>
                     <Card>
                         <Card.Body>
                             <NavLink to='/about'>About</NavLink>

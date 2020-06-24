@@ -22,8 +22,10 @@ const ApplicationViews = props => {
                     setIsNewUser={setIsNewUser}
                 />
             }} />
-            <Route exact path='/trends' render={props => {
-                return <Trends />
+            <Route exact path='/trends' render={() => {
+                return <Trends 
+                    activeUser={activeUser}
+                />
             }} />
             <Route exact path='/journal' render={props => {
                 return <Journal {...props}
