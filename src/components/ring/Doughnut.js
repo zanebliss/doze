@@ -85,10 +85,12 @@ const HomeRing = props => {
 
     return (
         <>
-            <Clock size='45' color='gray' className='clock' />
-            <div hidden={!props.loadRing} className='result'><p>{score}%</p></div>
-            <Doughnut options={options} data={data} className='ring' width={215} />
-            {/* <div className='backdrop-ring' />  */}
+            <div className='ring-wrapper'>
+                <Clock size='45' color='gray' className='clock' />
+                <div hidden={!props.loadRing} className='result'><p>{score}%</p></div>
+                <Doughnut options={options} data={data} className='ring' width={215} />
+                {/* <div className='backdrop-ring' />  */}
+            </div>
         </>
     )
 }
