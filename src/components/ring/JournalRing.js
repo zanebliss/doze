@@ -25,7 +25,7 @@ const JournalRing = props => {
             labels: ['Sleep score', ' ']
     }
 
-    return (
+return (
         <>
             <div>{props.score}</div>
             <Doughnut options={options} data={data} />
