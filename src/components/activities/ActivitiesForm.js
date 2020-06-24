@@ -11,30 +11,28 @@ const ActivitiesForm = props => {
 
     const createNewEntry = () => {
         APIManager.post('entries', entry).then(() => {
-            props.updateLatestEntry()
+            props.setCurrentEntry()
+            props.handleClose()
         })
     }
 
-    const handleSave = () => {
-        APIManager.getAllUser(props.entry.userId).then(user => {
-            if (user.entries[user.entries.length - 1].isSaved) {
-                createNewEntry()
-            } else {
-                APIManager.edit('entries', entry).then(() => {
-                    props.updateLatestEntry()
-                })
-            }
+    const editEntry = () => {
+        APIManager.edit('entries', entry).then(() => {
+            props.setCurrentEntry()
+            props.handleClose()
         })
+    }
+
+    const handleSubmit = () => {
+        if (props.isNewUser) {
+            createNewEntry()
+        } else {
+            editEntry()
+        }
     }
 
     useEffect(() => {
-        if (!props.isNewUser) {
-            APIManager.getAllUser(props.entry.userId).then(user => {
-                if (!user.entries[user.entries.length - 1].isSaved) {
-                    props.updateLatestEntry()
-                }
-            })
-        }
+        props.setCurrentEntry()
     }, [])
 
     return (
@@ -82,15 +80,7 @@ const ActivitiesForm = props => {
                             checked={(Boolean(entry.factor8))}
                             onChange={() => { entry.factor8 = +!entry.factor8 }}
                         />
-                        <Button onClick={() => {
-                            if (props.isNewUser) {
-                                createNewEntry()
-                                props.handleClose()
-                            } else {
-                                handleSave()
-                                props.handleClose()
-                            }
-                        }}>Next</Button>
+                        <Button onClick={() => {handleSubmit()}}>Next</Button>
                         <Button onClick={props.handleClose} variant='secondary'>Cancel</Button>
                     </div>
                 </Form.Group>

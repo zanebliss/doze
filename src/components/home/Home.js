@@ -5,8 +5,7 @@ import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import SaveSuccess from '../home/SaveSuccess'
-import HomeChart from '../charts/HomeChart'
-import HomeRing from '../ring/Doughnut'
+import { Clock } from 'react-bootstrap-icons'
 import './Home.css'
 
 const Home = props => {
@@ -28,7 +27,6 @@ const Home = props => {
         notes: '',
         isSaved: false,
     })
-    const [hoursSlept, setHoursSlept] = useState([])
     const [score, setScore] = useState(null)
     const [preferences] = useState([
         'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
@@ -57,7 +55,7 @@ const Home = props => {
         }
         return obj
     }
-    const [loadRing, setLoadRing] = useState(false) 
+    const [loadRing, setLoadRing] = useState(false)
 
     const setCurrentEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
@@ -92,31 +90,29 @@ const Home = props => {
                 setShow={setShow}
             />
             {isNewUser && <NewUser isNewUser={isNewUser} />}
-            {loadRing && <Ring
-                isNewEntry={isNewEntry}
-                isNewUser={isNewUser}
-                score={score}
-                setScore={setScore}
-                activeUser={props.activeUser}
-                entry={entry}
-            />}
-            {/* {!isNewUser && <div>
-                <div className='header-text'><h1>Hours slept</h1></div>
-                <HomeChart
-                    hoursSlept={hoursSlept}
-                    activeUser={props.activeUser}
+            <div className='ring-wrapper'>
+                {isNewEntry ?
+                    <div className='status-text'><h1>Enter activities.</h1></div>
+                    :
+                    <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
+                }
+                <Clock size='45' color='gray' className='clock' />
+                {loadRing && <Ring
+                    isNewEntry={isNewEntry}
                     isNewUser={isNewUser}
-                />
-            </div>}
+                    score={score}
+                    setScore={setScore}
+                    activeUser={props.activeUser}
+                    entry={entry}
+                />}
+            </div>
             <div className='button-wrapper'>
                 <div className='buttons'>
                     <ActivitiesModal
-                        updateLatestEntry={updateLatestEntry}
-                        preferences={preferences}
+                        setCurrentEntry={setCurrentEntry}
                         isNewUser={isNewUser}
-                        setIsNewUser={setIsNewUser}
                         entry={entry}
-                        setEntry={setEntry}
+                        preferences={preferences}
                     />
                     <Save
                         setShow={setShow}
@@ -128,7 +124,7 @@ const Home = props => {
                         resetEntry={resetEntry}
                     />
                 </div>
-        </div> */}
+            </div>
         </>
     )
 }

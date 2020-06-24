@@ -87,7 +87,8 @@ const Ring = props => {
 
     return (
         <>
-            <Doughnut options={options} data={data} />
+            <div hidden={props.isNewEntry} className='result'><p>{props.score}%</p></div>
+            <Doughnut options={options} data={data} width={215} />
         </>
     )
 }
