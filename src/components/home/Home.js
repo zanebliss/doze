@@ -4,8 +4,9 @@ import Ring from './Ring'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
-import SaveSuccess from '../home/SaveSuccess'
-import { Clock } from 'react-bootstrap-icons'
+import Logo from './Logo'
+import { Button } from 'react-bootstrap'
+import { ReactComponent as Clock } from '../../media/alarm_24px_rounded.svg'
 import './Home.css'
 
 const Home = props => {
@@ -88,16 +89,26 @@ const Home = props => {
     return (
         <>
             <div className='home-wrapper'>
+                <div className='logo'>
+                    <Logo />
+                    <h1>Doze</h1>
+                    {isNewEntry ?
+                        <Button variant={'primary'} size='sm' className='status'>New entry</Button>
+                        :
+                        <Button variant={'success'} size='sm' className='status'>Entry unsaved</Button>
+                    }
+                </div>
                 {isNewUser && <NewUser isNewUser={isNewUser} />}
                 <div className='ring-wrapper'>
                     <div hidden={!loadRing}>
+                        <Clock className='clock' />
                         {isNewEntry ?
                             <div className='status-text'><h1>Enter activities.</h1></div>
                             :
                             <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
                         }
-                        <Clock size='45' color='gray' className='clock' />
                     </div>
+                    <div className='backdrop' />
                     {loadRing && <Ring
                         isNewEntry={isNewEntry}
                         isNewUser={isNewUser}
@@ -106,6 +117,7 @@ const Home = props => {
                         activeUser={props.activeUser}
                         entry={entry}
                     />}
+                    <div className='backdrop-ring' />
                 </div>
                 <div className='button-wrapper'>
                     <div className='buttons'>
