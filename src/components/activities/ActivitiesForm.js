@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import BoostrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager'
-import '../activities/ActivitiesForm.css'
 
 const ActivitiesForm = props => {
     let entry = props.entry

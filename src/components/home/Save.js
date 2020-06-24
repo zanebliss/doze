@@ -52,7 +52,7 @@ const handleSubmit = () => {
 
   return (
     <>
-      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='md' onClick={handleShow} block>Save entry</Button>
+      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='lg' onClick={handleShow} block>Save entry</Button>
       <Modal
         show={show}
         onHide={handleClose}
@@ -80,11 +80,11 @@ const handleSubmit = () => {
           onChange={e => { setHoursSlept(Number(e.target.value)) }}
         />
         <FormLabel>{hoursSlept}</FormLabel>
-        <Button variant="primary" onClick={() => {
+        <Button variant='primary' onClick={() => {
           props.setShow(true)
           handleSubmit()
         }}>Save entry</Button>
-        <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+        <Button variant='secondary' onClick={handleClose}>Cancel</Button>
       </Modal>
     </>
   )

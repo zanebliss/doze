@@ -1,5 +1,5 @@
 import React, { } from 'react'
-import { Line } from 'react-chartjs-2'
+import { Bar } from 'react-chartjs-2'
 import moment from 'moment'
 
 const HomeChart = props => {
@@ -19,10 +19,9 @@ const HomeChart = props => {
             yAxes: [{
                 gridLines: {
                     display: false,
-                    drawBorder: false
                 },
                 ticks: {
-                    // beginAtZero: true,
+                    beginAtZero: true,
                     fontSize: 16,
                     fontColor: 'black',
                     stepSize: 1,
@@ -32,10 +31,6 @@ const HomeChart = props => {
                 }
             }],
             xAxes: [{
-                gridLines: {
-                    drawBorder: false,
-                    display: true
-                },
                 reverse: true,
                 ticks: {
                     fontSize: 16,
@@ -55,12 +50,16 @@ const HomeChart = props => {
                     props.hoursSlept[1],
                     props.hoursSlept[0],
                 ],
-                backgroundColor: ['rgba(41, 201, 255, 0.5)'],
+                backgroundColor: [
+                    'rgba(41, 201, 255, 0.5)',
+                    'rgba(41, 201, 255, 0.5)',
+                    'rgba(41, 201, 255, 0.5)',
+                    'rgba(41, 201, 255, 0.5)',
+                    'rgba(41, 201, 255, 0.5)',
+                ],
                 borderWidth: 1.5,
-                pointBackgroundColor: 'white',
                 borderColor: 'gray',
                 label: 'Hours slept',
-                pointRadius: 11
             },
 
         ],
@@ -75,8 +74,8 @@ const HomeChart = props => {
 
     return (
         <>
-            <div style={{ height: '250px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}} className='home-chart'>
-                <Line options={options} data={data} /> 
+            <div style={{ height: '280px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}}>
+                <Bar options={options} data={data} />
             </div>
         </>
     )

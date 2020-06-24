@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2'
 import { NeuralNetwork } from 'brain.js'
 import { Clock } from 'react-bootstrap-icons'
 import APIManager from '../../modules/APIManager'
-import './Ring.css'
 
 const HomeRing = props => {
     const net = new NeuralNetwork({ hiddenLayers: [3] })
@@ -30,8 +29,8 @@ const HomeRing = props => {
                     {
                         data: [score, 100 - score],
                         backgroundColor: ['#56CCF2', '#E0E0E0'],
-                        borderColor: 'lightgray'
-
+                        borderColor: 'lightgray',
+                        borderWidth: '1px'
                     }
                 ],
                 labels: ['Sleep score', ' ']
@@ -87,9 +86,10 @@ const HomeRing = props => {
     return (
         <>
             <div className='backdrop' />
-            <Clock size='50' color='gray' className='clock' />
+            <Clock size='45' color='gray' className='clock' />
             <div hidden={!props.loadRing} className='result'><p>{score}%</p></div>
-            <Doughnut options={options} data={data} className='ring' width={200} />
+            <Doughnut options={options} data={data} className='ring' width={215} />
+            <div className='backdrop-ring' />
         </>
     )
 }

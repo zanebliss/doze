@@ -11,7 +11,6 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
     const [isNewUser, setIsNewUser] = useState(true)
-    
 
     return (
         <div className='content-wrapper'>

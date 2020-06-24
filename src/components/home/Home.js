@@ -63,7 +63,7 @@ const Home = props => {
     }
 
     const setHours = () => {
-    APIManager.getSavedEntries(props.activeUser.id, 'hoursSlept', 'asc').then(entries => {
+        APIManager.getSavedEntries(props.activeUser.id, 'hoursSlept', 'asc').then(entries => {
             if (entries.length > 0) {
                 let arr = []
                 entries.forEach(entry => {
@@ -107,30 +107,34 @@ const Home = props => {
                 setEntry={setEntry}
             />}
             {!isNewUser && <div>
-                <div>Hours slept</div>
+                <div className='header-text'><h1>Hours slept</h1></div>
                 <HomeChart
                     hoursSlept={hoursSlept}
                     activeUser={props.activeUser}
                     isNewUser={isNewUser}
                 />
             </div>}
-            <ActivitiesModal
-                updateLatestEntry={updateLatestEntry}
-                preferences={preferences}
-                isNewUser={isNewUser}
-                setIsNewUser={setIsNewUser}
-                entry={entry}
-                setEntry={setEntry}
-            />
-            <Save
-                setShow={setShow}
-                score={score}
-                isNewUser={isNewUser}
-                setIsNewUser={setIsNewUser}
-                entry={entry}
-                setEntry={setEntry}
-                resetEntry={resetEntry}
-            />
+            <div className='button-wrapper'>
+                <div className='buttons'>
+                    <ActivitiesModal
+                        updateLatestEntry={updateLatestEntry}
+                        preferences={preferences}
+                        isNewUser={isNewUser}
+                        setIsNewUser={setIsNewUser}
+                        entry={entry}
+                        setEntry={setEntry}
+                    />
+                    <Save
+                        setShow={setShow}
+                        score={score}
+                        isNewUser={isNewUser}
+                        setIsNewUser={setIsNewUser}
+                        entry={entry}
+                        setEntry={setEntry}
+                        resetEntry={resetEntry}
+                    />
+                </div>
+            </div>
         </>
     )
 }
