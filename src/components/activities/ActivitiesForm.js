@@ -13,6 +13,7 @@ const ActivitiesForm = props => {
         APIManager.post('entries', entry).then(() => {
             props.setCurrentEntry()
             props.handleClose()
+            props.setIsNewUser(false)
         })
     }
 
@@ -24,7 +25,7 @@ const ActivitiesForm = props => {
     }
 
     const handleSubmit = () => {
-        if (props.isNewUser) {
+        if (props.isNewEntry) {
             createNewEntry()
         } else {
             editEntry()

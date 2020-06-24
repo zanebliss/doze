@@ -34,7 +34,6 @@ const Home = props => {
     ])
     const [show, setShow] = useState(false);
     const [isNewEntry, setIsNewEntry] = useState(true)
-
     const resetEntry = () => {
         const obj = {
             userId: props.activeUser.id,
@@ -83,6 +82,9 @@ const Home = props => {
     useEffect(() => {
     }, [entry])
 
+    useEffect(() => {
+    }, [isNewEntry])
+
     return (
         <>
             <SaveSuccess
@@ -91,12 +93,14 @@ const Home = props => {
             />
             {isNewUser && <NewUser isNewUser={isNewUser} />}
             <div className='ring-wrapper'>
-                {isNewEntry ?
-                    <div className='status-text'><h1>Enter activities.</h1></div>
-                    :
-                    <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
-                }
-                <Clock size='45' color='gray' className='clock' />
+                <div hidden={!loadRing}>
+                    {isNewEntry ?
+                        <div className='status-text'><h1>Enter activities.</h1></div>
+                        :
+                        <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
+                    }
+                    <Clock size='45' color='gray' className='clock' />
+                </div>
                 {loadRing && <Ring
                     isNewEntry={isNewEntry}
                     isNewUser={isNewUser}
@@ -109,19 +113,24 @@ const Home = props => {
             <div className='button-wrapper'>
                 <div className='buttons'>
                     <ActivitiesModal
+                        isNewEntry={isNewEntry}
                         setCurrentEntry={setCurrentEntry}
-                        isNewUser={isNewUser}
+                        setIsNewUser={setIsNewUser}
                         entry={entry}
                         preferences={preferences}
                     />
                     <Save
+                        {...props}
+                        setCurrentEntry={setCurrentEntry}
+                        setLoadRing={setLoadRing}
                         setShow={setShow}
                         score={score}
+                        isNewEntry={isNewEntry}
                         isNewUser={isNewUser}
-                        setIsNewUser={setIsNewUser}
                         entry={entry}
                         setEntry={setEntry}
                         resetEntry={resetEntry}
+                        setIsNewEntry={setIsNewEntry}
                     />
                 </div>
             </div>

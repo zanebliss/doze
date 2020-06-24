@@ -14,18 +14,20 @@ const JournalRing = props => {
     }
 
     const data = {
-            datasets: [
-                {
-                    data: [props.score, 100 - props.score],
-                    backgroundColor: ['#56CCF2', '#E0E0E0'],
-                    borderColor: 'lightgray'
+        datasets: [
+            {
+                data: [props.score, 100 - props.score],
+                backgroundColor: ['#56CCF2', '#E0E0E0'],
+                borderColor: 'lightgray'
 
-                }
-            ],
-            labels: ['Sleep score', ' ']
+            }
+        ],
+        labels: ['Sleep score', ' ']
     }
 
-return (
+    
+
+    return (
         <>
             <div>{props.score}</div>
             <Doughnut options={options} data={data} />

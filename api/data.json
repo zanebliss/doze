@@ -13,7 +13,7 @@
   ],
   "entries": [
     {
-      "userId": 1,
+      "userId": 2,
       "factor1": 1,
       "factor2": 1,
       "factor3": 1,
@@ -29,6 +29,24 @@
       "notes": "I didn't sleep well.",
       "isSaved": false,
       "id": 19
+    },
+    {
+      "userId": 1,
+      "factor1": 1,
+      "factor2": 1,
+      "factor3": 1,
+      "factor4": 1,
+      "factor5": 0,
+      "factor6": 0,
+      "factor7": 0,
+      "factor8": 0,
+      "result": 1,
+      "hoursSlept": 7,
+      "score": 7,
+      "date": "2020-06-24T18:22:12.166Z",
+      "notes": "I slept well.",
+      "isSaved": true,
+      "id": 20
     }
   ]
 }

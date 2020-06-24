@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, FormLabel, Form, Badge } from 'react-bootstrap'
+import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
@@ -7,52 +7,26 @@ import RangeSlider from 'react-bootstrap-range-slider'
 const Save = props => {
   const [hoursSlept, setHoursSlept] = useState(0)
   const [notes, setNotes] = useState('')
-  let [result, setResult] = useState(false)
-  const [isNewEntry, setIsNewEntry] = useState(true)
-
+  const [result, setResult] = useState(false)
   const [show, setShow] = useState(false);
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const resetSave = () => {
-    setNotes('')
-    setResult(false)
-    setHoursSlept(0)
-    props.resetEntry()
-}
-  
-const handleSubmit = () => {
-  let entry = {}
-  APIManager.getAllUser(props.entry.userId).then(user => {
-    entry = user.entries[user.entries.length - 1]
-      entry.isSaved = true
-      entry.result = +result
-      entry.hoursSlept = hoursSlept
-      entry.notes = notes
-      entry.score = props.score
-      APIManager.edit('entries', entry)
-    }).then(() => {
-      props.resetEntry()
-      resetSave()
-      handleClose()
-    })
+  const handleSubmit = () => {
+    let entry = props.entry
+    entry.isSaved = true
+    entry.result = +result
+    entry.hoursSlept = hoursSlept
+    entry.notes = notes
+    entry.score = props.score
+    APIManager.edit('entries', entry)
+    props.history.push('/journal')
   }
-
-  useEffect(() => {
-    if (!props.isNewUser) {
-      APIManager.getAllUser(props.entry.userId).then(user => {
-        if (user.entries[user.entries.length - 1].isSaved) {
-          setIsNewEntry(true)          
-        } else {
-          setIsNewEntry(false)
-        }
-      })
-    }
-  }, [props.entry, props.isNewUser])
 
   return (
     <>
-      <Button hidden={props.isNewUser} disabled={isNewEntry} variant='primary' size='lg' onClick={handleShow} block>Save entry</Button>
+      <Button hidden={props.isNewUser} disabled={props.isNewEntry} variant='primary' size='lg' onClick={handleShow} block>Save entry</Button>
       <Modal
         show={show}
         onHide={handleClose}

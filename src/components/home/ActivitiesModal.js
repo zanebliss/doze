@@ -23,6 +23,10 @@ const ActivitiesModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <ActivitiesForm
+                        isNewEntry={props.isNewEntry}
+                        setIsNewEntry={props.setIsNewEntry}
+                        isNewUser={props.isNewUser}
+                        setIsNewUser={props.setIsNewUser}
                         entry={props.entry}
                         preferences={props.preferences}
                         setCurrentEntry={props.setCurrentEntry}
