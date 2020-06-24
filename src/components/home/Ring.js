@@ -58,7 +58,9 @@ const Ring = props => {
                 datasets: [
                     {
                         data: [100],
-                        backgroundColor: ['lightgray']
+                        backgroundColor: ['lightgray'],
+                        borderColor: 'lightgray',
+                        borderWidth: '1px'
                     }
                 ],
             })
