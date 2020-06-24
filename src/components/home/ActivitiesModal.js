@@ -10,27 +10,26 @@ const ActivitiesModal = props => {
 
     return (
         <>
-            <Button variant='primary' size='lg' onClick={handleShow} block style={{ zIndex: 1 }}>Activities</Button>
+            <Button variant='primary' size='lg' onClick={handleShow} block>Activities</Button>
             <Modal
                 show={show}
                 onHide={handleClose}
                 backdrop='static'
                 centered
-                animation={false}
+                animation={true}
             >
                 <Modal.Header closeButton>
                     <Modal.Title>What did you do today?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <ActivitiesForm
-                        reloadRing={props.reloadRing}
-                        setLoadRing={props.setLoadRing}
-                        updateLatestEntry={props.updateLatestEntry}
+                        isNewEntry={props.isNewEntry}
+                        setIsNewEntry={props.setIsNewEntry}
                         isNewUser={props.isNewUser}
                         setIsNewUser={props.setIsNewUser}
-                        preferences={props.preferences}
                         entry={props.entry}
-                        setEntry={props.setEntry}
+                        preferences={props.preferences}
+                        setCurrentEntry={props.setCurrentEntry}
                         handleClose={handleClose}
                     />
                 </Modal.Body>

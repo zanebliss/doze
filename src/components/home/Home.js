@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import Save from './Save'
-import RingWrapper from './RingWrapper'
+import Ring from './Ring'
 import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import SaveSuccess from '../home/SaveSuccess'
-import HomeChart from '../charts/HomeChart'
+import { Clock } from 'react-bootstrap-icons'
 import './Home.css'
 
 const Home = props => {
-    const [isNewUser, setIsNewUser] = useState(true)
-    const [preferences] = useState([
-        'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
-        'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
-    ])
-    const [score, setScore] = useState(null)
-    const [show, setShow] = useState(false);
-    const [hoursSlept, setHoursSlept] = useState([])
-    let [entry, setEntry] = useState({
+    const [isNewUser, setIsNewUser] = useState(false)
+    const [entry, setEntry] = useState({
         userId: props.activeUser.id,
         factor1: 0,
         factor2: 0,
@@ -34,6 +27,13 @@ const Home = props => {
         notes: '',
         isSaved: false,
     })
+    const [score, setScore] = useState(null)
+    const [preferences] = useState([
+        'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
+        'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
+    ])
+    const [show, setShow] = useState(false);
+    const [isNewEntry, setIsNewEntry] = useState(true)
     const resetEntry = () => {
         const obj = {
             userId: props.activeUser.id,
@@ -52,45 +52,38 @@ const Home = props => {
             notes: '',
             isSaved: false,
         }
-        setEntry(obj)
+        return obj
     }
+    const [loadRing, setLoadRing] = useState(false)
 
-    const updateLatestEntry = () => {
+    const setCurrentEntry = () => {
         APIManager.getAllUser(props.activeUser.id).then(user => {
-            setEntry(user.entries[user.entries.length - 1])
-            setIsNewUser(!isNewUser)
-        })
-    }
-
-    const setHours = () => {
-        APIManager.getSavedEntries(props.activeUser.id, 'hoursSlept', 'asc').then(entries => {
-            if (entries.length > 0) {
-                let arr = []
-                entries.forEach(entry => {
-                    if (entry.isSaved) {
-                        arr.push(entry.hoursSlept)
-                    }
-                });
-                setHoursSlept(arr)
+            const latestEntry = user.entries[user.entries.length - 1]
+            if (latestEntry === undefined) {
+                setIsNewUser(true)
+                setIsNewEntry(true)
+            } else {
+                setLoadRing(true)
+                if (!latestEntry.isSaved) {
+                    setIsNewEntry(false)
+                    setEntry(latestEntry)
+                }
             }
         })
     }
 
     useEffect(() => {
-        setHours()
+        setCurrentEntry()
     }, [])
 
     useEffect(() => {
-        APIManager.getAllUser(props.activeUser.id).then(user => {
-            if (user.entries.length === 0) {
-                setIsNewUser(true)
-            } else {
-                setIsNewUser(false)
-            }
-        })
+    }, [isNewUser])
+
+    useEffect(() => {
     }, [entry])
 
-
+    useEffect(() => {
+    }, [isNewEntry])
 
     return (
         <>
@@ -99,39 +92,45 @@ const Home = props => {
                 setShow={setShow}
             />
             {isNewUser && <NewUser isNewUser={isNewUser} />}
-            {!isNewUser && <RingWrapper
-                isNewUser={isNewUser}
-                score={score}
-                setScore={setScore}
-                entry={entry}
-                setEntry={setEntry}
-            />}
-            {!isNewUser && <div>
-                <div className='header-text'><h1>Hours slept</h1></div>
-                <HomeChart
-                    hoursSlept={hoursSlept}
-                    activeUser={props.activeUser}
+            <div className='ring-wrapper'>
+                <div hidden={!loadRing}>
+                    {isNewEntry ?
+                        <div className='status-text'><h1>Enter activities.</h1></div>
+                        :
+                        <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
+                    }
+                    <Clock size='45' color='gray' className='clock' />
+                </div>
+                {loadRing && <Ring
+                    isNewEntry={isNewEntry}
                     isNewUser={isNewUser}
-                />
-            </div>}
+                    score={score}
+                    setScore={setScore}
+                    activeUser={props.activeUser}
+                    entry={entry}
+                />}
+            </div>
             <div className='button-wrapper'>
                 <div className='buttons'>
                     <ActivitiesModal
-                        updateLatestEntry={updateLatestEntry}
-                        preferences={preferences}
-                        isNewUser={isNewUser}
+                        isNewEntry={isNewEntry}
+                        setCurrentEntry={setCurrentEntry}
                         setIsNewUser={setIsNewUser}
                         entry={entry}
-                        setEntry={setEntry}
+                        preferences={preferences}
                     />
                     <Save
+                        {...props}
+                        setCurrentEntry={setCurrentEntry}
+                        setLoadRing={setLoadRing}
                         setShow={setShow}
                         score={score}
+                        isNewEntry={isNewEntry}
                         isNewUser={isNewUser}
-                        setIsNewUser={setIsNewUser}
                         entry={entry}
                         setEntry={setEntry}
                         resetEntry={resetEntry}
+                        setIsNewEntry={setIsNewEntry}
                     />
                 </div>
             </div>
