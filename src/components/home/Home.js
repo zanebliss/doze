@@ -5,7 +5,7 @@ import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import Logo from './Logo'
-// import { Clock } from 'react-bootstrap-icons' 
+import { Button } from 'react-bootstrap'  
 import { ReactComponent as Clock } from '../../media/alarm_24px_rounded.svg'
 import './Home.css'
 
@@ -92,6 +92,7 @@ const Home = props => {
                 <div className='logo'>
                     <Logo />
                     <h1>Doze</h1>
+                    <Button variant={'success'} size='sm' className='status'>Entry loaded</Button>
                 </div>
                 {isNewUser && <NewUser isNewUser={isNewUser} />}
                 <div className='ring-wrapper'>
