@@ -107,7 +107,7 @@ const Home = props => {
                 setEntry={setEntry}
             />}
             {!isNewUser && <div>
-                <div>Hours slept</div>
+                <div className='header-text'><h1>Hours slept</h1></div>
                 <HomeChart
                     hoursSlept={hoursSlept}
                     activeUser={props.activeUser}

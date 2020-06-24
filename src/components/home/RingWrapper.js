@@ -23,16 +23,14 @@ const Ring = props => {
         if (!loadRing) {
             setHeaderText('Enter activities.')
         } else {
-            setHeaderText('Chance of feeling well rested')
+            setHeaderText('Chance of feeling well rested.')
         }
     }, [loadRing])
 
     return (
         <>
-            <div className='ring-container'>
-                <div className='header-text'>
-                    <h1>{headerText}</h1>
-                </div>
+            <div className='ring-wrapper'>
+            <div className='status-text'><h1>{headerText}</h1></div>
                 <HomeRing
                     counter={props.counter}
                     score={props.score}
