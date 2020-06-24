@@ -87,51 +87,49 @@ const Home = props => {
 
     return (
         <>
-            <SaveSuccess
-                show={show}
-                setShow={setShow}
-            />
-            {isNewUser && <NewUser isNewUser={isNewUser} />}
-            <div className='ring-wrapper'>
-                <div hidden={!loadRing}>
-                    {isNewEntry ?
-                        <div className='status-text'><h1>Enter activities.</h1></div>
-                        :
-                        <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
-                    }
-                    <Clock size='45' color='gray' className='clock' />
-                </div>
-                {loadRing && <Ring
-                    isNewEntry={isNewEntry}
-                    isNewUser={isNewUser}
-                    score={score}
-                    setScore={setScore}
-                    activeUser={props.activeUser}
-                    entry={entry}
-                />}
-            </div>
-            <div className='button-wrapper'>
-                <div className='buttons'>
-                    <ActivitiesModal
-                        isNewEntry={isNewEntry}
-                        setCurrentEntry={setCurrentEntry}
-                        setIsNewUser={setIsNewUser}
-                        entry={entry}
-                        preferences={preferences}
-                    />
-                    <Save
-                        {...props}
-                        setCurrentEntry={setCurrentEntry}
-                        setLoadRing={setLoadRing}
-                        setShow={setShow}
-                        score={score}
+            <div className='home-wrapper'>
+                {isNewUser && <NewUser isNewUser={isNewUser} />}
+                <div className='ring-wrapper'>
+                    <div hidden={!loadRing}>
+                        {isNewEntry ?
+                            <div className='status-text'><h1>Enter activities.</h1></div>
+                            :
+                            <div className='status-text'><h1>Chance of feeling well rested.</h1></div>
+                        }
+                        <Clock size='45' color='gray' className='clock' />
+                    </div>
+                    {loadRing && <Ring
                         isNewEntry={isNewEntry}
                         isNewUser={isNewUser}
+                        score={score}
+                        setScore={setScore}
+                        activeUser={props.activeUser}
                         entry={entry}
-                        setEntry={setEntry}
-                        resetEntry={resetEntry}
-                        setIsNewEntry={setIsNewEntry}
-                    />
+                    />}
+                </div>
+                <div className='button-wrapper'>
+                    <div className='buttons'>
+                        <ActivitiesModal
+                            isNewEntry={isNewEntry}
+                            setCurrentEntry={setCurrentEntry}
+                            setIsNewUser={setIsNewUser}
+                            entry={entry}
+                            preferences={preferences}
+                        />
+                        <Save
+                            {...props}
+                            setCurrentEntry={setCurrentEntry}
+                            setLoadRing={setLoadRing}
+                            setShow={setShow}
+                            score={score}
+                            isNewEntry={isNewEntry}
+                            isNewUser={isNewUser}
+                            entry={entry}
+                            setEntry={setEntry}
+                            resetEntry={resetEntry}
+                            setIsNewEntry={setIsNewEntry}
+                        />
+                    </div>
                 </div>
             </div>
         </>

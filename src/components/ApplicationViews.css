@@ -1,3 +1,17 @@
 .content-wrapper {
     margin-bottom: 62.33px;
+    background-color: lightgray;
+}
+
+.header-wrapper {
+    background-color: #56CCF2;
+    height: 100px;
+    display: flex;
+    flex-flow: row;
+}
+
+.header-wrapper h1 {
+    margin-top: 10%;
+    margin-left: 7%;
+    color: white;
 }

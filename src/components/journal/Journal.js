@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { FilterRight } from 'react-bootstrap-icons'
 import { Dropdown } from 'react-bootstrap'
 import APIManager from '../../modules/APIManager'
-import './Journal.css'
 import JournalCard from './JournalCard'
+import './Journal.css'
 
 const Journal = props => {
     let [entries, setEntries] = useState([])
@@ -33,9 +33,9 @@ const Journal = props => {
     return (
         <>
             <div className='journal-wrapper'>
-                <div className='journal-header'>
-                    Sleep journal
-                    <div hidden={props.isNewUser}>
+                <div className='header-wrapper'>
+                    <h1>Journal</h1>
+                    <div hidden={props.isNewUser} className='dropdown-wrapper'>
                         <Dropdown>
                             <Dropdown.Toggle>
                                 <FilterRight size={30} />

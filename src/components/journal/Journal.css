@@ -1,5 +1,4 @@
-.journal-header {
+.dropdown-wrapper {
     display: flex;
-    justify-content: space-around;
-    background-color: lightblue;
-} 
+    justify-content: right;
+}

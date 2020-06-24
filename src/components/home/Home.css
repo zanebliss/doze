@@ -1,8 +1,13 @@
+.home-wrapper {
+  background-color: white;
+}
+
 .ring-wrapper {
   margin-top: 10px;
   display: flex;
   flex-flow: column;
   align-items: center;
+  background-color: white;
 }
 
 .status-text h1 {
