@@ -1,73 +1,69 @@
-import React, { useState, useEffect } from 'react'
+import React, { } from 'react'
 import { Line } from 'react-chartjs-2'
 import moment from 'moment'
-import APIManager from '../../modules/APIManager'
 
 const HomeChart = props => {
-    const [data, setData] = useState({})
-    const [hoursSlept, setHoursSlept] = useState([])
-    const [loadChart, setLoadChart] = useState(false)
 
     const options = {
+        responsive: true,
+        maintainAspectRatio: false,
         legend: {
             display: false
         },
-    }
-
-    const setHours = () => {
-        APIManager.getAllUser(props.activeUser.id).then(user => {
-            if (user.entries.length > 0) {
-                let arr = []
-                user.entries.forEach(entry => {
-                    if (entry.isSaved) {
-                        arr.push(entry.hoursSlept)
-                    }
-                });
-                setHoursSlept(arr)
-                setLoadChart(true)
-            }
-        })
-    }
-
-    const setChart = () => {
-        setData({
-            datasets: [
-                {
-                    data: [
-                        hoursSlept[4],
-                        hoursSlept[3],
-                        hoursSlept[2],
-                        hoursSlept[1],
-                        hoursSlept[0],
-                    ],
-                    backgroundColor: '#6FCF97',
-                    borderWidth: 1,
-                    pointBackgroundColor: '#56CCF2',
-                    borderColor: 'black'
+        scales: {
+            yAxes: [{
+                gridLines: {
+                    display: false,
                 },
-                
-            ],
-            labels: [
-                moment().subtract(4, 'day').format('Do'),
-                moment().subtract(3, 'day').format('Do'),
-                moment().subtract(2, 'day').format('Do'),
-                moment().subtract(1, 'day').format('Do'),
-                'Last night',
-            ]
-        })
+                ticks: {
+                    beginAtZero: true,
+                    fontSize: 16,
+                    fontColor: 'black',
+                }
+            }],
+            xAxes: [{
+                reverse: true,
+                ticks: {
+                    fontSize: 16,
+                    fontColor: 'black',
+                }
+            }],
+        }
     }
 
-    useEffect(() => {
-        setHours()
-    }, [])
+    const data = {
+        datasets: [
+            {
+                data: [
+                    props.hoursSlept[4],
+                    props.hoursSlept[3],
+                    props.hoursSlept[2],
+                    props.hoursSlept[1],
+                    props.hoursSlept[0],
+                ],
+                backgroundColor: ['rgba(41, 201, 255, 0.5)'],
+                borderWidth: 1,
+                pointBackgroundColor: 'white',
+                borderColor: 'gray',
+                label: 'Hours slept',
+                pointRadius: 6
+            },
 
-    useEffect(() => {
-        setChart()
-    }, [loadChart])
+        ],
+        labels: [
+            moment().subtract(4, 'day').format('ddd'),
+            moment().subtract(3, 'day').format('ddd'),
+            moment().subtract(2, 'day').format('ddd'),
+            moment().subtract(1, 'day').format('ddd'),
+            'Today',
+        ]
+    }
 
     return (
         <>
-            <Line options={options} data={data} />
+            <div style={{ height: '280px', padding: '5px', paddingBottom: '0px', paddingTop: '0px'}}>
+                <Line options={options} data={data} />
+            </div>
         </>
     )
 }

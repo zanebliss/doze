@@ -33,7 +33,6 @@ const handleSubmit = () => {
       APIManager.edit('entries', entry)
     }).then(() => {
       props.resetEntry()
-      handleClose()
       resetSave()
       handleClose()
     })

@@ -89,7 +89,7 @@ const HomeRing = props => {
             <div className='backdrop' />
             <Clock size='50' color='gray' className='clock' />
             <div hidden={!props.loadRing} className='result'><p>{score}%</p></div>
-            <Doughnut options={options} data={data} className='ring' width={175} />
+            <Doughnut options={options} data={data} className='ring' width={200} />
         </>
     )
 }
