@@ -5,7 +5,8 @@ import NewUser from './NewUser'
 import ActivitiesModal from './ActivitiesModal'
 import APIManager from '../../modules/APIManager'
 import Logo from './Logo'
-import { Clock } from 'react-bootstrap-icons'
+// import { Clock } from 'react-bootstrap-icons' 
+import { ReactComponent as Clock } from '../../media/alarm_24px_rounded.svg'
 import './Home.css'
 
 const Home = props => {
@@ -95,7 +96,7 @@ const Home = props => {
                 {isNewUser && <NewUser isNewUser={isNewUser} />}
                 <div className='ring-wrapper'>
                     <div hidden={!loadRing}>
-                    <Clock size='65' color='gray' className='clock' />
+                    <Clock className='clock' />
                         {isNewEntry ?
                             <div className='status-text'><h1>Enter activities.</h1></div>
                             :

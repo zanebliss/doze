@@ -37,29 +37,21 @@
   padding: 5px;
 }
 
-.header-text h1 {
-  margin-left: 8%;
-  color: black;
-  font-size: 18pt;
-  font-weight: normal;
-  margin-top: 2%;
-  margin-bottom: 2%;
-}
-
 .button-wrapper {
   display: flex;
   flex-flow: column;
   align-items: center;
+  margin-top: 10%;
 }
 
 .buttons {
   margin: 10%;
-  width: 50%;
+  width: 60%;
 }
 
 .clock {
-  top: 34%;
-  /* background-color: ; */
+  top: 32%;
+  color: black;
   border-radius: 100%;
   position: absolute;
   position: absolute;
@@ -69,6 +61,31 @@
   right: 0;
   text-align: center;
   z-index: 1;
+}
+
+.clock-gradient {
+  background: linear-gradient(270deg, #ddf3f5, #ecdef5, #def6ff);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 .backdrop-ring {
@@ -100,7 +117,7 @@
 
 .result h1 {
   font-size: 38pt;
-  font-weight: normal;
+  font-weight: 300;
 }
 
 .ring-container {
