@@ -21,7 +21,7 @@ const ActivitiesModal = props => {
                 <Modal.Header closeButton>
                     <Modal.Title>What did you do today?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{ paddingTop: '3px', paddingBottom: '5px'}}>
                     <ActivitiesForm
                         isNewEntry={props.isNewEntry}
                         setIsNewEntry={props.setIsNewEntry}

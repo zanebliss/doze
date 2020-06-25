@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Modal, FormLabel, Form } from 'react-bootstrap'
+import { Button, Modal, FormLabel, Form, Badge } from 'react-bootstrap'
 import BootstrapSwitchButton from 'bootstrap-switch-button-react'
 import APIManager from '../../modules/APIManager';
 import RangeSlider from 'react-bootstrap-range-slider'
@@ -35,30 +35,37 @@ const Save = props => {
         centered
       >
         <Modal.Body>
-          Do you feel rested?
-        <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={result} onChange={() => {
+          <div className='save-header'>
+            <h1>Do you feel well rested?</h1>
+          </div>
+          <BootstrapSwitchButton onlabel=' ' offlabel=' ' checked={result} onChange={() => {
             setResult(!result)
           }} />
         </Modal.Body>
         <Form.Label>Sleep notes</Form.Label>
-        <Form.Control as='textarea' rows='3' value={notes} onChange={e => {
-          setNotes(e.target.value)
-        }} />
-        <FormLabel>Hours slept</FormLabel>
-        <RangeSlider
-          min={0}
-          max={12}
-          value={hoursSlept}
-          size='lg'
-          step={0.5}
-          onChange={e => { setHoursSlept(Number(e.target.value)) }}
-        />
-        <FormLabel>{hoursSlept}</FormLabel>
-        <Button variant='primary' onClick={() => {
-          props.setShow(true)
-          handleSubmit()
-        }}>Save entry</Button>
-        <Button variant='secondary' onClick={handleClose}>Cancel</Button>
+        <div className='save-textfield'>
+          <Form.Control required as='textarea' rows='3' value={notes} onChange={e => {
+            setNotes(e.target.value)
+          }} />
+        </div>
+        <FormLabel>Hours slept<Badge variant='primary'>{hoursSlept}</Badge></FormLabel>
+        <div className='save-slider'>
+          <RangeSlider
+            min={4}
+            max={12}
+            value={hoursSlept}
+            size='lg'
+            step={0.5}
+            onChange={e => { setHoursSlept(Number(e.target.value)) }}
+          />
+        </div>
+        <Modal.Footer>
+          <Button variant='primary' onClick={() => {
+            props.setShow(true)
+            handleSubmit()
+          }}>Save entry</Button>
+          <Button variant='secondary' onClick={handleClose}>Cancel</Button>
+        </Modal.Footer>
       </Modal>
     </>
   )
