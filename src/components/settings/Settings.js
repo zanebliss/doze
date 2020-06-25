@@ -1,7 +1,5 @@
 import React from 'react'
 import './Settings.css'
-import { Card } from 'react-bootstrap'
-import { NavLink } from 'react-router-dom'
 
 const Settings = props => {
 
@@ -15,17 +13,9 @@ const Settings = props => {
         <>
             <div className='settings-wrapper'>
                 <div className='header-wrapper'><h1>Settings</h1></div>
-                <div className='header'>
-                    <Card>
-                        <Card.Body>
-                            <NavLink to='/about'>About</NavLink>
-                        </Card.Body>
-                    </Card>
-                    <Card onClick={handleLogout}>
-                        <Card.Body>
-                            Logout
-                        </Card.Body>
-                    </Card>
+                <div className='nav-options'>
+                <div className='nav-item' onClick={() => {props.history.push('/about')}}><p>About</p></div>
+                <div className='nav-item' onClick={handleLogout}><p>Logout</p></div>
                 </div>
             </div>
         </>

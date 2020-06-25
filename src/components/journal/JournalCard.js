@@ -17,7 +17,7 @@ const JournalCard = props => {
                 <Card>
                     <Card.Header>Saved on {moment(props.date).format('MMM Do YYYY, h:mm a')}.</Card.Header>
                     <Card.Body>
-                        <Button variant='danger' className={'delete-button'} onClick={() => { handleDelete(props.id) }}>
+                        <Button variant='danger' className='delete-button' onClick={() => { handleDelete() }}>
                             <XCircle size={'30'} />
                         </Button>
                         <div className='journal-ring'>
