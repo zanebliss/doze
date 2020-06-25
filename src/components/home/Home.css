@@ -170,3 +170,26 @@
   font-size: 20pt;
   font-weight: 200;
 }
+
+.activities-buttons {
+  display: flex;
+  padding-top: 15px;
+}
+
+.form-label {
+  padding-left: 6px;
+  margin-bottom: 0;
+  padding-bottom: 2px;
+  font-size: 16pt;
+}
+
+.sliders-button {
+  width: 50%;
+}
+
+.activities-buttons {
+  /* width: 300px; */
+}
+
+.activities-btn {
+}
