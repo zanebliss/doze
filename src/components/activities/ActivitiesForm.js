@@ -39,7 +39,7 @@ const ActivitiesForm = props => {
     return (
         <>
             <Form>
-                <Form.Group style={{ marginBottom: '0px'}}>
+                <Form.Group style={{ marginBottom: '0px' }}>
                     <div className='sliders'>
                         <Form.Label className='form-label'>{props.preferences[0]}</Form.Label>
                         <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
@@ -82,8 +82,12 @@ const ActivitiesForm = props => {
                             onChange={() => { entry.factor8 = +!entry.factor8 }}
                         />
                         <div className='activities-buttons'>
-                            <Button className='activities-btn' size='lg' onClick={() => { handleSubmit() }}>Next</Button>
-                            <Button className='activities-btn' size='lg' onClick={props.handleClose} variant='secondary'>Cancel</Button>
+                            <div className='activities-btn' >
+                                <Button size='lg' onClick={() => { handleSubmit() }}>Next</Button>
+                            </div>
+                            <div className='activities-btn'>
+                                <Button size='lg' onClick={props.handleClose} variant='secondary'>Cancel</Button>
+                            </div>
                         </div>
                     </div>
                 </Form.Group>
