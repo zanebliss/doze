@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import HomeChart from '../charts/HomeChart'
+import HoursSlept from '../charts/HoursSlept'
 import APIManager from '../../modules/APIManager'
 import { Card } from 'react-bootstrap'
 import './Trends.css'
@@ -32,7 +32,7 @@ const Trends = props => {
 
                         <Card>
                             <Card.Body>
-                                <HomeChart hoursSlept={hoursSlept} />
+                                <HoursSlept hoursSlept={hoursSlept} />
                                 <Card.Title className='card-title'>Hours slept</Card.Title>
                                 <Card.Text>
                                     While sleep requirements vary slightly from person to person, most healthy adults need between 7 to 9 hours of sleep per night to function at their best.
