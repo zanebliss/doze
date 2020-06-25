@@ -2,3 +2,12 @@
     display: flex;
     justify-content: right;
 }
+
+.journal-card {
+    padding: 8px;
+}
+
+.delete-button {
+    position: absolute;
+    right: 6%;
+}
