@@ -117,7 +117,7 @@ const Home = props => {
                         activeUser={props.activeUser}
                         entry={entry}
                     />}
-                    <div className='backdrop-ring' />
+                    {/* <div className='backdrop-ring' /> */}
                 </div>
                 <div className='button-wrapper'>
                     <div className='buttons'>

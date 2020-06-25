@@ -9,3 +9,27 @@
 .settings-wrapper {
     background-color: lightgray;
 }
+
+.nav-options {
+    background: white;
+    border-top: 1px #CFCFCF solid;
+}
+
+.nav-item {
+    display: flex;
+    height: 5em;
+    border-bottom: 1px #CFCFCF solid;
+    border-right: none;
+    border-left: none;
+}
+
+.nav-item p {
+    margin: 0;
+    font-size: 16pt;
+    margin-left: 5%;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    font-weight: ;
+}
