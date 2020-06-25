@@ -2,6 +2,7 @@ import React from 'react'
 import JournalRing from '../ring/JournalRing'
 import { Card, Button } from 'react-bootstrap'
 import { XCircle } from 'react-bootstrap-icons'
+import { ReactComponent as Clock } from '../../media/alarm-journal.svg'
 import APIManager from '../../modules/APIManager'
 import moment from 'moment'
 
@@ -19,12 +20,14 @@ const JournalCard = props => {
                         <Button variant='danger' className={'delete-button'} onClick={() => { handleDelete(props.id) }}>
                             <XCircle size={'30'} />
                         </Button>
-                        <div className='score'>{props.score}</div>
-                        <JournalRing score={props.score} />
-                        {/* <Card.Heading>Hours Slept</Card.Heading> */}
-                        <div>Hours slept {props.hoursSlept}</div>
-                        <div>{props.notes}</div>
+                        <div className='journal-ring'>
+                            <Clock className='clock-journal' />
+                            <div className='result-journal'><h1>{props.score}%</h1></div>
+                            <div className='journal-backdrop' />
+                            <JournalRing score={props.score} />
+                        </div>
                     </Card.Body>
+                    <Card.Footer>{props.notes}</Card.Footer>
                 </Card>
             </div>
         </>

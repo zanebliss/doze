@@ -4,7 +4,7 @@ import { Doughnut } from 'react-chartjs-2'
 const JournalRing = props => {
     const options = {
         tooltips: {
-            enabled: true
+            enabled: false
         },
         responsive: true,
         cutoutPercentage: 55,
