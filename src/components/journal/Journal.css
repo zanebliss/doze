@@ -1,6 +1,7 @@
 .dropdown-wrapper {
-  display: flex;
-  justify-content: right;
+  position: absolute;
+  right: 10%;
+  top: 5%;
 }
 
 .journal-card {

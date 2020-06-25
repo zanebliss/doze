@@ -36,22 +36,16 @@ const Journal = props => {
                 <div className='header-wrapper'>
                     <h1>Journal</h1>
                     <div hidden={props.isNewUser} className='dropdown-wrapper'>
-                        <Dropdown>
+                        <Dropdown >
                             <Dropdown.Toggle>
-                                <FilterRight size={30} />
+                                <FilterRight size={35} />
                             </Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'date', 'asc') }}>
-                                    Recent
-                                </Dropdown.Item>
                                 <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'date', 'desc') }}>
+                                    Most recent
+                                </Dropdown.Item>
+                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'date', 'asc') }}>
                                     Oldest
-                                </Dropdown.Item>
-                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'hoursSlept', 'desc') }}>
-                                    Most hours slept
-                                </Dropdown.Item>
-                                <Dropdown.Item onClick={() => { sortJournals(props.activeUser.id, 'hoursSlept', 'asc') }}>
-                                    Least hours slept
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
