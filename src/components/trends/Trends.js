@@ -33,7 +33,7 @@ const Trends = props => {
                         <Card>
                             <Card.Body>
                                 <HomeChart hoursSlept={hoursSlept} />
-                                <Card.Title style={{ 'margin-top': '10px'}}>Hours slept</Card.Title>
+                                <Card.Title className='card-title'>Hours slept</Card.Title>
                                 <Card.Text>
                                     While sleep requirements vary slightly from person to person, most healthy adults need between 7 to 9 hours of sleep per night to function at their best.
                             </Card.Text>

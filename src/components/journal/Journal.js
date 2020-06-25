@@ -9,8 +9,8 @@ const Journal = props => {
     let [entries, setEntries] = useState([])
 
     const getJournals = () => {
-        return APIManager.getAllUser(props.activeUser.id).then(user => {
-            entries = user.entries.filter(entry => entry.isSaved)
+        return APIManager.getSortedEntries(props.activeUser.id, 'id', 'desc').then(entries => {
+            entries = entries.filter(entry => entry.isSaved)
             setEntries(entries)
         })
     }
@@ -21,11 +21,11 @@ const Journal = props => {
     }
 
     useEffect(() => {
-        APIManager.getAllUser(props.activeUser.id).then(user => {
-            if (user.entries.length > 0) {
+        APIManager.getSortedEntries(props.activeUser.id, 'id', 'desc').then(entries => {
+            if (entries.length > 0) {
                 props.setIsNewUser(false)
             }
-            const allEntries = user.entries.filter(entry => entry.isSaved)
+            const allEntries = entries.filter(entry => entry.isSaved)
             setEntries(allEntries)
         })
     }, [props])
