@@ -1,2 +1,16 @@
 .chart-wrapper {
 }
+
+.trend-card {
+    padding: 5px;
+}
+
+.line {
+    /* border-top: 1.5px #CFCFCF solid; */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card-title {
+    margin-top: 10px;
+}
