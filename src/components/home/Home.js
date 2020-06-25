@@ -93,7 +93,7 @@ const Home = props => {
                     <Logo />
                     <h1>Doze</h1>
                     {isNewEntry ?
-                        <Button variant={'outline-success'} size='sm' className='status'>Status: new entry</Button>
+                        <Button variant={'outline-primary'} size='sm' className='status'>Status: new entry</Button>
                         :
                         <Button variant={'success'} size='sm' className='status'>Status: entry unsaved</Button>
                     }
@@ -117,7 +117,6 @@ const Home = props => {
                         activeUser={props.activeUser}
                         entry={entry}
                     />}
-                    {/* <div className='backdrop-ring' /> */}
                 </div>
                 <div className='button-wrapper'>
                     <div className='buttons'>

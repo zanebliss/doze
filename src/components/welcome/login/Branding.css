@@ -1,0 +1,39 @@
+.branding-wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 5em;
+}
+
+.branding h1 {
+  letter-spacing: 20px;
+  font-size: 32pt;
+  font-weight: normal;
+  text-align: left;
+  width: 60%;
+}
+
+.branding p {
+  text-align: left;
+  width: 60%;
+  font-size: 16pt;
+}
+
+.branding {
+  margin: 10px;
+  margin-bottom: 0px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.login-logo {
+  background: transparent;
+  border-radius: 100%;
+}
+
+.login-back {
+  position: absolute;
+  left: 5%;
+  top: 4%;
+}

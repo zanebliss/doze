@@ -2,7 +2,7 @@ import React, { } from 'react'
 import { Line } from 'react-chartjs-2'
 import moment from 'moment'
 
-const HomeChart = props => {
+const HoursSlept = props => {
 
     const options = {
         responsive: true,
@@ -75,11 +75,11 @@ const HomeChart = props => {
 
     return (
         <>
-            <div style={{ height: '250px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}} className='home-chart'>
+            <div style={{ height: '250px', paddingBottom: '0px', paddingTop: '0px'}} className='home-chart'>
                 <Line options={options} data={data} /> 
             </div>
         </>
     )
 }
 
-export default HomeChart
+export default HoursSlept

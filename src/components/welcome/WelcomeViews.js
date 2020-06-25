@@ -1,6 +1,6 @@
 import { Route } from 'react-router-dom'
 import React, { useState } from 'react'
-import Splash from './splash/Splash'
+import Splash from './login/Splash'
 import Login from './login/Login'
 
 const WelcomeViews = props => {
