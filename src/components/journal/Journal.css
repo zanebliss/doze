@@ -1,4 +1,63 @@
 .dropdown-wrapper {
-    display: flex;
-    justify-content: right;
+  position: absolute;
+  right: 10%;
+  top: 5%;
+}
+
+.journal-card {
+  padding: 8px;
+}
+
+.delete-button {
+  position: absolute;
+  left: 2.5%;
+  top: 16%;
+}
+
+.journal-backdrop {
+  position: absolute;
+  background-color: white;
+  border-radius: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  width: 40%;
+  height: 57%;
+  top: 22%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.journal-ring {
+  position: relative;
+}
+
+.result-journal {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 55%;
+  z-index: 1;
+}
+
+.result-journal h1 {
+  font-size: 22pt;
+  font-weight: normal;
+}
+
+.clock-journal {
+  top: 30%;
+  color: black;
+  border-radius: 100%;
+  position: absolute;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
 }

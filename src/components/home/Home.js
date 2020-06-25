@@ -93,9 +93,9 @@ const Home = props => {
                     <Logo />
                     <h1>Doze</h1>
                     {isNewEntry ?
-                        <Button variant={'primary'} size='sm' className='status'>New entry</Button>
+                        <Button variant={'outline-success'} size='sm' className='status'>Status: new entry</Button>
                         :
-                        <Button variant={'success'} size='sm' className='status'>Entry unsaved</Button>
+                        <Button variant={'success'} size='sm' className='status'>Status: entry unsaved</Button>
                     }
                 </div>
                 {isNewUser && <NewUser isNewUser={isNewUser} />}

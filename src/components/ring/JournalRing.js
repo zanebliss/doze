@@ -4,7 +4,7 @@ import { Doughnut } from 'react-chartjs-2'
 const JournalRing = props => {
     const options = {
         tooltips: {
-            enabled: true
+            enabled: false
         },
         responsive: true,
         cutoutPercentage: 55,
@@ -18,8 +18,8 @@ const JournalRing = props => {
             {
                 data: [props.score, 100 - props.score],
                 backgroundColor: ['#56CCF2', '#E0E0E0'],
-                borderColor: 'lightgray'
-
+                borderColor: 'lightgray',
+                borderWidth: '1px'
             }
         ],
         labels: ['Sleep score', ' ']
@@ -29,8 +29,7 @@ const JournalRing = props => {
 
     return (
         <>
-            <div>{props.score}</div>
-            <Doughnut options={options} data={data} />
+            <Doughnut options={options} data={data} width={215} />
         </>
     )
 }
