@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import HoursSlept from '../charts/HoursSlept'
 import SleepScores from '../charts/SleepScores'
+import Factors from '../charts/Factors'
 import Results from '../charts/Results'
 import APIManager from '../../modules/APIManager'
 import { Card } from 'react-bootstrap'
@@ -8,8 +9,10 @@ import './Trends.css'
 
 const Trends = props => {
     const [hoursSlept, setHoursSlept] = useState([])
+    const [totalSlept, setTotalSlept] = useState(0)
     const [sleepScores, setSleepScores] = useState([])
     const [results, setResults] = useState([])
+    const [totalNights, setTotalNights] = useState()
 
     const getMetrics = (resource, setResource) => {
         let arr = []
@@ -21,10 +24,30 @@ const Trends = props => {
         })
     }
 
+    const getTotalNumber = (resource, setResource) => {
+        let num = 0
+        APIManager.getAllUser(props.activeUser.id).then(user => {
+            user.entries.forEach(entry => {
+                num += entry[resource]
+            });
+            setResource(num)
+        })
+    }
+
+    const getNightsSlept = () => {
+        let nightsSlept = 0
+        APIManager.getAllUser(props.activeUser.id).then(user => {
+            nightsSlept = user.entries.length
+            setTotalNights(nightsSlept)
+        })
+    }
+
     useEffect(() => {
         getMetrics('hoursSlept', setHoursSlept)
         getMetrics('score', setSleepScores)
         getMetrics('result', setResults)
+        getTotalNumber('hoursSlept', setTotalSlept)
+        getNightsSlept(setTotalNights)
     }, [])
 
     return (
@@ -64,6 +87,19 @@ const Trends = props => {
                                 <Card.Text>
                                     Did you feel well rested? See which days you felt well rested.
                             </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className='trend-card'>
+                        <Card>
+                            <Card.Body>
+                                {/* <Factors /> */}
+                                <Card.Title style={{ fontSize: '20pt' }}>Metrics</Card.Title>
+                                <Card.Text style={{ fontSize: '16pt' }}>
+                                    Total hours slept: {totalSlept}
+                                    <br />
+                                    Total nights slept: {totalNights}
+                                </Card.Text>
                             </Card.Body>
                         </Card>
                     </div>
