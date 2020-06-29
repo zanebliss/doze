@@ -1,30 +1,24 @@
 import React, { useState } from 'react'
-import Bar from './components/navbar/Navbar'
 import WelcomeViews from './components/welcome/WelcomeViews'
-import ApplicationViews from './components/ApplicationViews'
+import HomeViews from './components/HomeViews'
 
 const Doze = () => {
-    const [activeUser, setActiveUser] = useState(JSON.parse(sessionStorage.getItem('user')))
+  const [activeUser, setActiveUser] = useState(JSON.parse(sessionStorage.getItem('user')))
 
-    if (!activeUser) {
-        return (
-          <React.Fragment>
-            <WelcomeViews 
-              setActiveUser={setActiveUser}
-              />
-          </React.Fragment>
-        )
-      } else if (activeUser) {
-        return (
-          <React.Fragment>
-            <Bar />
-            <ApplicationViews 
-              activeUser={activeUser} 
-              setActiveUser={setActiveUser}
-              />
-          </React.Fragment>
-        );
-      }
+  if (!activeUser) {
+    return (
+      <WelcomeViews
+        setActiveUser={setActiveUser}
+      />
+    )
+  } else if (activeUser) {
+    return (
+      <HomeViews 
+        activeUser={activeUser}
+        setActiveUser={setActiveUser}
+      />
+    );
+  }
 }
 
 export default Doze

@@ -8,7 +8,7 @@ const WelcomeViews = props => {
   const [login, setLogin] = useState(null)
 
   return (
-    <React.Fragment>
+    <>
       <Route
         exact path='/' render={props => {
           return <Splash {...props} 
@@ -24,7 +24,7 @@ const WelcomeViews = props => {
             />
         }}
       />
-    </React.Fragment>
+    </>
   )
 }
 

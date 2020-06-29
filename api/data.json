@@ -11,25 +11,20 @@
       "id": 2
     }
   ],
-  "entries": [
+  "activities": [
     {
       "userId": 2,
-      "factor1": 1,
-      "factor2": 1,
-      "factor3": 1,
-      "factor4": 1,
-      "factor5": 0,
-      "factor6": 0,
-      "factor7": 0,
-      "factor8": 0,
-      "result": 0,
-      "hoursSlept": 7,
-      "score": 7,
-      "date": "2020-06-23T02:46:10.026Z",
-      "notes": "I didn't sleep well.",
-      "isSaved": false,
-      "id": 19
-    },
+      "factor1": "I exercised today",
+      "factor2": "I had caffeine today",
+      "factor3": "I drank alchohol before bed",
+      "factor4": "I am stressed",
+      "factor5": "I have anxiety",
+      "factor6": "I am wearing a sleep mask",
+      "factor7": "My room is cool",
+      "factor8": "I worked late"
+    }
+  ],
+  "entries": [
     {
       "userId": 1,
       "factor1": 1,

@@ -24,6 +24,18 @@ export default {
     getHoursSlept(userId) {
       return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true`).then(e => e.json())
     },
+    getActivities(userId) {
+      return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true`).then(e => e.json())
+    },
+    createActivities(resource, obj) {
+        return fetch(`${remoteURL}/${resource}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(obj),
+        }).then((data) => data.json()); 
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",

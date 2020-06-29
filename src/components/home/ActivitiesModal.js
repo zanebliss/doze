@@ -28,7 +28,7 @@ const ActivitiesModal = props => {
                         isNewUser={props.isNewUser}
                         setIsNewUser={props.setIsNewUser}
                         entry={props.entry}
-                        preferences={props.preferences}
+                        activities={props.activities}
                         setCurrentEntry={props.setCurrentEntry}
                         handleClose={handleClose}
                     />

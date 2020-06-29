@@ -8,18 +8,35 @@ import Journal from './journal/Journal'
 import './ApplicationViews.css'
 
 const ApplicationViews = props => {
+    const isNewUser = props.isNewUser
+    const setIsNewUser = props.setIsNewUser
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
-    const [isNewUser, setIsNewUser] = useState(true)
+    const activities = props.activities
+    const isNewEntry = props.isNewEntry
+    const setIsNewEntry = props.setIsNewEntry
+    const loadRing = props.loadRing
+    const setLoadRing = props.setLoadRing
+    const entry = props.entry
+    const setEntry = props.setEntry
+    const setCurrentEntry = props.setCurrentEntry
 
     return (
         <div className='content-wrapper'>
 
             <Route exact path='/' render={props => {
                 return <Home {...props}
-                    activeUser={activeUser}
                     isNewUser={isNewUser}
                     setIsNewUser={setIsNewUser}
+                    activeUser={activeUser}
+                    activities={activities}
+                    isNewEntry={isNewEntry}
+                    setIsNewEntry={setIsNewEntry}
+                    loadRing={loadRing}
+                    setLoadRing={setLoadRing}
+                    entry={entry}
+                    setEntry={setEntry}
+                    setCurrentEntry={setCurrentEntry}
                 />
             }} />
             <Route exact path='/trends' render={() => {
@@ -39,7 +56,7 @@ const ApplicationViews = props => {
                     {...props}
                     setActiveUser={setActiveUser} />
             }} />
-            <Route exact path='/about' render={props => {
+            <Route exact path='/about' render={() => {
                 return <About />
             }} />
         </div>
