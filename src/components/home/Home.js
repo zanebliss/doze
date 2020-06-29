@@ -30,8 +30,8 @@ const Home = props => {
     })
     const [score, setScore] = useState(null)
     const [preferences] = useState([
-        'Exercised', 'Drank coffee', 'Sleep mask', 'Cool room',
-        'Stressed', 'Worked late', 'Tired', 'Drank alchohol'
+        'I exercised today', 'I had caffeine today', 'I am wearing a sleep mask', 'The room is cool',
+        'I am stressed', 'I worked late', 'I avoided screens before bed', 'I drank alcohol before bed'
     ])
     const [show, setShow] = useState(false);
     const [isNewEntry, setIsNewEntry] = useState(true)

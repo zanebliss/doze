@@ -21,8 +21,8 @@ export default {
     getSavedEntries(userId) {
       return fetch(`${remoteURL}/entries/?userId=${userId}&_sort=id&_order=desc&isSaved=true`).then(e => e.json())
     },
-    getHoursSlept(userId) {
-      return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true`).then(e => e.json())
+    getMetrics(userId) {
+      return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true&_sort=id&_order=desc`).then(e => e.json())
     },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {

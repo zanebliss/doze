@@ -1,8 +1,8 @@
 import React, { } from 'react'
-import { Bar } from 'react-chartjs-2'
-import moment from 'moment'
+import { Line } from 'react-chartjs-2'
+import moment from 'moment' 
 
-const HomeChart = props => {
+const Results = props => {
 
     const options = {
         responsive: true,
@@ -11,6 +11,7 @@ const HomeChart = props => {
             display: false
         },
         tooltips: {
+            enabled: false,
             titleFontSize: 18,
             titleAlign: 'center',
             bodyFontSize: 18,
@@ -19,18 +20,23 @@ const HomeChart = props => {
             yAxes: [{
                 gridLines: {
                     display: false,
+                    drawBorder: false
                 },
                 ticks: {
-                    beginAtZero: true,
+                    // beginAtZero: true,
                     fontSize: 16,
                     fontColor: 'black',
-                    stepSize: 1,
-                    min: 2,
-                    max: 10,
+                    stepSize: 0.5,
+                    min: -0.1,
+                    max: 1.15,
                     display: false
                 }
             }],
             xAxes: [{
+                gridLines: {
+                    drawBorder: false,
+                    display: true
+                },
                 reverse: true,
                 ticks: {
                     fontSize: 16,
@@ -44,22 +50,19 @@ const HomeChart = props => {
         datasets: [
             {
                 data: [
-                    props.hoursSlept[4],
-                    props.hoursSlept[3],
-                    props.hoursSlept[2],
-                    props.hoursSlept[1],
-                    props.hoursSlept[0],
+                    props.results[4],
+                    props.results[3],
+                    props.results[2],
+                    props.results[1],
+                    props.results[0],
                 ],
-                backgroundColor: [
-                    'rgba(41, 201, 255, 0.5)',
-                    'rgba(41, 201, 255, 0.5)',
-                    'rgba(41, 201, 255, 0.5)',
-                    'rgba(41, 201, 255, 0.5)',
-                    'rgba(41, 201, 255, 0.5)',
-                ],
+                backgroundColor: ['rgba(41, 201, 255, 0.5)'],
                 borderWidth: 1.5,
+                pointBackgroundColor: 'white',
                 borderColor: 'gray',
-                label: 'Hours slept',
+                label: 'Well rested',
+                pointRadius: 11,
+                steppedLine: true
             },
 
         ],
@@ -74,11 +77,11 @@ const HomeChart = props => {
 
     return (
         <>
-            <div style={{ height: '280px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}}>
-                <Bar options={options} data={data} />
+            <div style={{ height: '250px', paddingBottom: '0px', paddingTop: '0px'}} className='home-chart'>
+                <Line options={options} data={data} /> 
             </div>
         </>
     )
 }
 
-export default HomeChart
+export default Results
