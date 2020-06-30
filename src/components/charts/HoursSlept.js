@@ -58,6 +58,7 @@ const HoursSlept = props => {
                 backgroundColor: ['rgba(41, 201, 255, 0.5)'],
                 borderWidth: 1.5,
                 pointBackgroundColor: 'white',
+                pointBorderColor: 'gray',
                 borderColor: 'gray',
                 label: 'Hours slept',
                 pointRadius: 11

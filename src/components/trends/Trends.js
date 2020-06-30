@@ -100,9 +100,9 @@ const Trends = props => {
                         <Card>
                             <Card.Body>
                                 <Factors factors={factors} />
-                                <Card.Title className='card-title'>Well rested.</Card.Title>
+                                <Card.Title className='card-title'>When you were well rested.</Card.Title>
                                 <Card.Text>
-                                    These were the activities that you completed when you indicated you felt well rested.
+                                    These are how many times you completed a specific activity on the days you felt well rested.
                             </Card.Text>
                             </Card.Body>
                         </Card>
@@ -129,7 +129,7 @@ const Trends = props => {
                             </Card.Body>
                         </Card>
                     </div>
-                    <div className='trend-card'>
+                    {/* <div className='trend-card'>
                         <Card>
                             <Card.Body>
                                 <Results results={results} />
@@ -139,7 +139,7 @@ const Trends = props => {
                             </Card.Text>
                             </Card.Body>
                         </Card>
-                    </div>
+                    </div> */}
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>

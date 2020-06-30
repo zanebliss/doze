@@ -6,7 +6,7 @@ const SleepScores = props => {
 
     const options = {
         responsive: true,
-        maintainAspectRatio: false  ,
+        maintainAspectRatio: false,
         legend: {
             display: false
         },
