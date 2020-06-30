@@ -24,6 +24,9 @@ export default {
     getMetrics(userId) {
       return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true&_sort=id&_order=desc`).then(e => e.json())
     },
+    getFactors(userId, result) {
+      return fetch(`${remoteURL}/entries?userId=${userId}&isSaved=true&result=${result}`).then(e => e.json())
+    },
     post(resource, obj) {
         return fetch(`${remoteURL}/${resource}`, {
           method: "POST",

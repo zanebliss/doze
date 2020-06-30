@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import HoursSlept from '../charts/HoursSlept'
 import SleepScores from '../charts/SleepScores'
-import Factors from '../charts/Factors'
 import Results from '../charts/Results'
+import Factors from '../charts/Factors'
 import APIManager from '../../modules/APIManager'
 import { Card } from 'react-bootstrap'
 import './Trends.css'
 
 const Trends = props => {
+    const [factors, setFactors] = useState([])
     const [hoursSlept, setHoursSlept] = useState([])
     const [totalSlept, setTotalSlept] = useState(0)
     const [sleepScores, setSleepScores] = useState([])
@@ -50,6 +51,27 @@ const Trends = props => {
         })
     }
 
+    const getFactors = result => {
+        let arr = [0, 0, 0, 0, 0, 0, 0, 0]
+        APIManager.getFactors(props.activeUser.id, result).then(entries => {
+            for (let i = 0; i < entries.length; i++) {
+                for (let j = 0; j < 7; j++) {
+                    for (const key in entries[i]) {
+                        if (key.includes('factor')) {
+                            if (entries[i][key] === result) {
+                                arr[j]++
+                                j++
+                            } else {
+                                j++
+                            }
+                        }
+                    }
+                }
+            }
+            setFactors(arr)
+        })
+    }
+
     useEffect(() => {
         getMetrics('hoursSlept', setHoursSlept)
         getMetrics('score', setSleepScores)
@@ -64,6 +86,7 @@ const Trends = props => {
         getTotalNumber('factor7', setFactor7)
         getTotalNumber('factor8', setFactor8)
         getNightsSlept(setTotalNights)
+        getFactors(1)
     }, [])
 
     return (
@@ -73,6 +96,17 @@ const Trends = props => {
                     <h1>Trends</h1>
                 </div>
                 <div className='chart-wrapper'>
+                    <div className='trend-card'>
+                        <Card>
+                            <Card.Body>
+                                <Factors factors={factors} />
+                                <Card.Title className='card-title'>Well rested.</Card.Title>
+                                <Card.Text>
+                                    These were the activities that you completed when you indicated you felt well rested.
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
