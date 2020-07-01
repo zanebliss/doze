@@ -66,13 +66,13 @@ const Factors = props => {
         ],
         labels: [
             'You exercised',
-            'You had caffeine',
-            'You wore a sleep mask',
-            'You slept in a cool room',
+            'Had caffeine',
+            'Wore a sleep mask',
+            'Slept in a cool room',
             'You were stressed',
-            'You worked late',
-            'You avoided screens before bed',
-            'You drank alcohol before bed'
+            'Worked late',
+            'Avoided screens before bed',
+            'Drank alcohol before bed'
         ]
     }
 

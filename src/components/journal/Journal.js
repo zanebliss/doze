@@ -7,6 +7,7 @@ import './Journal.css'
 
 const Journal = props => {
     let [entries, setEntries] = useState([])
+    const preferences = props.preferences
 
     const getJournals = () => {
         return APIManager.getSortedEntries(props.activeUser.id, 'id', 'desc').then(entries => {
@@ -55,6 +56,7 @@ const Journal = props => {
                     {
                         entries.map(entry => (
                             <JournalCard
+                                preferences={preferences}
                                 key={entry.id}
                                 date={entry.date}
                                 id={entry.id}
@@ -63,6 +65,7 @@ const Journal = props => {
                                 hoursSlept={entry.hoursSlept}
                                 getJournals={getJournals}
                                 score={entry.score}
+                                entry={entry}
                             />
                         ))}
                 </div>

@@ -234,16 +234,16 @@
       "factor2": 1,
       "factor3": 1,
       "factor4": 1,
-      "factor5": 1,
+      "factor5": 0,
       "factor6": 0,
-      "factor7": 0,
+      "factor7": 1,
       "factor8": 0,
-      "result": false,
-      "hoursSlept": 0,
-      "score": null,
+      "result": 1,
+      "hoursSlept": 7.5,
+      "score": 9,
       "date": "2020-06-30T18:30:05.576Z",
-      "notes": "",
-      "isSaved": false,
+      "notes": "I slept well.",
+      "isSaved": true,
       "id": 31
     }
   ]
