@@ -17,15 +17,15 @@ const Factors = props => {
 
     const options = {
         responsive: true,
-        cutoutPercentage: 60,
+        cutoutPercentage: 50,
         maintainAspectRatio: false,
         legend: {
             display: true,
             position: 'bottom',
             align: 'start',
             labels: {
-                boxWidth: 60,
-                fontSize: 20
+                boxWidth: 40,
+                fontSize: 18
             }
         },
         tooltips: {
@@ -35,13 +35,14 @@ const Factors = props => {
             bodyFontSize: 18,
             callbacks: {
                 label: function (tooltipItem, data) {
-                    return data['labels'][tooltipItem['index']] + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + ' days'
+                    return data['labels'][tooltipItem['index']]
+                     + ': ' + data['datasets'][0]['data'][tooltipItem['index']] + ' days'
                 }
             }
         },
         plugins: {
             colorschemes: {
-                scheme: 'brewer.BuPu9'
+                scheme: 'brewer.BuPu8',
             }
         }
     }
@@ -54,16 +55,24 @@ const Factors = props => {
                     props.factors[1],
                     props.factors[2],
                     props.factors[3],
+                    props.factors[4],
+                    props.factors[5],
+                    props.factors[6],
+                    props.factors[7],
+                    props.factors[8],
                 ],
-                borderColor: 'gray',
-                // borderWidth: '5px'
+                borderColor: 'black', 
             },
         ],
         labels: [
-            'Exercised',
-            'Had caffeine',
-            'Wore a sleep mask',
-            'Slept in a cool room',
+            'You exercised',
+            'You had caffeine',
+            'You wore a sleep mask',
+            'You slept in a cool room',
+            'You were stressed',
+            'You worked late',
+            'You avoided screens before bed',
+            'You drank alcohol before bed'
         ]
     }
 
@@ -76,7 +85,7 @@ const Factors = props => {
 
     return (
         <>
-            <div style={{ height: '450px', paddingBottom: '0px', paddingTop: '0px' }} className='home-chart'>
+            <div style={{ height: '550px', paddingBottom: '0px', paddingTop: '0px' }} className='home-chart'>
                 <Doughnut options={options} data={data} />
             </div>
         </>

@@ -8,7 +8,8 @@ import { Card } from 'react-bootstrap'
 import './Trends.css'
 
 const Trends = props => {
-    const [factors, setFactors] = useState([])
+    const [positiveFactors, setPositiveFactors] = useState([])
+    const [negativeFactors, setNegativeFactors] = useState([])
     const [hoursSlept, setHoursSlept] = useState([])
     const [totalSlept, setTotalSlept] = useState(0)
     const [sleepScores, setSleepScores] = useState([])
@@ -51,24 +52,38 @@ const Trends = props => {
         })
     }
 
-    const getFactors = result => {
+    const getFactors = (result, type) => {
         let arr = [0, 0, 0, 0, 0, 0, 0, 0]
         APIManager.getFactors(props.activeUser.id, result).then(entries => {
             for (let i = 0; i < entries.length; i++) {
                 for (let j = 0; j < 7; j++) {
                     for (const key in entries[i]) {
                         if (key.includes('factor')) {
-                            if (entries[i][key] === result) {
-                                arr[j]++
-                                j++
-                            } else {
-                                j++
+                            if (result === 1) {
+                                if (entries[i][key] === result) {
+                                    arr[j]++
+                                    j++
+                                } else {
+                                    j++
+                                }
+                            } else if (result === 0) {
+                                if (entries[i][key] === 1) {
+                                    arr[j]++
+                                    j++
+                                } else {
+                                    j++
+                                }
                             }
                         }
                     }
                 }
             }
-            setFactors(arr)
+            if (type === 'positive') {
+                setPositiveFactors(arr)
+            } else if (type === 'negative') {
+                setNegativeFactors(arr)
+
+            }
         })
     }
 
@@ -77,16 +92,18 @@ const Trends = props => {
         getMetrics('score', setSleepScores)
         getMetrics('result', setResults)
         getTotalNumber('hoursSlept', setTotalSlept)
-        getTotalNumber('factor1', setFactor1)        
-        getTotalNumber('factor2', setFactor2)        
-        getTotalNumber('factor3', setFactor3)        
+        getTotalNumber('factor1', setFactor1)
+        getTotalNumber('factor2', setFactor2)
+        getTotalNumber('factor3', setFactor3)
         getTotalNumber('factor4', setFactor4)
         getTotalNumber('factor5', setFactor5)
         getTotalNumber('factor6', setFactor6)
         getTotalNumber('factor7', setFactor7)
         getTotalNumber('factor8', setFactor8)
         getNightsSlept(setTotalNights)
-        getFactors(1)
+        // getFactors(1, setPositiveFactors)
+        getFactors(1, 'positive')
+        getFactors(0, 'negative')
     }, [])
 
     return (
@@ -99,11 +116,22 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <Factors factors={factors} />
                                 <Card.Title className='card-title'>When you were well rested.</Card.Title>
                                 <Card.Text>
-                                    These are how many times you completed a specific activity on the days you felt well rested.
+                                    When you indicated you were well rested, hese were the activities you completed.
                             </Card.Text>
+                                <Factors factors={positiveFactors} />
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className='trend-card'>
+                        <Card>
+                            <Card.Body>
+                                <Card.Title className='card-title'>When you were not well rested.</Card.Title>
+                                <Card.Text>
+                                    When you indicated you were not well rested, these were the activities you completed.
+                            </Card.Text>
+                                <Factors factors={negativeFactors} />
                             </Card.Body>
                         </Card>
                     </div>
@@ -129,7 +157,7 @@ const Trends = props => {
                             </Card.Body>
                         </Card>
                     </div>
-                    {/* <div className='trend-card'>
+                    <div className='trend-card'>
                         <Card>
                             <Card.Body>
                                 <Results results={results} />
@@ -139,31 +167,30 @@ const Trends = props => {
                             </Card.Text>
                             </Card.Body>
                         </Card>
-                    </div> */}
+                    </div>
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                {/* <Factors /> */}
                                 <Card.Title style={{ fontSize: '20pt' }}>Metrics</Card.Title>
                                 <Card.Text style={{ fontSize: '16pt' }}>
                                     Total hours slept: {totalSlept}
-                                    <br/>
+                                    <br />
                                     Total nights slept: {totalNights}
-                                    <br/>
-                                    Total days with exercise: {factor1} 
-                                    <br/>
+                                    <br />
+                                    Total days with exercise: {factor1}
+                                    <br />
                                     Total days with caffeine: {factor2}
-                                    <br/>
+                                    <br />
                                     Total days with a sleep mask: {factor3}
-                                    <br/>
+                                    <br />
                                     Total days with a cool room: {factor4}
-                                    <br/>
+                                    <br />
                                     Total days you were stressed: {factor5}
-                                    <br/>
+                                    <br />
                                     Total days you worked late: {factor6}
-                                    <br/>
+                                    <br />
                                     Total days you avoided screens: {factor7}
-                                    <br/>
+                                    <br />
                                     Total days you drank alcohol: {factor8}
                                 </Card.Text>
                             </Card.Body>

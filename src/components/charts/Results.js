@@ -60,6 +60,7 @@ const Results = props => {
                 borderWidth: 1.5,
                 pointBackgroundColor: 'white',
                 borderColor: 'gray',
+                pointBorderColor: 'gray', 
                 label: 'Well rested',
                 pointRadius: 11,
                 steppedLine: true
