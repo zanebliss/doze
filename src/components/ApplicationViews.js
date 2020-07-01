@@ -11,6 +11,10 @@ const ApplicationViews = props => {
     const activeUser = props.activeUser
     const setActiveUser = props.setActiveUser
     const [isNewUser, setIsNewUser] = useState(true)
+    const [preferences] = useState([
+        'I exercised today', 'I had caffeine today', 'I am wearing a sleep mask', 'The room is cool',
+        'I am stressed', 'I worked late', 'I avoided screens before bed', 'I drank alcohol before bed'
+    ])
 
     return (
         <div className='content-wrapper'>
@@ -28,7 +32,8 @@ const ApplicationViews = props => {
                 />
             }} />
             <Route exact path='/journal' render={props => {
-                return <Journal {...props}
+                return <Journal {...props} 
+                    preferences={preferences}
                     isNewUser={isNewUser}
                     setIsNewUser={setIsNewUser}
                     activeUser={activeUser}
