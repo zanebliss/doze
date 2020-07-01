@@ -1,8 +1,8 @@
 import React, { } from 'react'
 import { Line } from 'react-chartjs-2'
-import moment from 'moment'
+import moment from 'moment' 
 
-const HoursSlept = props => {
+const Results = props => {
 
     const options = {
         responsive: true,
@@ -11,6 +11,7 @@ const HoursSlept = props => {
             display: false
         },
         tooltips: {
+            enabled: false,
             titleFontSize: 18,
             titleAlign: 'center',
             bodyFontSize: 18,
@@ -25,9 +26,9 @@ const HoursSlept = props => {
                     // beginAtZero: true,
                     fontSize: 16,
                     fontColor: 'black',
-                    stepSize: 1,
-                    min: 2,
-                    max: 10,
+                    stepSize: 0.5,
+                    min: -0.1,
+                    max: 1.15,
                     display: false
                 }
             }],
@@ -49,19 +50,20 @@ const HoursSlept = props => {
         datasets: [
             {
                 data: [
-                    props.hoursSlept[4],
-                    props.hoursSlept[3],
-                    props.hoursSlept[2],
-                    props.hoursSlept[1],
-                    props.hoursSlept[0],
+                    props.results[4],
+                    props.results[3],
+                    props.results[2],
+                    props.results[1],
+                    props.results[0],
                 ],
                 backgroundColor: ['rgba(41, 201, 255, 0.5)'],
                 borderWidth: 1.5,
                 pointBackgroundColor: 'white',
-                pointBorderColor: 'gray',
                 borderColor: 'gray',
-                label: 'Hours slept',
-                pointRadius: 11
+                pointBorderColor: 'gray', 
+                label: 'Well rested',
+                pointRadius: 11,
+                steppedLine: true
             },
 
         ],
@@ -83,4 +85,4 @@ const HoursSlept = props => {
     )
 }
 
-export default HoursSlept
+export default Results

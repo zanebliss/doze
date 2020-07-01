@@ -8,21 +8,21 @@ const Doze = () => {
 
     if (!activeUser) {
         return (
-          <React.Fragment>
+          <>
             <WelcomeViews 
               setActiveUser={setActiveUser}
               />
-          </React.Fragment>
+          </>
         )
       } else if (activeUser) {
         return (
-          <React.Fragment>
+          <>
             <Bar />
             <ApplicationViews 
               activeUser={activeUser} 
               setActiveUser={setActiveUser}
               />
-          </React.Fragment>
+          </>
         );
       }
 }

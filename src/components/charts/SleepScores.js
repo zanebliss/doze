@@ -2,7 +2,7 @@ import React, { } from 'react'
 import { Bar } from 'react-chartjs-2'
 import moment from 'moment'
 
-const HomeChart = props => {
+const SleepScores = props => {
 
     const options = {
         responsive: true,
@@ -24,10 +24,9 @@ const HomeChart = props => {
                     beginAtZero: true,
                     fontSize: 16,
                     fontColor: 'black',
-                    stepSize: 1,
-                    min: 2,
-                    max: 10,
-                    display: false
+                    stepSize: 20,
+                    // min: 0,
+                    display: true,
                 }
             }],
             xAxes: [{
@@ -44,11 +43,11 @@ const HomeChart = props => {
         datasets: [
             {
                 data: [
-                    props.hoursSlept[4],
-                    props.hoursSlept[3],
-                    props.hoursSlept[2],
-                    props.hoursSlept[1],
-                    props.hoursSlept[0],
+                    props.sleepScores[4],
+                    props.sleepScores[3],
+                    props.sleepScores[2],
+                    props.sleepScores[1],
+                    props.sleepScores[0]
                 ],
                 backgroundColor: [
                     'rgba(41, 201, 255, 0.5)',
@@ -59,7 +58,7 @@ const HomeChart = props => {
                 ],
                 borderWidth: 1.5,
                 borderColor: 'gray',
-                label: 'Hours slept',
+                label: 'Sleep score',
             },
 
         ],
@@ -74,11 +73,11 @@ const HomeChart = props => {
 
     return (
         <>
-            <div style={{ height: '280px', padding: '12px', paddingBottom: '0px', paddingTop: '0px'}}>
+            <div style={{ height: '280px', padding: '0px', paddingBottom: '0px', paddingTop: '0px'}}>
                 <Bar options={options} data={data} />
             </div>
         </>
     )
 }
 
-export default HomeChart
+export default SleepScores
