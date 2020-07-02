@@ -8,6 +8,7 @@ import { Card } from 'react-bootstrap'
 import './Trends.css'
 
 const Trends = props => {
+    const [entries, setEntries] = useState([])
     const [positiveFactors, setPositiveFactors] = useState([])
     const [negativeFactors, setNegativeFactors] = useState([])
     const [hoursSlept, setHoursSlept] = useState([])
@@ -87,7 +88,19 @@ const Trends = props => {
         })
     }
 
+    const getEntries = () => {
+        APIManager.getSortedEntries(props.activeUser.id, 'date', 'desc').then(entries => {
+            let arr = entries.filter(entry => {
+                if (entry.isSaved) {
+                    return entry
+                }
+            })
+            setEntries(arr)
+        })
+    }
+
     useEffect(() => {
+        getEntries()
         getMetrics('hoursSlept', setHoursSlept)
         getMetrics('score', setSleepScores)
         getMetrics('result', setResults)
@@ -138,7 +151,7 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <HoursSlept hoursSlept={hoursSlept} />
+                                {entries.length !== 0 && <HoursSlept hoursSlept={hoursSlept} entries={entries} />}
                                 <Card.Title className='card-title'>Hours slept</Card.Title>
                                 <Card.Text>
                                     Most healthy adults need between 7 to 9 hours of sleep per night to function properly.
@@ -149,7 +162,7 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <SleepScores sleepScores={sleepScores} />
+                                {entries.length !== 0 && <SleepScores sleepScores={sleepScores} entries={entries} />}
                                 <Card.Title className='card-title'>Sleep scores</Card.Title>
                                 <Card.Text>
                                     As Doze learns from your habits, your sleep scores become more accurate over time.
@@ -160,7 +173,7 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <Results results={results} />
+                                {entries.length !== 0 && <Results results={results} entries={entries} />}
                                 <Card.Title className='card-title'>Well rested</Card.Title>
                                 <Card.Text>
                                     Did you feel well rested? See which days you felt well rested.
