@@ -1,4 +1,4 @@
-import React, { } from 'react'
+import React, { useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import moment from 'moment'
 
@@ -66,11 +66,11 @@ const HoursSlept = props => {
 
         ],
         labels: [
-            moment().subtract(4, 'day').format('ddd'),
-            moment().subtract(3, 'day').format('ddd'),
-            moment().subtract(2, 'day').format('ddd'),
-            moment().subtract(1, 'day').format('ddd'),
-            'Today',
+            moment(props.entries[4].date).format('MMM D'),
+            moment(props.entries[3].date).format('MMM D'),
+            moment(props.entries[2].date).format('MMM D'),
+            moment(props.entries[1].date).format('MMM D'),
+            moment(props.entries[0].date).format('MMM D')
         ]
     }
 
