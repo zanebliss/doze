@@ -14,7 +14,7 @@ const Settings = props => {
             <div className='settings-wrapper'>
                 <div className='header-wrapper'><h1>Settings</h1></div>
                 <div className='nav-options'>
-                <div className='nav-item' onClick={() => {props.history.push('/about')}}><p>About</p></div>
+                {/* <div className='nav-item' onClick={() => {props.history.push('/about')}}><p>About</p></div> */}
                 <div className='nav-item' onClick={handleLogout}><p>Logout</p></div>
                 </div>
             </div>

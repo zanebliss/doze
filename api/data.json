@@ -227,24 +227,6 @@
       "notes": "I made time to really wind down this evening and repeated the same things that have helped me sleep well in the past.",
       "isSaved": true,
       "id": 30
-    },
-    {
-      "userId": 1,
-      "factor1": 1,
-      "factor2": 1,
-      "factor3": 1,
-      "factor4": 1,
-      "factor5": 0,
-      "factor6": 0,
-      "factor7": 1,
-      "factor8": 0,
-      "result": 1,
-      "hoursSlept": 7.5,
-      "score": 9,
-      "date": "2020-06-30T18:30:05.576Z",
-      "notes": "I slept well.",
-      "isSaved": true,
-      "id": 31
     }
   ]
 }

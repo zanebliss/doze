@@ -131,7 +131,7 @@ const Trends = props => {
                             <Card.Body>
                                 <Card.Title className='card-title'>When you were well rested.</Card.Title>
                                 <Card.Text>
-                                    When you indicated you were well rested, hese were the activities you completed.
+                                    When you you were well rested, these were the activities you completed and how many days you completed them.
                             </Card.Text>
                                 <Factors factors={positiveFactors} />
                             </Card.Body>
@@ -142,7 +142,7 @@ const Trends = props => {
                             <Card.Body>
                                 <Card.Title className='card-title'>When you were not well rested.</Card.Title>
                                 <Card.Text>
-                                    When you indicated you were not well rested, these were the activities you completed.
+                                When you you were well rested, these were the activities you completed and how many days you completed them.
                             </Card.Text>
                                 <Factors factors={negativeFactors} />
                             </Card.Body>
