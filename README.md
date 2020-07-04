@@ -14,7 +14,7 @@ In the trends section of the app, users can view which activities they completed
 1. Enter **cd doze/api** and enter **json-server -p 8088 -w data.json**.
 1. Enter **..** and then **npm start**.
 
-## Technologies used
+## Technologies
 - Brain.js
 - React
 - React Boostrap
