@@ -9,7 +9,19 @@ In the trends section of the app, users can view which activities they completed
 
 ## How to run Doze
 
-1. Navigate to the home of this repo and click on the **code** button. Then, select **Download ZIP**.
-1. After downloading, navigate to where you saved the **doze-master.zip** file and expand the ZIP file.
-1. Open your terminal and **cd** into the **doze-master** folder. Then type **npm start**.
-1. **cd** into 'api' and type **json-server -p 8088 -w data.json**.
+1. Navigate to the home of this repo and click on the **code** button. Then, select **clone repo**. Copy the URL.
+1. Open your terminal and enter **git clone URL** (paste the copied URL).
+1. Enter **cd doze/api** and enter **json-server -p 8088 -w data.json**.
+1. Enter **..** and then **npm start**.
+
+## Technologies used
+- Brain.js
+- React
+- React Boostrap
+- Javascript
+- Chart.js
+- Figma 
+- Minor libraries (buttons and switches)
+
+## Big thanks
+Cohort 40 and NSS teaching staff including Joe Shepherd, Bryan Nilsen, and Sage Klein.
