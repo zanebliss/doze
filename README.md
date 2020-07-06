@@ -13,6 +13,11 @@ In the trends section of the app, users can view which activities they completed
 
 ![](/public/media/doze-trends.gif)
 
+## Wireframing and ERD
+
+![](/public/media/wireframe.png)
+![](/public/media/Doze ERD.png)
+
 ## How to run Doze
 
 1. Navigate to the home of this repo and click on the **code** button. Then, select **clone repo**. Copy the URL.
