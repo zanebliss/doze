@@ -16,7 +16,7 @@ In the trends section of the app, users can view which activities they completed
 ## Wireframing and ERD
 
 ![](/public/media/wireframe.png)
-![](/public/media/Doze ERD.png)
+![](/public/media/ERD.png)
 
 ## How to run Doze
 
