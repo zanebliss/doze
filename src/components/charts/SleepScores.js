@@ -58,7 +58,7 @@ const SleepScores = props => {
                 ],
                 borderWidth: 1.5,
                 borderColor: 'gray',
-                label: 'Sleep score',
+                label: 'Prediction',
             },
 
         ],

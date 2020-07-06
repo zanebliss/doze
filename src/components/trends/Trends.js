@@ -114,7 +114,6 @@ const Trends = props => {
         getTotalNumber('factor7', setFactor7)
         getTotalNumber('factor8', setFactor8)
         getNightsSlept(setTotalNights)
-        // getFactors(1, setPositiveFactors)
         getFactors(1, 'positive')
         getFactors(0, 'negative')
     }, [])
@@ -151,7 +150,7 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                {entries.length !== 0 && <HoursSlept hoursSlept={hoursSlept} entries={entries} />}
+                                {entries.length >= 5 && <HoursSlept hoursSlept={hoursSlept} entries={entries} />}
                                 <Card.Title className='card-title'>Hours slept</Card.Title>
                                 <Card.Text>
                                     Most healthy adults need between 7 to 9 hours of sleep per night to function properly.
@@ -162,10 +161,10 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                {entries.length !== 0 && <SleepScores sleepScores={sleepScores} entries={entries} />}
-                                <Card.Title className='card-title'>Sleep scores</Card.Title>
+                                {entries.length >= 5 && <SleepScores sleepScores={sleepScores} entries={entries} />}
+                                <Card.Title className='card-title'>Chance of feeling well rested</Card.Title>
                                 <Card.Text>
-                                    As Doze learns from your habits, your sleep scores become more accurate over time.
+                                    As Doze learns from your habits, it's predictions become more accurate over time.
                             </Card.Text>
                             </Card.Body>
                         </Card>
@@ -173,7 +172,7 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                {entries.length !== 0 && <Results results={results} entries={entries} />}
+                                {entries.length >= 5 && <Results results={results} entries={entries} />}
                                 <Card.Title className='card-title'>Well rested</Card.Title>
                                 <Card.Text>
                                     Did you feel well rested? See which days you felt well rested.

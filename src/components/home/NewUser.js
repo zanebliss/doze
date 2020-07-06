@@ -7,8 +7,9 @@ const NewUser = () => {
     return (
         <>
             <OnboardingModal />
-            <h1>Welcome to Doze.</h1>
-            <h2>Use the activities button to enter your daily activities.</h2>
+            <div className='newuser-wrapper'>
+                <h1>Use the activities button to enter your daily activities.</h1>
+            </div>
         </>
     )
 }
