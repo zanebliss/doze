@@ -214,3 +214,16 @@
   padding-left: 12px;
   padding-right: 20px;
 }
+
+.newuser-wrapper {
+  text-align: center;
+  margin-top: 5%;
+  padding: 5%;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.newuser-wrapper h1 {
+  font-size: 26pt;
+  font-weight: normal;
+}
