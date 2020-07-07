@@ -24,7 +24,7 @@ const Factors = props => {
             position: 'bottom',
             align: 'start',
             labels: {
-                boxWidth: 40,
+                boxWidth: 60,
                 fontSize: 18
             }
         },
@@ -65,11 +65,11 @@ const Factors = props => {
             },
         ],
         labels: [
-            'You exercised',
+            'Exercised',
             'Had caffeine',
             'Wore a sleep mask',
             'Slept in a cool room',
-            'You were stressed',
+            'Stressed',
             'Worked late',
             'Avoided screens before bed',
             'Drank alcohol before bed'

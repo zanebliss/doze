@@ -128,9 +128,11 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <Card.Title className='card-title'>When you were well rested.</Card.Title>
+                                <Card.Title className='card-title'>When you were well rested</Card.Title>
                                 <Card.Text>
-                                    When you you were well rested, these were the activities you completed and how many days you completed them.
+                                    When you you were well rested, these were the activities you completed.
+                                <br />
+                                    Touch sections to see details.
                             </Card.Text>
                                 <Factors factors={positiveFactors} />
                             </Card.Body>
@@ -139,9 +141,11 @@ const Trends = props => {
                     <div className='trend-card'>
                         <Card>
                             <Card.Body>
-                                <Card.Title className='card-title'>When you were not well rested.</Card.Title>
+                                <Card.Title className='card-title'>When you were not well rested</Card.Title>
                                 <Card.Text>
-                                When you you were well rested, these were the activities you completed and how many days you completed them.
+                                    When you you were not well rested, these were the activities you completed and how many days you completed them.
+                                <br />
+                                Touch sections to see details.
                             </Card.Text>
                                 <Factors factors={negativeFactors} />
                             </Card.Body>
@@ -153,6 +157,7 @@ const Trends = props => {
                                 {entries.length >= 5 && <HoursSlept hoursSlept={hoursSlept} entries={entries} />}
                                 <Card.Title className='card-title'>Hours slept</Card.Title>
                                 <Card.Text>
+                                    How long have you slept recently?
                                     Most healthy adults need between 7 to 9 hours of sleep per night to function properly.
                             </Card.Text>
                             </Card.Body>
@@ -162,9 +167,10 @@ const Trends = props => {
                         <Card>
                             <Card.Body>
                                 {entries.length >= 5 && <SleepScores sleepScores={sleepScores} entries={entries} />}
-                                <Card.Title className='card-title'>Chance of feeling well rested</Card.Title>
+                                <Card.Title className='card-title'>Sleep Scores</Card.Title>
                                 <Card.Text>
                                     As Doze learns from your habits, it's predictions become more accurate over time.
+                                    See how your Sleep Scores have changed overtime.
                             </Card.Text>
                             </Card.Body>
                         </Card>
@@ -175,7 +181,8 @@ const Trends = props => {
                                 {entries.length >= 5 && <Results results={results} entries={entries} />}
                                 <Card.Title className='card-title'>Well rested</Card.Title>
                                 <Card.Text>
-                                    Did you feel well rested? See which days you felt well rested.
+                                    Which days did you feel well rested? A higher dot indicates you felt well rested,
+                                    and a lower dot indicates you did not feel well rested.
                             </Card.Text>
                             </Card.Body>
                         </Card>
