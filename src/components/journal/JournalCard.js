@@ -67,17 +67,18 @@ const JournalCard = props => {
                                     <BoostrapSwitchButton onlabel={onlabel} offlabel={offlabel} size={size}
                                         checked={(Boolean(entry.factor8))}
                                     />
-                                    <div className='activities-buttons'>
-                                        <div className='activities-btn' >
-                                        </div>
-                                        <div className='activities-btn'>
-                                            <Button size='lg' onClick={handleClose} variant='secondary'>Close</Button>
-                                        </div>
-                                    </div>
                                 </div>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
+                    <Modal.Footer>
+                    {props.entry.result ? 
+                        <Button size='lg' variant='outline-success'>Result: Well rested</Button>
+                        :
+                        <Button size='lg' variant='outline-danger'>Result: Not well rested</Button>
+                    }
+                        <Button size='lg' onClick={handleClose} variant='secondary'>Close</Button>
+                    </Modal.Footer>
                 </Modal>
                 <Card>
                     <Card.Header>Saved on {moment(props.date).format('MMM Do YYYY, h:mm a')}.</Card.Header>
