@@ -28,7 +28,7 @@ In the trends section of the app, users can view which activities they completed
 ## Technologies used
 - Brain.js
 - React
-- React Boostrap
+- React Bootstrap
 - Javascript
 - Chart.js
 - Figma 
